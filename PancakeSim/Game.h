@@ -19,6 +19,7 @@ public:
 	void Render();
 	void Update();
 	void HandleSerialEvents();
+	void HandleKeyboardEvents();
 	void HandleEvents();
 	void Clean();
 
@@ -28,7 +29,11 @@ public:
 private:
 	SDL_Window* mainWindow;
 	SDL_Renderer* mainRenderer;
+	
+	bool ignoreSerial = true;// false;
+	int forceComPort = -1;
 	SerialInterface* serial;
+
 
 	bool isRunning;
 

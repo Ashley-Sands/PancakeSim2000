@@ -16,8 +16,19 @@ Game::~Game()
 
 bool Game::InitSerialConnection()
 {
-
-	serial = new SerialInterface();
+	if (ignoreSerial)
+	{
+		cout << "Ignorng Serial inputs (Disabled)";
+		return false;			
+	}
+	else if (forceComPort < 0)
+	{
+		serial = new SerialInterface();
+	}
+	else
+	{
+		serial = new SerialInterface(forceComPort);
+	}
 
 	return true;
 }
@@ -107,7 +118,7 @@ void Game::HandleSerialEvents()
 
 
 // handleEvents - Poll Events and uses switch case to process specific events
-void Game::HandleEvents()
+void Game::HandleKeyboardEvents()
 {
 	SDL_Event event;
 
@@ -137,6 +148,15 @@ void Game::HandleEvents()
 	}
 }
 
+void Game::HandleEvents()
+{
+	// use controler inputs if avable.
+	if (!ignoreSerial && serial != nullptr && serial->connect)
+		HandleSerialEvents();
+	else
+		HandleKeyboardEvents();
+
+}
 
 // clean - Clean up SDL and close the port
 void Game::Clean()
