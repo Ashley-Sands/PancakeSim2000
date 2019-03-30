@@ -1,0 +1,7 @@
+# NOTE TO SELF
+
+
+i may need still need to added the .libs for the mixer and image to this folder for 'libraries/[SDL lib]/lib/x86/'
+
+im not shore if i do or not lazzy foo doesnt say anythink about it but for some resion i have the SDL2_ttf.lib file in this dir and i cant remember why. (it was late and about 1 or so ago, when i set it up :P)
+
