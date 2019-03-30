@@ -9,8 +9,13 @@
 class SerialInterface
 {
 public:
+	
 	SerialInterface();
+	SerialInterface(int port);
+
 	~SerialInterface();
+
+	bool TryConnection(std::string port);
 
 	bool connect = false;
 
