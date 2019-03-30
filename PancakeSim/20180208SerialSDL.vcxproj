@@ -164,7 +164,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="20180208SerialSDL.cpp" />
+    <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SerialInterface.cpp" />
     <ClCompile Include="stdafx.cpp">
