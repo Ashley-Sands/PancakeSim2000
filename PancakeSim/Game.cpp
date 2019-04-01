@@ -4,17 +4,22 @@
 
 #include <iostream>
 
+//TESTING (ATM)
+#include "sprite.h";
+
 
 using std::cout;
 
 Game::Game()
 {
+	tempcake = new Sprite();
 	
 }
 
 
 Game::~Game()
 {
+	delete tempcake;
 }
 
 bool Game::InitSerialConnection()
@@ -61,12 +66,13 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 				cout << "Window creation success \n";
 
 				// create renderer
-				mainRenderer = SDL_CreateRenderer(mainWindow, -1, 0);
+				mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
+				SDL_SetRenderDrawBlendMode(mainRenderer, SDL_BLENDMODE_BLEND);
 
 				// if renderer successful...
 				if (mainRenderer != 0) {
 					cout << "Renderer creation success \n";
-					SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
+					SDL_SetRenderDrawColor(mainRenderer, 0, 0, 0, 0);
 				}
 				else 
 				{
@@ -94,26 +100,45 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 	cout << "SDL init success \n";
 
 	InitSerialConnection();
+	InitGameComponents();
+
 
 	return true;
+}
+
+void Game::InitGameComponents()
+{
+	//tempcake->SetSprite("Sprites/TempCake_000.png", mainSurface->format);
+	tempcake->SetSprite(mainRenderer, "Sprites/TempCake_000.png");
 }
 
 // render - Process all sprites to be displayed on the main renderer
 void Game::Render()
 {
 	// set background color
-	SDL_SetRenderDrawColor(mainRenderer, 0, 0, 0, 255);
+	
 	
 	// clear previous frame
 	SDL_RenderClear(mainRenderer);
 
 	// draw to the screen here!
-	SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
+	//SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
 	//SDL_RenderFillRect(mainRenderer,&playerOnePosition);		// render a rect to screen. (renderer, rect)
 	//SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
 	
+	//SDL_BlitSurface(tempcake->GetSprite(), NULL, mainSurface, NULL);
+	SDL_Rect sRect;
+	sRect.x = f*0.2f; sRect.y = 0;
+	sRect.w = 100; sRect.h = 100;
+	
+	//SDL_BlitScaled(tempcake->GetSprite(), NULL, mainSurface, &sRect);
+	//SDL_SetSurfaceBlendMode(mainSurface, SDL_BLENDMODE_BLEND);
+	//SDL_SetSurfaceAlphaMod(mainSurface, 0);
+	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), NULL, &sRect);
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
+	//SDL_UpdateWindowSurface(mainWindow);
+	f++;
 }
 
 

@@ -9,6 +9,8 @@
 #include <serial\serial.h>
 #include "SerialInterface.h"
 
+class Sprite;
+
 class Game
 {
 public:
@@ -23,13 +25,19 @@ public:
 	void HandleEvents();
 	void Clean();
 
-	bool InitSerialConnection();
+	
 	bool Running() { return isRunning; };
 
 private:
+	
+	// main SDL win, renderer & surface :)
 	SDL_Window* mainWindow;
 	SDL_Renderer* mainRenderer;
 	SDL_Surface* mainSurface;
+
+	//Inits
+	bool InitSerialConnection();
+	void InitGameComponents();	// use to inisalize the game compoents that require the main SDL bits
 
 	bool ignoreSerial = true;// false;
 	int forceComPort = -1;
@@ -38,7 +46,10 @@ private:
 
 	bool isRunning;
 
-	
 
+
+//TESTING ONLY
+	Sprite* tempcake;
+	int f = 0;
 };
 

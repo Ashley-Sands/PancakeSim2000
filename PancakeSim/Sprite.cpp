@@ -10,34 +10,24 @@ Sprite::Sprite()
 
 Sprite::~Sprite()
 {
-	if(spriteSurface != NULL)
-		SDL_FreeSurface(spriteSurface);
 
 }
 
-void Sprite::SetSprite( std::string path, SDL_PixelFormat* pixelFormat)
+void Sprite::SetSprite(SDL_Renderer* renderer, std::string path )
 {
-	// free the surface if one alread exist
-	if (spriteSurface != NULL)
+	spriteTexture = IMG_LoadTexture(renderer, path.c_str());
+
+	if (spriteTexture == NULL)
 	{
-		SDL_FreeSurface(spriteSurface);
-		spriteSurface = NULL;
+		printf("Faled To Load Texture");
+		return;
 	}
 
-
-	// Load and optimize surface
-	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-
-	if (loadedSurface == NULL)
-		printf("Faild to load img! (%s)", path.c_str());
-	else
-		spriteSurface = SDL_ConvertSurface(loadedSurface, pixelFormat, NULL);
-	
-	SDL_FreeSurface(loadedSurface);
-
 }
 
-SDL_Surface* Sprite::GetSprite()
+SDL_Texture* Sprite::GetSprite()
 {
-	return spriteSurface;
+	return spriteTexture;
 }
+
+
