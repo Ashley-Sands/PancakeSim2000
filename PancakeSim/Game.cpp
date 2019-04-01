@@ -53,7 +53,8 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 
 			// Create a window
 			mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
-
+			mainSurface = SDL_GetWindowSurface(mainWindow);
+			
 			// if window succesful..
 			if (mainWindow != 0) 
 			{

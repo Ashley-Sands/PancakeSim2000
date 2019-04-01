@@ -29,7 +29,8 @@ public:
 private:
 	SDL_Window* mainWindow;
 	SDL_Renderer* mainRenderer;
-	
+	SDL_Surface* mainSurface;
+
 	bool ignoreSerial = true;// false;
 	int forceComPort = -1;
 	SerialInterface* serial;
