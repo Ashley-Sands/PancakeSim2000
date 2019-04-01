@@ -10,8 +10,8 @@ Sprite::Sprite()
 
 Sprite::~Sprite()
 {
-
-	SDL_FreeSurface(spriteSurface);
+	if(spriteSurface != NULL)
+		SDL_FreeSurface(spriteSurface);
 
 }
 
@@ -29,7 +29,7 @@ void Sprite::SetSprite( std::string path, SDL_PixelFormat* pixelFormat)
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 
 	if (loadedSurface == NULL)
-		printf("Faild to load img! (%s)", path);
+		printf("Faild to load img! (%s)", path.c_str());
 	else
 		spriteSurface = SDL_ConvertSurface(loadedSurface, pixelFormat, NULL);
 	

@@ -12,9 +12,9 @@ public:
 	~Sprite();
 
 	void SetSprite( std::string path, SDL_PixelFormat* pixelFormat );
-	SDL_Surface* GetSprite();
+	virtual SDL_Surface* GetSprite();
 
-private:
+protected:
 	SDL_Surface* spriteSurface;
 
 };
