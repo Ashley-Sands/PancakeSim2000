@@ -50,6 +50,7 @@ private:
 
 //TESTING ONLY
 	Sprite* tempcake;
+	Sprite* tempPan;
 	int f = 0;
 };
 

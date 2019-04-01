@@ -13,6 +13,7 @@ using std::cout;
 Game::Game()
 {
 	tempcake = new Sprite();
+	tempPan = new Sprite();
 	
 }
 
@@ -109,7 +110,8 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 void Game::InitGameComponents()
 {
 	//tempcake->SetSprite("Sprites/TempCake_000.png", mainSurface->format);
-	tempcake->SetSprite(mainRenderer, "Sprites/TempCake_000.png");
+	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_SS.png");
+	tempPan->SetSprite(mainRenderer, "Sprites/PAN_SS.png");
 }
 
 // render - Process all sprites to be displayed on the main renderer
@@ -127,18 +129,41 @@ void Game::Render()
 	//SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
 	
 	//SDL_BlitSurface(tempcake->GetSprite(), NULL, mainSurface, NULL);
-	SDL_Rect sRect;
-	sRect.x = f*0.2f; sRect.y = 0;
-	sRect.w = 100; sRect.h = 100;
+	SDL_Rect dRect;
+	dRect.x = 100; dRect.y = 0;
+	dRect.w = 100; dRect.h = 100;
 	
+	SDL_Rect sRect;
+	sRect.x = ((f++%(14*8))/8)*200; sRect.y = 0;
+	sRect.w = 200; sRect.h = 200;
+
 	//SDL_BlitScaled(tempcake->GetSprite(), NULL, mainSurface, &sRect);
 	//SDL_SetSurfaceBlendMode(mainSurface, SDL_BLENDMODE_BLEND);
 	//SDL_SetSurfaceAlphaMod(mainSurface, 0);
-	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), NULL, &sRect);
+	//TEMP CAKE
+	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
+	dRect.x += 150;
+	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
+	dRect.x += 150;
+	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
+
+
+	dRect.x = 90; dRect.y = 300;
+	dRect.w = 120; dRect.h = 228 * (120.f / 200.f);
+
+	sRect.x = ((f% (10 * 10)) / 10) * 200; sRect.y = 0;
+	sRect.w = 200; sRect.h = 228;
+	//TEMP PAN
+	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
+	dRect.x += 150;
+	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
+	dRect.x += 150;
+	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
+
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
 	//SDL_UpdateWindowSurface(mainWindow);
-	f++;
+
 }
 
 
