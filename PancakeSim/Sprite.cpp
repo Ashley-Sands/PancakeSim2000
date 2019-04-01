@@ -11,6 +11,9 @@ Sprite::Sprite()
 Sprite::~Sprite()
 {
 
+	SDL_DestroyTexture(spriteTexture);
+	spriteTexture = NULL;
+
 }
 
 void Sprite::SetSprite(SDL_Renderer* renderer, std::string path )
