@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "SDL_image.h"
+
 #include <iostream>
+
 
 using std::cout;
 
@@ -18,7 +21,7 @@ bool Game::InitSerialConnection()
 {
 	if (ignoreSerial)
 	{
-		cout << "Ignorng Serial inputs (Disabled)";
+		cout << "Ignoring Serial inputs (Disabled)";
 		return false;			
 	}
 	else if (forceComPort < 0)
@@ -39,36 +42,49 @@ bool Game::InitSerialConnection()
 bool Game::Init(const char * title, int xpos, int ypos, int width, int height, int flags)
 {
 	// initialise SDL
-	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
+	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) 
+	{
 		cout << "SDL init success \n";
 
-		// Create a window
-		mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+		// initialise PNG image files
+		if (IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG)
+		{
+			cout << "IMG PNG init success \n";
 
-		// if window succesful..
-		if (mainWindow != 0) {
-			cout << "Window creation success \n";
+			// Create a window
+			mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 
-			// create renderer
-			mainRenderer = SDL_CreateRenderer(mainWindow, -1, 0);
+			// if window succesful..
+			if (mainWindow != 0) 
+			{
+				cout << "Window creation success \n";
 
-			// if renderer successful...
-			if (mainRenderer != 0) {
-				cout << "Renderer creation success \n";
-				SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
+				// create renderer
+				mainRenderer = SDL_CreateRenderer(mainWindow, -1, 0);
+
+				// if renderer successful...
+				if (mainRenderer != 0) {
+					cout << "Renderer creation success \n";
+					SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
+				}
+				else 
+				{
+					cout << "renderer failed \n";
+					return false;
+				}
 			}
 			else {
-				cout << "renderer failed \n";
+				cout << "window failed \n";
 				return false;
 			}
 		}
-		else {
-			cout << "window failed \n";
-			return false;
+		else
+		{
+			cout << "Failed to init PNG images \n";
 		}
-
 	}
-	else {
+	else 
+	{
 		cout << "SDL fail \n";
 		return false;
 	}
