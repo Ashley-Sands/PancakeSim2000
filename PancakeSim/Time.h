@@ -16,9 +16,10 @@ public:
 private:
 	int targetFPS = 60;
 
-	int ticksPreUpdate = 1000 / targetFPS;
+	float ticksPreUpdate = 1000.0f / targetFPS;
 
 	int lastUpdate_tick = 0;
+	float nextUpdate_tick = ticksPreUpdate;
 	int delta_tick = 0;
 
 };
