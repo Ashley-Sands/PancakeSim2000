@@ -5,7 +5,7 @@
 #include "SDL_image.h"
 
 
-SpriteSheet::SpriteSheet()
+SpriteSheet::SpriteSheet() : Sprite()
 {
 }
 
