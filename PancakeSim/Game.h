@@ -10,11 +10,13 @@
 #include "SerialInterface.h"
 
 class Sprite;
+class Time;
 
 class Game
 {
 public:
 	Game();
+	Game(Time* time);
 	~Game();
 
 	bool Init(const char* title, int xpos, int ypos, int width, int height, int flags);
@@ -34,6 +36,9 @@ private:
 	SDL_Window* mainWindow;
 	SDL_Renderer* mainRenderer;
 	SDL_Surface* mainSurface;
+
+	// Game Components
+	Time* time;
 
 	//Inits
 	bool InitSerialConnection();

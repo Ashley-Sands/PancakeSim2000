@@ -17,6 +17,11 @@ Game::Game()
 	
 }
 
+Game::Game(Time* timeClass) : Game()
+{
+	time = timeClass;
+}
+
 
 Game::~Game()
 {
