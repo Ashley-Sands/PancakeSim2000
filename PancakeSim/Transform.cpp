@@ -5,8 +5,8 @@
 Transform::Transform()
 {
 
-	position = new Vector2();
-	scale = new Vector2();
+	position = new Vector2(0, 0);
+	scale = new Vector2(1, 1);
 	rect = new SDL_Rect();
 }
 
