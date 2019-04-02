@@ -42,3 +42,10 @@ Vector2* Sprite::GetSpriteSize()
 	return spriteSize;
 }
 
+void Sprite::RenderSprite(SDL_Renderer* renderer, SDL_Rect* destRect, SDL_Rect* srcRect /* = NULL */)
+{
+
+	SDL_RenderCopy(renderer, spriteTexture, srcRect, destRect);
+
+
+}

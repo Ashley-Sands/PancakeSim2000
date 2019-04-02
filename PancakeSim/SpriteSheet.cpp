@@ -49,4 +49,3 @@ float SpriteSheet::GetSpriteIdByPercentage(float percentage)
 	return floor( (totalSprites - 1.0f) * percentage );
 
 }
-

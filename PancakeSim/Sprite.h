@@ -20,6 +20,13 @@ public:
 	
 	Vector2* GetSpriteSize();
 
+	/*
+	* @Prama renderer:		renderer
+	* @Prama destRect:		position and size on screen to render to
+	* @Prama srcRect :		area of sprite to renderer
+	*/
+	void RenderSprite(SDL_Renderer* renderer, SDL_Rect* destRect, SDL_Rect* srcRect = NULL);
+
 protected:
 
 	SDL_Texture* spriteTexture;
