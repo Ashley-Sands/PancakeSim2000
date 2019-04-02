@@ -5,7 +5,7 @@
 #include <iostream>
 
 //TESTING (ATM)
-#include "sprite.h";
+#include "Sprite.h"
 
 
 using std::cout;
