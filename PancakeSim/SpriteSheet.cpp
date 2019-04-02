@@ -25,10 +25,10 @@ void SpriteSheet::SetSpriteSize( int width )
 void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)
 {
 
+	outRect->w = GetSpriteSize()->x;
 	outRect->h = GetSpriteSize()->y;
-	outRect->w = spriteWidth;
 
-	outRect->x = spriteWidth * id;
+	outRect->x = GetSpriteSize()->x * id;
 	outRect->y = 0;
 
 }
