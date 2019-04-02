@@ -1,10 +1,11 @@
 #include "Sprite.h"
-
-#include "SDL.h"
 #include "SDL_image.h"
+#include "Vector2.h"
+
 
 Sprite::Sprite()
 {
+	spriteSize = new Vector2(0, 0);
 }
 
 
@@ -22,10 +23,13 @@ void Sprite::SetSprite(SDL_Renderer* renderer, std::string path )
 
 	if (spriteTexture == NULL)
 	{
-		printf("Faled To Load Texture");
+		printf("Faled To Load Texture\n");
 		return;
 	}
 
+	// get the sprite size 
+	SDL_QueryTexture(spriteTexture, NULL, NULL, &spriteSize->x, &spriteSize->y);
+	printf("\nSprite %s loaded seccessful; Texture Size X: %d Y: %d", path, spriteSize->x, spriteSize->y);
 }
 
 SDL_Texture* Sprite::GetSprite()
@@ -33,4 +37,8 @@ SDL_Texture* Sprite::GetSprite()
 	return spriteTexture;
 }
 
+Vector2* Sprite::GetSpriteSize()
+{
+	return spriteSize;
+}
 
