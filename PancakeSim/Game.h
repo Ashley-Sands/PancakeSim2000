@@ -10,6 +10,7 @@
 #include "SerialInterface.h"
 
 class Sprite;
+class SpriteObject;
 class Time;
 
 class Game
@@ -54,6 +55,9 @@ private:
 
 
 //TESTING ONLY
+	Sprite* staticTempCake_sprite;
+	SpriteObject* staticTempCake;
+
 	Sprite* tempcake;
 	Sprite* tempPan;
 	int f = 0;

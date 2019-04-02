@@ -6,12 +6,15 @@
 
 //TESTING (ATM)
 #include "Sprite.h"
-
+#include "Transform.h"
+#include "SpriteObject.h"
 
 using std::cout;
 
 Game::Game()
 {
+	staticTempCake_sprite = new Sprite();
+
 	tempcake = new Sprite();
 	tempPan = new Sprite();
 	
@@ -26,6 +29,9 @@ Game::Game(Time* timeClass) : Game()
 Game::~Game()
 {
 	delete tempcake;
+	delete tempPan;
+	delete staticTempCake_sprite;
+	delete staticTempCake;
 }
 
 bool Game::InitSerialConnection()
@@ -115,6 +121,12 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 void Game::InitGameComponents()
 {
 	//tempcake->SetSprite("Sprites/TempCake_000.png", mainSurface->format);
+	
+	staticTempCake_sprite->SetSprite(mainRenderer, "Sprites/TempCake_000.png");
+	staticTempCake = new SpriteObject(staticTempCake_sprite);
+
+	staticTempCake->SetPosition(-200, -200);
+
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_SS.png");
 	tempPan->SetSprite(mainRenderer, "Sprites/PAN_SS.png");
 }
@@ -146,11 +158,16 @@ void Game::Render()
 	//SDL_SetSurfaceBlendMode(mainSurface, SDL_BLENDMODE_BLEND);
 	//SDL_SetSurfaceAlphaMod(mainSurface, 0);
 	//TEMP CAKE
-	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
+	tempcake->RenderSprite(mainRenderer, &dRect, &sRect);
+	//SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
 	dRect.x += 150;
-	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
+	tempcake->RenderSprite(mainRenderer, &dRect, &sRect);
+
+//	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
 	dRect.x += 150;
-	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
+	tempcake->RenderSprite(mainRenderer, &dRect, &sRect);
+
+//	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
 
 
 	dRect.x = 90; dRect.y = 300;
@@ -165,6 +182,8 @@ void Game::Render()
 	dRect.x += 150;
 	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
 
+	staticTempCake->Update(time, mainRenderer);
+	staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
 	//SDL_UpdateWindowSurface(mainWindow);
@@ -175,7 +194,6 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
-	
 }
 
 void Game::HandleSerialEvents()
