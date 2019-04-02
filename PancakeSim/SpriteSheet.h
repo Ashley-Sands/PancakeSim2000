@@ -8,22 +8,19 @@ class SpriteSheet : public Sprite
 {
 public:
 	SpriteSheet();
-	SpriteSheet(int width, int spacingX);
 	~SpriteSheet();
 
-	void SetSpriteSize(int width, int spacingX);
+	// sets the size of a single sprite within the sprite sheet
+	void SetSpriteSize(int width);
 	
-	//TODO override GetSprite();
 	void GetSpriteRectByID(int id, SDL_Rect* outRect );
 	float GetSpriteIdByPercentage(float percentage);
 
 	//TODO Add version on GetSprite to return sprite @ ID
 	//TODO Add GetID_byPrecentage
 
-
 private:
 
-	int spriteWidth;
 	int totalSprites;
 
 };

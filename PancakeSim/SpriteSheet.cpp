@@ -7,29 +7,19 @@
 
 SpriteSheet::SpriteSheet()
 {
-
-	spriteWidth = 0;
-
 }
-
-SpriteSheet::SpriteSheet(int width, int spacingX)
-{
-	spriteWidth = width;
-}
-
 
 SpriteSheet::~SpriteSheet()
 {
 }
 
-void SpriteSheet::SetSpriteSize( int width, int spacingX )
+void SpriteSheet::SetSpriteSize( int width )
 {
-	spriteWidth = width;
 
 	int spriteSheetWidth = GetSpriteSize()->x;
 
-	totalSprites = spriteSheetWidth / spriteWidth;
-
+	totalSprites = spriteSheetWidth / width;
+	spriteSize->x = width;	//update the sprite size to match the size of a single sprite.
 }
 
 void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)

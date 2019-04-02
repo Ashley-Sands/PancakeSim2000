@@ -30,8 +30,6 @@ public:
 protected:
 
 	SDL_Texture* spriteTexture;
-
-private:
 	Vector2* spriteSize;
 
 };
