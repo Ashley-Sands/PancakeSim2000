@@ -6,7 +6,7 @@ class SDL_Renderer;
 class Sprite;
 class Time;
 
-class SpriteObject : Transform
+class SpriteObject : public Transform
 {
 public:
 	SpriteObject(Sprite* sprite);
