@@ -12,7 +12,7 @@ public:
 	SpriteObject(Sprite* sprite);
 	~SpriteObject();
 
-	void virtual Update(Time* time, SDL_Renderer* renderer);
+	void virtual Update(Time* time, SDL_Renderer* renderer);		//TODO: I think this should just be called render and there should be a seprate update function :)
 
 private:
 	Sprite* sprite;
