@@ -1,4 +1,5 @@
 #include "SpriteSheet.h"
+#include "Vector2.h"
 
 #include "SDL.h"
 #include "SDL_image.h"
@@ -8,14 +9,12 @@ SpriteSheet::SpriteSheet()
 {
 
 	spriteWidth = 0;
-	spriteSpacingX = 0;
 
 }
 
 SpriteSheet::SpriteSheet(int width, int spacingX)
 {
 	spriteWidth = width;
-	spriteSpacingX = spacingX;
 }
 
 
@@ -26,9 +25,28 @@ SpriteSheet::~SpriteSheet()
 void SpriteSheet::SetSpriteSize( int width, int spacingX )
 {
 	spriteWidth = width;
-	spriteSpacingX = spacingX;
 
-	totalSprites = 0;// spriteSurface->clip_rect.x / spriteWidth; //?? //TODO this might no work as expected :| maybe use the function GetClipRect :)
-															 // Also SpacingX is not taken into account, but for now who cares :)
+	int spriteSheetWidth = GetSpriteSize()->x;
+
+	totalSprites = spriteSheetWidth / spriteWidth;
 
 }
+
+void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)
+{
+
+	outRect->h = GetSpriteSize()->x;
+	outRect->w = spriteWidth;
+
+	outRect->x = spriteWidth * id;
+	outRect->y = 0;
+
+}
+
+float SpriteSheet::GetSpriteIdByPercentage(float percentage)
+{
+
+	return floor( (totalSprites - 1.0f) * percentage );
+
+}
+

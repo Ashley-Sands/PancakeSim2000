@@ -1,6 +1,8 @@
 #pragma once
 #include "Sprite.h"
 
+class SDL_Rect;
+
 // loads and optimizis sprite sheets and splits it into indervidule space, horizontily :)
 class SpriteSheet : public Sprite
 {
@@ -12,6 +14,9 @@ public:
 	void SetSpriteSize(int width, int spacingX);
 	
 	//TODO override GetSprite();
+	void GetSpriteRectByID(int id, SDL_Rect* outRect );
+	float GetSpriteIdByPercentage(float percentage);
+
 	//TODO Add version on GetSprite to return sprite @ ID
 	//TODO Add GetID_byPrecentage
 
@@ -19,7 +24,6 @@ public:
 private:
 
 	int spriteWidth;
-	int spriteSpacingX;
 	int totalSprites;
 
 };
