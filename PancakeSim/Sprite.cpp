@@ -29,7 +29,7 @@ void Sprite::SetSprite(SDL_Renderer* renderer, std::string path )
 
 	// get the sprite size 
 	SDL_QueryTexture(spriteTexture, NULL, NULL, &spriteSize->x, &spriteSize->y);
-	printf("\nSprite %s loaded seccessful; Texture Size X: %d Y: %d", path, spriteSize->x, spriteSize->y);
+	printf("\nSprite %s loaded seccessful; Texture Size X: %i Y: %i", path.c_str(), spriteSize->x, spriteSize->y);
 }
 
 SDL_Texture* Sprite::GetSprite()
