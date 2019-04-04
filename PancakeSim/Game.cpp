@@ -252,8 +252,8 @@ void Game::HandleEvents()
 void Game::Clean()
 {	
 	cout << "Cleaning SDL \n";
-	SDL_DestroyWindow(mainWindow);
 	SDL_FreeSurface(mainSurface);
+	SDL_DestroyWindow(mainWindow);
 	SDL_DestroyRenderer(mainRenderer);
 	IMG_Quit();
 	SDL_Quit();
