@@ -182,7 +182,7 @@ void Game::Render()
 	dRect.x += 150;
 	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
 
-	staticTempCake->Update(time, mainRenderer);
+	staticTempCake->Render(mainRenderer);
 	staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
@@ -194,6 +194,9 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
+
+	staticTempCake->Update();
+
 }
 
 void Game::HandleSerialEvents()

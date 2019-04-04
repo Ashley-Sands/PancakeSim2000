@@ -15,7 +15,11 @@ SpriteObject::~SpriteObject()
 {
 }
 
-void SpriteObject::Update(Time* time, SDL_Renderer* renderer) 
+void SpriteObject::Update(Time* time) 
+{
+
+}
+void SpriteObject::Render(SDL_Renderer* renderer)
 {
 
 	// Get the position to render the sprite
