@@ -3,11 +3,9 @@
 #include "SDL_image.h"
 
 #include <iostream>
-
-//TESTING (ATM)
-#include "GameObjects/Components/Sprite.h"
-#include "GameObjects/Components/Transform.h"
-#include "GameObjects/Components/SpriteObject.h"
+//Pancake Sim 2000
+#include "GameObjects/Components/Components.h"
+#include "GameObjects/GameObjects.h"
 
 using std::cout;
 
@@ -129,6 +127,14 @@ void Game::InitGameComponents()
 
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_SS.png");
 	tempPan->SetSprite(mainRenderer, "Sprites/PAN_SS.png");
+
+	// Abit realer.
+	for (int i = 0; i < panCount; i++)
+	{
+		//init pans and pancakes
+		fryingPan[i] = new FryingPan();
+	}
+
 }
 
 // render - Process all sprites to be displayed on the main renderer

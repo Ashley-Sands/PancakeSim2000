@@ -12,6 +12,7 @@
 class Sprite;
 class SpriteObject;
 class Time;
+class FryingPan;
 
 class Game
 {
@@ -58,8 +59,16 @@ private:
 	Sprite* staticTempCake_sprite;
 	SpriteObject* staticTempCake;
 
-	Sprite* tempcake;
-	Sprite* tempPan;
+	SpriteSheet* tempcake;
+	SpriteSheet* tempPan;
 	int f = 0;
+
+// BETA
+
+	// there needs to be the same amount of pans to pancakes :)
+	static const int panCount = 3;
+	FryingPan* fryingPan[panCount];
+	//... Pancakes* pancakes[3];
+
 };
 
