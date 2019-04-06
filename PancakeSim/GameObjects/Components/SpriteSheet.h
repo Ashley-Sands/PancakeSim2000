@@ -14,7 +14,7 @@ public:
 	void SetSpriteSize(int width);
 	
 	void GetSpriteRectByID(int id, SDL_Rect* outRect );
-	int GetSpriteIdByPercentage(float percentage);
+	int GetSpriteIdByPercentage(float percentage) const;
 
 	//TODO Add version on GetSprite to return sprite @ ID
 	//TODO Add GetID_byPrecentage

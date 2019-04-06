@@ -33,7 +33,7 @@ void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)
 
 }
 
-int SpriteSheet::GetSpriteIdByPercentage(float percentage)
+int SpriteSheet::GetSpriteIdByPercentage(float percentage) const
 {
 
 	return floor( (totalSprites - 1.0f) * percentage );
