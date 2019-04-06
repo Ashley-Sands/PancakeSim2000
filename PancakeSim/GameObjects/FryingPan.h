@@ -8,5 +8,7 @@ public:
 	FryingPan(SpriteSheet* sprite);
 	~FryingPan();
 
+	void Update(float inputValue);
+
 };
 
