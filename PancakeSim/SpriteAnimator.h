@@ -10,8 +10,8 @@ public:
 	SpriteAnimator(SpriteSheet* sprite);
 	~SpriteAnimator();
 
-	virtual void Update(Time* time, SDL_Renderer* renderer) override;
-
+	virtual void Update(Time* time) override;
+	SpriteSheet* GetSpriteSheet();
 
 
 };

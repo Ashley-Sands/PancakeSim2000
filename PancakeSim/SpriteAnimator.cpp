@@ -11,7 +11,12 @@ SpriteAnimator::~SpriteAnimator()
 {
 }
 
-void SpriteAnimator::Update(Time* time, SDL_Renderer* renderer)
+void SpriteAnimator::Update(Time* time)
 {
 
+}
+
+SpriteSheet* SpriteAnimator::GetSpriteSheet()
+{
+	return (SpriteSheet*)sprite;
 }

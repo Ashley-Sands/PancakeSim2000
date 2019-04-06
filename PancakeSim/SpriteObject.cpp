@@ -28,3 +28,8 @@ void SpriteObject::Render(SDL_Renderer* renderer)
 	sprite->RenderSprite(renderer, destPos);
 
 }
+
+Sprite* SpriteObject::GetSprite()
+{
+	return sprite;
+}
