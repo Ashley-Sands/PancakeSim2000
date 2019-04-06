@@ -12,6 +12,12 @@ public:
 
 	SpriteSheet* GetSpriteSheet();
 
+	// Renders current sprite from sheet to screen
+	void virtual Render(SDL_Renderer* renderer) override;
+
+protected:
+	// the position whitin the spriteSheet
+	SDL_Rect* currentSpritePos;
 
 };
 
