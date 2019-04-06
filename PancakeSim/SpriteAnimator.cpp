@@ -11,11 +11,6 @@ SpriteAnimator::~SpriteAnimator()
 {
 }
 
-void SpriteAnimator::Update(Time* time)
-{
-
-}
-
 SpriteSheet* SpriteAnimator::GetSpriteSheet()
 {
 	return (SpriteSheet*)sprite;

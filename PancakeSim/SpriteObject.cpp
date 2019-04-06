@@ -15,10 +15,6 @@ SpriteObject::~SpriteObject()
 {
 }
 
-void SpriteObject::Update(Time* time) 
-{
-
-}
 void SpriteObject::Render(SDL_Renderer* renderer)
 {
 

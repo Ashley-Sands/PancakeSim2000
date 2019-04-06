@@ -12,7 +12,6 @@ public:
 	SpriteObject(Sprite* sprite);
 	~SpriteObject();
 
-	void virtual Update(Time* time);
 	void virtual Render(SDL_Renderer* renderer);
 
 	Sprite* GetSprite();
