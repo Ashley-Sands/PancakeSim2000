@@ -158,35 +158,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GameObjects\FryingPan.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="SerialInterface.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="SpriteAnimator.h" />
-    <ClInclude Include="SpriteObject.h" />
-    <ClInclude Include="SpriteSheet.h" />
+    <ClInclude Include="GameObjects\Components\Sprite.h" />
+    <ClInclude Include="GameObjects\Components\SpriteAnimator.h" />
+    <ClInclude Include="GameObjects\Components\SpriteObject.h" />
+    <ClInclude Include="GameObjects\Components\SpriteSheet.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector2.h" />
+    <ClInclude Include="GameObjects\Components\Time.h" />
+    <ClInclude Include="GameObjects\Components\Transform.h" />
+    <ClInclude Include="GameObjects\Components\Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameObjects\FryingPan.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SerialInterface.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="SpriteAnimator.cpp" />
-    <ClCompile Include="SpriteObject.cpp" />
-    <ClCompile Include="SpriteSheet.cpp" />
+    <ClCompile Include="GameObjects\Components\Sprite.cpp" />
+    <ClCompile Include="GameObjects\Components\SpriteAnimator.cpp" />
+    <ClCompile Include="GameObjects\Components\SpriteObject.cpp" />
+    <ClCompile Include="GameObjects\Components\SpriteSheet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="GameObjects\Components\Time.cpp" />
+    <ClCompile Include="GameObjects\Components\Transform.cpp" />
+    <ClCompile Include="GameObjects\Components\Vector2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
