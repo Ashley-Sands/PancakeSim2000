@@ -12,6 +12,7 @@ public:
 	SpriteObject(Sprite* sprite);
 	~SpriteObject();
 
+	// Renders the sprite to screen
 	void virtual Render(SDL_Renderer* renderer);
 
 	Sprite* GetSprite();
