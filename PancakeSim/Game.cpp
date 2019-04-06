@@ -5,9 +5,9 @@
 #include <iostream>
 
 //TESTING (ATM)
-#include "Sprite.h"
-#include "Transform.h"
-#include "SpriteObject.h"
+#include "GameObjects/Components/Sprite.h"
+#include "GameObjects/Components/Transform.h"
+#include "GameObjects/Components/SpriteObject.h"
 
 using std::cout;
 
@@ -194,9 +194,6 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
-
-	staticTempCake->Update(time);
-
 }
 
 void Game::HandleSerialEvents()
