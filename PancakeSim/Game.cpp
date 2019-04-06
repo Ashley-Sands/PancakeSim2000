@@ -195,7 +195,7 @@ void Game::Render()
 void Game::Update()
 {
 
-	staticTempCake->Update();
+	staticTempCake->Update(time);
 
 }
 
