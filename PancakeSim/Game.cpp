@@ -188,7 +188,7 @@ void Game::Update()
 	for (int i = 0; i < panCount; i++)
 	{
 		fryingPans[i]->Update((float)(f % 60) / 60.0f);
-		pancakes[i]->Update((float)(f % 60) / 60.0f);
+		pancakes[i]->Update((float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
 	}
 }
 
@@ -217,15 +217,27 @@ void Game::HandleKeyboardEvents()
 			break;
 		case SDL_KEYDOWN:
 			
-			if (event.key.keysym.sym == SDLK_w)
+			if (event.key.keysym.sym == SDLK_0)
 			{
-				std::cout << "W Pressed\n";
+				flipForce = 0;
 			}
-			else if (event.key.keysym.sym == SDLK_s)
+			else if (event.key.keysym.sym == SDLK_1)
 			{
-				std::cout << "S Pressed\n";
+				flipForce = 0.5f;
+			}
+			else if (event.key.keysym.sym == SDLK_2)
+			{
+				flipForce = 1;
+			}
+			else if (event.key.keysym.sym == SDLK_EQUALS)
+			{
+				flipForce += 0.5f;
+			}
+			else if (event.key.keysym.sym == SDLK_MINUS)
+			{
+				flipForce -= 0.5f;
+			}
 
-			}
 			break;
 		default:
 			break;

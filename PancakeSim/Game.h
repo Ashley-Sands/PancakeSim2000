@@ -72,5 +72,7 @@ private:
 	FryingPan* fryingPans[panCount];
 	Pancake* pancakes[panCount];
 
+	float flipForce = 1.0f; //TESTING ONLY
+
 };
 
