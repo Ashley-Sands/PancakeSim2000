@@ -15,7 +15,7 @@ public:
 
 	void Update();
 
-	void AddForce(FVector2* force);
+	void AddForce(float x, float y);
 	FVector2* GetVelocity();
 
 private:

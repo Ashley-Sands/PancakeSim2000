@@ -31,11 +31,11 @@ void Rigidbody::Update()
 
 }
 
-void Rigidbody::AddForce(FVector2* force)
+void Rigidbody::AddForce(float x, float y)
 {
 	//Add Force thingy
-	velocity->x += force->x;
-	velocity->y += force->y;
+	velocity->x += x;
+	velocity->y += y;
 
 }
 
