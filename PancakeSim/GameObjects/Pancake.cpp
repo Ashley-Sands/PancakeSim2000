@@ -5,9 +5,10 @@
 #include "Components/Time.h"
 #include "Components/Vector2.h"
 
-Pancake::Pancake(SpriteSheet* sprite, Time* time) : SpriteAnimator(sprite)
+Pancake::Pancake(SpriteSheet* sprite, Time* t) : SpriteAnimator(sprite)
 {
-	rigidbody = new Rigidbody(time, this, new FVector2(0.0f, -1.5f));
+	rigidbody = new Rigidbody(t, this, new FVector2(0.0f, -1.5f));
+	time = t;
 }
 
 
@@ -21,13 +22,29 @@ void Pancake::Update(float inputValue)
 
 	// Get the current sprite position on the sprite sheet
 	SpriteSheet* spriteSheet = GetSpriteSheet();
-	int spriteID = spriteSheet->GetSpriteIdByPercentage(inputValue);
+	int spriteID = spriteSheet->GetSpriteIdByPercentage(GetFlipPercentage());//inputValue);
 
 	spriteSheet->GetSpriteRectByID(spriteID, currentSpritePos);
 
 	//RB bits
-	if( GetPosition()->y >= 200 ) rigidbody->SetVelocity(0.0f, 4.0f);
+	if( GetPosition()->y >= 200 )//TODO: this should really be in the pan bit
+	{
+		rigidbody->SetVelocity(0.0f, 4.0f); 
+		currentFlip = 0.0f;
+		flipForce = 4;
+	}
 
 	rigidbody->Update();
 
+}
+
+float Pancake::GetFlipPercentage()
+{
+	currentFlip += (time->GetDeltaSeconds() * flipForce);
+	flipForce -= (counterForce * time->GetDeltaSeconds());
+
+	if (flipForce < 0.0f) flipForce = 0.0f;
+	if (currentFlip > flipLength) currentFlip -= flipLength;
+
+	return currentFlip / flipLength;
 }
