@@ -43,3 +43,9 @@ FVector2* Rigidbody::GetVelocity()
 {
 	return velocity;
 }
+
+void Rigidbody::SetVelocity(float x, float y)
+{
+	velocity->x = x;
+	velocity->y = y;
+}

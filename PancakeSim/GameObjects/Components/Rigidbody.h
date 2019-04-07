@@ -17,6 +17,7 @@ public:
 
 	void AddForce(float x, float y);
 	FVector2* GetVelocity();
+	void SetVelocity(float x, float y);
 
 private:
 	FVector2* gravity;
