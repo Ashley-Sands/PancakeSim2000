@@ -7,7 +7,7 @@ class Vector2;
 class Rigidbody
 {
 public:
-	Rigidbody(Time* gameTime, Transform* attachedTransform, Vector2* gravityForce);
+	Rigidbody(Time* gameTime, Transform* attachedTransform, FVector2* gravityForce);
 	~Rigidbody();
 
 	Time* time;
@@ -15,13 +15,13 @@ public:
 
 	void Update();
 
-	void AddForce(Vector2* force);
-	Vector2* GetVelocity();
+	void AddForce(FVector2* force);
+	FVector2* GetVelocity();
 
 private:
-	Vector2* gravity;
+	FVector2* gravity;
 
-	Vector2* velocity;
+	FVector2* velocity;
 	
 };
 

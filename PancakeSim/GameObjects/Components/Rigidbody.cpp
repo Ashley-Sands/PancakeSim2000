@@ -4,7 +4,7 @@
 #include "Vector2.h"
 #include "Transform.h"
 
-Rigidbody::Rigidbody(Time* gameTime, Transform* attachedTransform, Vector2* gravityForce)
+Rigidbody::Rigidbody(Time* gameTime, Transform* attachedTransform, FVector2* gravityForce)
 {
 	time = gameTime;
 	transform = attachedTransform;
@@ -18,15 +18,27 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::Update()
 {
-	// Do physics things
+	// Update th velocity and translate it onto the attached transform
+	velocity->x += ( gravity->x * time->GetDeltaSeconds() );
+	velocity->y += ( gravity->y * time->GetDeltaSeconds() );
+
+	Vector2* currentPosition = transform->GetPosition();
+
+	// just for now :) //TODO Update me.
+	currentPosition->x += velocity->x;
+	currentPosition->y += velocity->y;
+
 }
 
-void Rigidbody::AddForce(Vector2* force)
+void Rigidbody::AddForce(FVector2* force)
 {
 	//Add Force thingy
+	velocity->x += force->x;
+	velocity->y += force->y;
+
 }
 
-Vector2* Rigidbody::GetVelocity()
+FVector2* Rigidbody::GetVelocity()
 {
 	return velocity;
 }
