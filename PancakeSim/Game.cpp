@@ -13,8 +13,8 @@ Game::Game()
 {
 	staticTempCake_sprite = new Sprite();
 
-	tempcake = new Sprite();
-	tempPan = new Sprite();
+	tempcake = new SpriteSheet();
+	tempPan = new SpriteSheet();
 	
 }
 

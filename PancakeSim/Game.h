@@ -10,6 +10,7 @@
 #include "SerialInterface.h"
 
 class Sprite;
+class SpriteSheet;
 class SpriteObject;
 class Time;
 class FryingPan;
