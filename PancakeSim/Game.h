@@ -14,6 +14,7 @@ class SpriteSheet;
 class SpriteObject;
 class Time;
 class FryingPan;
+class Pancake;
 
 class Game
 {
@@ -68,7 +69,8 @@ private:
 
 	// there needs to be the same amount of pans to pancakes :)
 	static const int panCount = 3;
-	//... Pancakes* pancakes[3];
+	FryingPan* fryingPans[panCount];
+	Pancake* pancakes[panCount];
 
 };
 
