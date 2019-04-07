@@ -15,12 +15,13 @@ public:
 
 	void Update();
 
-
+	void AddForce(Vector2* force);
+	Vector2* GetVelocity();
 
 private:
-	float velocity = 0.0f;
-
 	Vector2* gravity;
 
+	Vector2* velocity;
+	
 };
 

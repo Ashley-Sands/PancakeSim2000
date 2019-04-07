@@ -20,3 +20,13 @@ void Rigidbody::Update()
 {
 	// Do physics things
 }
+
+void Rigidbody::AddForce(Vector2* force)
+{
+	//Add Force thingy
+}
+
+Vector2* Rigidbody::GetVelocity()
+{
+	return velocity;
+}
