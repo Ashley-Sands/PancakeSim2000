@@ -4,6 +4,9 @@ class Vector2;
 class FVector2;
 class SDL_Rect;
 
+//TODO: Add set Position/Scale Anchor
+//      And make Get/Set Posdition take it into account :)
+
 class Transform
 {
 public:
