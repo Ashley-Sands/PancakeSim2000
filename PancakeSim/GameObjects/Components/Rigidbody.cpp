@@ -26,8 +26,8 @@ void Rigidbody::Update()
 	FVector2* currentPosition = transform->GetPosition();
 
 	// just for now :) //TODO Update me.
-	currentPosition->x += velocity->x;
-	currentPosition->y += velocity->y;
+	currentPosition->x += -velocity->x;
+	currentPosition->y += -velocity->y;
 
 }
 
