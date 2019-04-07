@@ -161,46 +161,9 @@ void Game::Render()
 	//SDL_RenderFillRect(mainRenderer,&playerOnePosition);		// render a rect to screen. (renderer, rect)
 	//SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
 	
-	//SDL_BlitSurface(tempcake->GetSprite(), NULL, mainSurface, NULL);
-	SDL_Rect dRect;
-	dRect.x = 100; dRect.y = 0;
-	dRect.w = 100; dRect.h = 100;
-	
-	SDL_Rect sRect;
-	sRect.x = ((f++%(14*8))/8)*200; sRect.y = 0;
-	sRect.w = 200; sRect.h = 200;
-/*
-	//SDL_BlitScaled(tempcake->GetSprite(), NULL, mainSurface, &sRect);
-	//SDL_SetSurfaceBlendMode(mainSurface, SDL_BLENDMODE_BLEND);
-	//SDL_SetSurfaceAlphaMod(mainSurface, 0);
-	//TEMP CAKE
-	tempcake->RenderSprite(mainRenderer, &dRect, &sRect);
-	//SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
-	dRect.x += 150;
-	tempcake->RenderSprite(mainRenderer, &dRect, &sRect);
-
-//	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
-	dRect.x += 150;
-	tempcake->RenderSprite(mainRenderer, &dRect, &sRect);
-
-//	SDL_RenderCopy(mainRenderer, tempcake->GetSprite(), &sRect, &dRect);
-
-
-	dRect.x = 90; dRect.y = 300;
-	dRect.w = 120; dRect.h = 228 * (120.f / 200.f);
-
-	sRect.x = ((f% (10 * 10)) / 10) * 200; sRect.y = 0;
-	sRect.w = 200; sRect.h = 228;
-	//TEMP PAN
-	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
-	dRect.x += 150;
-	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
-	dRect.x += 150;
-	SDL_RenderCopy(mainRenderer, tempPan->GetSprite(), &sRect, &dRect);
-
 	staticTempCake->Render(mainRenderer);
 	staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
-*/
+
 	for (int i = 0; i < panCount; i++)
 	{
 		fryingPans[i]->Render(mainRenderer);
