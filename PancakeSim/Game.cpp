@@ -30,6 +30,10 @@ Game::~Game()
 	delete tempPan;
 	delete staticTempCake_sprite;
 	delete staticTempCake;
+	
+	delete[] fryingPans;
+	delete[] pancakes;
+
 }
 
 bool Game::InitSerialConnection()
@@ -180,6 +184,7 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
+	f++;
 	for (int i = 0; i < panCount; i++)
 	{
 		fryingPans[i]->Update((float)(f % 60) / 60.0f);
