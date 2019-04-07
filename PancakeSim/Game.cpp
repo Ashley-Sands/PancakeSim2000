@@ -133,8 +133,8 @@ void Game::InitGameComponents()
 	for (int i = 0; i < panCount; i++)
 	{
 		//init pans and pancakes
-		fryingPan[i] = new FryingPan(tempPan);
-		fryingPan[i]->SetPosition(10 + (210 * i), 100);
+		fryingPans[i] = new FryingPan(tempPan);
+		fryingPans[i]->SetPosition(10 + (210 * i), 100);
 
 	}
 
@@ -196,7 +196,7 @@ void Game::Render()
 */
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPan[i]->Render(mainRenderer);
+		fryingPans[i]->Render(mainRenderer);
 	}
 
 	// render new frame
@@ -211,7 +211,7 @@ void Game::Update()
 {
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPan[i]->Update((float)(f % 60) / 60.0f);
+		fryingPans[i]->Update((float)(f % 60) / 60.0f);
 	}
 }
 
