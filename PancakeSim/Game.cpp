@@ -127,12 +127,15 @@ void Game::InitGameComponents()
 
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_SS.png");
 	tempPan->SetSprite(mainRenderer, "Sprites/PAN_SS.png");
+	tempPan->SetSpriteSize(200);
 
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
 	{
 		//init pans and pancakes
-		fryingPan[i] = new FryingPan();
+		fryingPan[i] = new FryingPan(tempPan);
+		fryingPan[i]->SetPosition(10 + (210 * i), 100);
+
 	}
 
 }
@@ -159,7 +162,7 @@ void Game::Render()
 	SDL_Rect sRect;
 	sRect.x = ((f++%(14*8))/8)*200; sRect.y = 0;
 	sRect.w = 200; sRect.h = 200;
-
+/*
 	//SDL_BlitScaled(tempcake->GetSprite(), NULL, mainSurface, &sRect);
 	//SDL_SetSurfaceBlendMode(mainSurface, SDL_BLENDMODE_BLEND);
 	//SDL_SetSurfaceAlphaMod(mainSurface, 0);
@@ -190,6 +193,12 @@ void Game::Render()
 
 	staticTempCake->Render(mainRenderer);
 	staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
+*/
+	for (int i = 0; i < panCount; i++)
+	{
+		fryingPan[i]->Render(mainRenderer);
+	}
+
 	// render new frame
 	SDL_RenderPresent(mainRenderer);
 	//SDL_UpdateWindowSurface(mainWindow);
@@ -200,6 +209,10 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
+	for (int i = 0; i < panCount; i++)
+	{
+		fryingPan[i]->Update((float)(f % 60) / 60.0f);
+	}
 }
 
 void Game::HandleSerialEvents()
