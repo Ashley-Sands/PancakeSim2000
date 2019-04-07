@@ -5,7 +5,7 @@
 Transform::Transform()
 {
 
-	position = new Vector2(0, 0);
+	position = new FVector2(0, 0);
 	scale = new FVector2(1, 1);
 	rect = new SDL_Rect();
 }
@@ -26,7 +26,7 @@ void Transform::SetPosition(int x, int y)
 
 }
 
-Vector2* Transform::GetPosition()
+FVector2* Transform::GetPosition()
 {
 	return position;
 }
