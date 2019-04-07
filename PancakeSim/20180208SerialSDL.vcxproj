@@ -163,6 +163,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjects\GameObjects.h" />
     <ClInclude Include="GameObjects\Pancake.h" />
+    <ClInclude Include="GameObjects\Components\Rigidbody.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="GameObjects\Components\Sprite.h" />
     <ClInclude Include="GameObjects\Components\SpriteAnimator.h" />
@@ -177,6 +178,7 @@
   <ItemGroup>
     <ClCompile Include="GameObjects\FryingPan.cpp" />
     <ClCompile Include="GameObjects\Pancake.cpp" />
+    <ClCompile Include="GameObjects\Components\Rigidbody.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SerialInterface.cpp" />
