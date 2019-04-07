@@ -2,7 +2,7 @@
 
 class Time;
 class Transform;
-class Vector2;
+class FVector2;
 
 class Rigidbody
 {

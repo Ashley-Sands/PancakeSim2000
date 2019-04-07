@@ -9,6 +9,7 @@ Rigidbody::Rigidbody(Time* gameTime, Transform* attachedTransform, FVector2* gra
 	time = gameTime;
 	transform = attachedTransform;
 	gravity = gravityForce;
+	velocity = new FVector2();
 }
 
 
@@ -22,7 +23,7 @@ void Rigidbody::Update()
 	velocity->x += ( gravity->x * time->GetDeltaSeconds() );
 	velocity->y += ( gravity->y * time->GetDeltaSeconds() );
 
-	Vector2* currentPosition = transform->GetPosition();
+	FVector2* currentPosition = transform->GetPosition();
 
 	// just for now :) //TODO Update me.
 	currentPosition->x += velocity->x;
