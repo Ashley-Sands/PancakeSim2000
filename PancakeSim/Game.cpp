@@ -126,15 +126,22 @@ void Game::InitGameComponents()
 	staticTempCake->SetPosition(-200, -200);
 
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_SS.png");
+	tempcake->SetSpriteSize(200);
+
 	tempPan->SetSprite(mainRenderer, "Sprites/PAN_SS.png");
 	tempPan->SetSpriteSize(200);
+
 
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
 	{
 		//init pans and pancakes
 		fryingPans[i] = new FryingPan(tempPan);
-		fryingPans[i]->SetPosition(10 + (210 * i), 100);
+		fryingPans[i]->SetPosition(10 + (210 * i), 210);
+
+		pancakes[i] = new Pancake(tempcake);
+		pancakes[i]->SetPosition(20 + (220 * i), 10);
+		pancakes[i]->SetScale(0.8f, 0.8f);
 
 	}
 
@@ -197,6 +204,7 @@ void Game::Render()
 	for (int i = 0; i < panCount; i++)
 	{
 		fryingPans[i]->Render(mainRenderer);
+		pancakes[i]->Render(mainRenderer);
 	}
 
 	// render new frame
@@ -212,6 +220,7 @@ void Game::Update()
 	for (int i = 0; i < panCount; i++)
 	{
 		fryingPans[i]->Update((float)(f % 60) / 60.0f);
+		pancakes[i]->Update((float)(f % 60) / 60.0f);
 	}
 }
 
