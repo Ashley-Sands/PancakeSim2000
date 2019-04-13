@@ -4,7 +4,7 @@
 //Static vars
 const int   PhysicSettings::px_per_meter = 10;
 const float PhysicSettings::gravity_metersPerSec_x = 0.0f;
-const float PhysicSettings::gravity_metersPerSec_y = 9.82f;
+const float PhysicSettings::gravity_metersPerSec_y = -9.82f;
 const FVector2* PhysicSettings::px_gravity;
 
 PhysicSettings::PhysicSettings(){}
