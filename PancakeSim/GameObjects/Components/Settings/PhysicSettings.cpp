@@ -9,10 +9,7 @@ const FVector2* PhysicSettings::px_gravity;
 
 PhysicSettings::PhysicSettings(){}
 
-PhysicSettings::~PhysicSettings()
-{
-	delete px_gravity;
-}
+PhysicSettings::~PhysicSettings(){}
 
 // Static Methods
 

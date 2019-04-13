@@ -5,7 +5,7 @@ public:
 	Time();
 	~Time();
 
-	static void Setup(float fps, int startTick);
+	static void Init(float fps, int startTick);
 	static void SetFPS(float fps);
 	
 	static bool Update(int currentTick);		// returns true once enought ticks have pass to meet the target FPS.

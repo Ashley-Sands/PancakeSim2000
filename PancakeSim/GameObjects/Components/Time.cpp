@@ -5,7 +5,7 @@
 Time::Time(){}
 Time::~Time(){}
 
-void Time::Setup(float fps, int startTick)
+void Time::Init(float fps, int startTick)
 {
 	SetFPS(fps);
 	lastUpdate_tick = startTick;
