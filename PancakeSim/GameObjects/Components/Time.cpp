@@ -2,19 +2,14 @@
 
 
 
-Time::Time()
-{
-}
+Time::Time(){}
+Time::~Time(){}
 
 void Time::Setup(float fps, int startTick)
 {
 	SetFPS(fps);
 	lastUpdate_tick = startTick;
 	nextUpdate_tick = lastUpdate_tick + ticksPreUpdate;
-}
-
-Time::~Time()
-{
 }
 
 void Time::SetFPS(float fps)
