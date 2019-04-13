@@ -26,6 +26,7 @@ bool Time::Update(int currentTick)
 		delta_tick = currentTick - lastUpdate_tick;
 		lastUpdate_tick = currentTick;
 		nextUpdate_tick += ticksPreUpdate;
+
 		return true;
 	}
 
