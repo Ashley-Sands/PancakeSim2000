@@ -25,8 +25,8 @@ Game::~Game()
 	delete staticTempCake_sprite;
 	delete staticTempCake;
 	
-	delete[] fryingPans;
-	delete[] pancakes;
+	delete[] &fryingPans;
+	delete[] &pancakes;
 
 }
 
