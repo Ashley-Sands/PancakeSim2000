@@ -6,7 +6,7 @@ Time::Time()
 {
 }
 
-Time::Time(int fps, int startTick)
+void Time::Setup(float fps, int startTick)
 {
 	SetFPS(fps);
 	lastUpdate_tick = startTick;
@@ -17,7 +17,7 @@ Time::~Time()
 {
 }
 
-void Time::SetFPS(int fps)
+void Time::SetFPS(float fps)
 {
 	targetFPS = fps;
 	ticksPreUpdate = 1000.f / fps;
@@ -49,7 +49,7 @@ float Time::GetDeltaSeconds()
 }
 
 //Static vars
-int Time::targetFPS = 60;
+float Time::targetFPS = 60;
 float Time::ticksPreUpdate = 1000.0f / Time::targetFPS;
 int Time::lastUpdate_tick = 0;
 float Time::nextUpdate_tick = Time::ticksPreUpdate;

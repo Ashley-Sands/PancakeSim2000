@@ -3,10 +3,10 @@ class Time
 {
 public:
 	Time();
-	Time(int fps, int startTick);
 	~Time();
 
-	static void SetFPS(int fps);
+	static void Setup(float fps, int startTick);
+	static void SetFPS(float fps);
 	
 	static bool Update(int currentTick);		// returns true once enought ticks have pass to meet the target FPS.
 
@@ -14,7 +14,7 @@ public:
 	static float GetDeltaSeconds();
 
 private:
-	static int targetFPS;// = 60;
+	static float targetFPS;// = 60;
 
 	static float ticksPreUpdate;// = 1000.0f / targetFPS;
 
