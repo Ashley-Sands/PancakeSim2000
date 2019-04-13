@@ -18,6 +18,9 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::Update()
 {
+
+	//TODO Update to physic settings :)
+
 	// Update th velocity and translate it onto the attached transform
 	velocity->x += ( gravity->x * Time::GetDeltaSeconds() );
 	velocity->y += ( gravity->y * Time::GetDeltaSeconds() );
