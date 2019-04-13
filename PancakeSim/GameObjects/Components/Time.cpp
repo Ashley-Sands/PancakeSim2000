@@ -47,3 +47,10 @@ float Time::GetDeltaSeconds()
 {
 	return delta_tick / 1000.0f;
 }
+
+//Static vars
+int Time::targetFPS = 60;
+float Time::ticksPreUpdate = 1000.0f / Time::targetFPS;
+int Time::lastUpdate_tick = 0;
+float Time::nextUpdate_tick = Time::ticksPreUpdate;
+int Time::delta_tick = 0;
