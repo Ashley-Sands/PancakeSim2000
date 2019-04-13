@@ -12,7 +12,7 @@ public:
 	static const int window_width = 800;
 	static const int window_height = 600;
 
-	static const bool fullScreen = false; //TODO
+	static const bool fullScreen = false;
 
 	static const int GetWindowFlags();
 
