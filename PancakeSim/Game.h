@@ -41,9 +41,6 @@ private:
 	SDL_Renderer* mainRenderer;
 	SDL_Surface* mainSurface;
 
-	// Game Components
-	Time* time;
-
 	//Inits
 	bool InitSerialConnection();
 	void InitGameComponents();	// use to inisalize the game compoents that require the main SDL bits

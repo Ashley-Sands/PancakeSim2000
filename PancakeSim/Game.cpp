@@ -18,12 +18,6 @@ Game::Game()
 	
 }
 
-Game::Game(Time* timeClass) : Game()
-{
-	time = timeClass;
-}
-
-
 Game::~Game()
 {
 	delete tempcake;
@@ -143,7 +137,7 @@ void Game::InitGameComponents()
 		fryingPans[i] = new FryingPan(tempPan);
 		fryingPans[i]->SetPosition(10 + (210 * i), 210);
 
-		pancakes[i] = new Pancake(tempcake, time);
+		pancakes[i] = new Pancake(tempcake);
 		pancakes[i]->SetPosition(20 + (220 * i), 10);
 		pancakes[i]->SetScale(0.8f, 0.8f);
 

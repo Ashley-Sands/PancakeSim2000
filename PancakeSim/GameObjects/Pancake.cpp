@@ -5,10 +5,9 @@
 #include "Components/Time.h"
 #include "Components/Vector2.h"
 
-Pancake::Pancake(SpriteSheet* sprite, Time* t) : SpriteAnimator(sprite)
+Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
-	rigidbody = new Rigidbody(t, this, new FVector2(0.0f, -1.5f));
-	time = t;
+	rigidbody = new Rigidbody(this, new FVector2(0.0f, -1.5f));
 }
 
 
@@ -40,8 +39,8 @@ void Pancake::Update(float inputValue)
 
 float Pancake::GetFlipPercentage()
 {
-	currentFlip += (time->GetDeltaSeconds() * flipForce);
-	flipForce -= (counterForce * time->GetDeltaSeconds());
+	currentFlip += (Time::GetDeltaSeconds() * flipForce);
+	flipForce -= (counterForce * Time::GetDeltaSeconds());
 
 	if (flipForce < 0.0f) flipForce = 0.0f;
 	if (currentFlip > flipLength) currentFlip -= flipLength;
