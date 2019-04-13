@@ -21,7 +21,7 @@ void Time::SetFPS(float fps)
 bool Time::Update(int currentTick)
 {
 
-	if (currentTick  >= nextUpdate_tick)
+	if (currentTick  >= (nextUpdate_tick - (ticksPreUpdate * 0.9f)))
 	{
 		delta_tick = currentTick - lastUpdate_tick;
 		lastUpdate_tick = currentTick;
