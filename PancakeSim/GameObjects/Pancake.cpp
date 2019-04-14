@@ -31,11 +31,20 @@ void Pancake::Update(float force, int panSpriteId)
 	spriteSheet->GetSpriteRectByID(spriteID, OUT currentSpritePos);
 
 	//RB bits
-	if( GetPosition()->y >= 350 )//TODO: this should really be in the pan bit
+	//we're in the pan :)
+	if (GetPosition()->y >= 365 - (5 * panSpriteId))//TODO: this should really be in the pan bit
 	{
+
+		if (panSpriteId < 4 || force < 0.2f) force = 0.0f;	// can not flip if pan has not roted enought
+
 		rigidbody->SetVelocity(0.0f, 1.5f * force);
 		currentFlip = 0.0f;
 		currentFlipForce = (flipForce * force);
+		
+		if(force < 0.2f)
+		{
+			SetPosition(GetPosition()->x, 365 - (5 * panSpriteId));
+		}
 	}
 
 	rigidbody->Update();
