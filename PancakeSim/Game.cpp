@@ -137,9 +137,10 @@ void Game::InitGameComponents()
 		//init pans and pancakes
 		fryingPans[i] = new FryingPan(tempPan);
 		fryingPans[i]->SetPosition(10 + (210 * i), 350);
+		fryingPans[i]->SetScale(1.1f, 1.1f);
 
 		pancakes[i] = new Pancake(tempcake);
-		pancakes[i]->SetPosition(20 + (220 * i), 0);
+		pancakes[i]->SetPosition(40 + (213 * i), 0);
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
 	}
