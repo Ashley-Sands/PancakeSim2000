@@ -22,7 +22,7 @@ private:
 	float currentFlip = 0;
 	
 	const float flipForce = 4;
-	float currentFlipForce = 8.25f;
+	float currentFlipForce = 0;
 	float counterForce = 2.2f;
 
 };
