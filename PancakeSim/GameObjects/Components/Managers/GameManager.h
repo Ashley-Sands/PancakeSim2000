@@ -6,10 +6,11 @@ public:
 	~GameManager();
 
 	static void AddFlip();
+	static int GetTotalFlips();
 
 private:
 	
-	static int totalPancakesFlips = 0;
+	static int totalPancakeFlips;
 
 
 };
