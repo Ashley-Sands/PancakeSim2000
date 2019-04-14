@@ -149,9 +149,9 @@ void Game::InitGameComponents()
 		fryingPans_front[i]->SetScale(1.1f, 1.1f);
 
 		pancakes[i] = new Pancake(tempcake);
-		pancakes[i]->SetPosition(40 + (213 * i), 250);
+		pancakes[i]->SetAnchor(TransformAnchor::Center);
+		pancakes[i]->SetAnchoredPosition(40 + (213 * i), 250 , pancakes[i]->GetSpriteSheet()->GetSpriteSize()->x, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->y);
 		pancakes[i]->SetScale(0.8f, 0.8f);
-		
 	}
 
 }
@@ -198,6 +198,7 @@ void Game::Update()
 		fryingPans_front[i]->Update((float)(f % 60) / 60.0f);
 
 		pancakes[i]->Update( flipForce, fryingPans_back[i]->GetCurrentSpriteId() );// ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) // (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
+	
 	}
 	flipForce = 0;
 }
