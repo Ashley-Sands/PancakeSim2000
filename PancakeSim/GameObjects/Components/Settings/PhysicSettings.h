@@ -15,7 +15,11 @@ public:
 	static const FVector2* GetGravity();
 
 	static void MetersTo_PxPerSecond(FVector2* metersPerSecond);
-	void MetersTo_PxPerSecond(float& x, float& y);
+
+	static float MetersTo_PxPerSecond_x(float x_metersPerSecond);
+	static float MetersTo_PxPerSecond_y(float y_metersPerSecond);
+
+	//static void MetersTo_PxPerSecond(float* x, float* y);
 
 private:
 	
