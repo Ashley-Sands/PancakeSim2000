@@ -2,7 +2,7 @@ Pancake Sim Todo
 -------------------------
 
 ===============================
-
+Game
 ===============================
 [] Pan and pancake collision/detection
 [] pan force
@@ -16,11 +16,19 @@ Pancake Sim Todo
 [] add steam/smoke sprite sheets
 [] add fire alarm sprite
 
-===============================
 
+===============================
+Refactoring
 ===============================
 [] Make PhysicSetting, GameSettings and Console Singletons
 	[] PhysicSettings
 	[] GameSettings
 	[] Console
+	
+	
+===============================
+Controler
+===============================
+[] ...
+
 	
