@@ -6,13 +6,17 @@ Game
 ===============================
 [] Pan and pancake collision/detection
 [] pan force
-	so we can detect how much force is to be applied to the pancake
+	# so we can detect how much force is to be applied to the pancake
 [C] correct temp pan & pancake spritesheet
 	[C] pan spritesheet
 	[C] pancake spritesheet
 [C] Count pancake flips
 [] Score
 [] UI
+[] Add Position offset to trasform
+	# so we can use the center of the sprite to set the position
+	# or any other offset.
+
 
 ===============================
 Refactoring
