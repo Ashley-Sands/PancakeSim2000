@@ -35,7 +35,7 @@ void Pancake::Update(float force, int panSpriteId)
 	{
 
 		if (panSpriteId < 4 || force < 0.2f) force = 0.0f;	// can not flip if pan has not roted enought
-
+		
 		rigidbody->SetVelocity(0.0f, 1.5f * force);
 		currentFlip = 0.0f;
 		currentFlipForce = (flipForce * force);
@@ -47,6 +47,10 @@ void Pancake::Update(float force, int panSpriteId)
 			spriteID = (spriteSheet->GetTotalSprites()-1) - floor(panSpriteId / 2.0f);
 		}
 
+	}
+	else if ( GetPosition()->y >= 310 && rigidbody->GetVelocity()->y < 0)	//correct position when entering pan
+	{
+		spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 	}
 
 	spriteSheet->GetSpriteRectByID(spriteID, OUT currentSpritePos);
