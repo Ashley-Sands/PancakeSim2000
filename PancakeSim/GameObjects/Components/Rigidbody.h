@@ -6,7 +6,7 @@ class FVector2;
 class Rigidbody
 {
 public:
-	Rigidbody(Transform* attachedTransform, FVector2* gravityForce);
+	Rigidbody(Transform* attachedTransform, float mass);
 	~Rigidbody();
 
 	Transform* transform;  // the transform that the RB is attached to
@@ -22,5 +22,7 @@ private:
 
 	FVector2* velocity;
 	
+	float mass;
+
 };
 
