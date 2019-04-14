@@ -5,6 +5,8 @@
 #include "Components/Time.h"
 #include "Components/Vector2.h"
 
+#define OUT
+
 Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
 	rigidbody = new Rigidbody(this, 0.2f);
@@ -23,7 +25,7 @@ void Pancake::Update(float inputValue)
 	SpriteSheet* spriteSheet = GetSpriteSheet();
 	int spriteID = spriteSheet->GetSpriteIdByPercentage(GetFlipPercentage());//inputValue);
 
-	spriteSheet->GetSpriteRectByID(spriteID, currentSpritePos);
+	spriteSheet->GetSpriteRectByID(spriteID, OUT currentSpritePos);
 
 	//RB bits
 	if( GetPosition()->y >= 350 )//TODO: this should really be in the pan bit
