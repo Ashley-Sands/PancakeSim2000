@@ -1,0 +1,14 @@
+Pancake Sim Todo
+-------------------------
+
+
+[] Pan and pancake collision/detection
+[] pan force
+	so we can detect how much force is to be applied to the pancake
+[C] correct temp pan & pancake spritesheet
+	[C] pan spritesheet
+	[C] pancake spritesheet
+[] Create final pan & pancake spritesheets
+[] Add cooker spritesheet
+[] add steam/smoke sprite sheets
+[] add fire alarm sprite
