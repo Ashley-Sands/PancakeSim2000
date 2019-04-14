@@ -24,14 +24,13 @@ Pancake::~Pancake()
 void Pancake::Update(float force, int panSpriteId)
 {
 
-	// Get the current sprite position on the sprite sheet
+	// Get the current sprite position on the sprite sheet, when being fliped
 	SpriteSheet* spriteSheet = GetSpriteSheet();
 	int spriteID = spriteSheet->GetSpriteIdByPercentage(GetFlipPercentage());//inputValue);
 
-	spriteSheet->GetSpriteRectByID(spriteID, OUT currentSpritePos);
-
 	//RB bits
 	//we're in the pan :)
+	//TODO: replace magic numbers throughtout this if statment
 	if (GetPosition()->y >= 365 - (5 * panSpriteId))//TODO: this should really be in the pan bit
 	{
 
@@ -41,7 +40,7 @@ void Pancake::Update(float force, int panSpriteId)
 		currentFlip = 0.0f;
 		currentFlipForce = (flipForce * force);
 		
-		// correct the pancakes position sprite when in pan
+		// correct the pancakes position when in pan
 		if(force < 0.2f)
 		{
 			SetPosition(GetPosition()->x, 365 - (5 * panSpriteId));
