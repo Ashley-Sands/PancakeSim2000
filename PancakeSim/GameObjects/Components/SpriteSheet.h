@@ -16,6 +16,7 @@ public:
 	void GetSpriteRectByID(int id, SDL_Rect* outRect );
 	int GetSpriteIdByPercentage(float percentage) const;
 
+	int GetTotalSprites();
 	//TODO Add version on GetSprite to return sprite @ ID
 	//TODO Add GetID_byPrecentage
 

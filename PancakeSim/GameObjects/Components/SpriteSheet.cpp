@@ -39,3 +39,8 @@ int SpriteSheet::GetSpriteIdByPercentage(float percentage) const
 	return floor( ( totalSprites-1.0f ) * percentage );
 
 }
+
+int SpriteSheet::GetTotalSprites()
+{
+	return totalSprites;
+}
