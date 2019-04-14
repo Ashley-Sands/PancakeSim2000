@@ -5,6 +5,9 @@
 #include "Components/Time.h"
 #include "Components/Vector2.h"
 
+// debuging
+#include "Components/Debug/Console.h"
+
 #define OUT
 
 Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)

@@ -2,6 +2,8 @@
 #include "Components/SpriteSheet.h"
 #include "Components/Sprite.h"
 
+//Debuging
+#include "Components/Debug/Console.h"
 
 FryingPan::FryingPan(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {

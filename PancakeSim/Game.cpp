@@ -7,7 +7,8 @@
 #include "GameObjects/Components/Components.h"
 #include "GameObjects/GameObjects.h"
 
-using std::cout;
+//Debuging
+#include "GameObjects/Components/Debug/Console.h"
 
 Game::Game()
 {
@@ -34,7 +35,7 @@ bool Game::InitSerialConnection()
 {
 	if (ignoreSerial)
 	{
-		cout << "Ignoring Serial inputs (Disabled)";
+		Console::LogMessage(MessageType::Warning, "Ignoring Serial inputs (Disabled)");
 		return false;			
 	}
 	else if (forceComPort < 0)
@@ -57,12 +58,12 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 	// initialise SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) 
 	{
-		cout << "SDL init success \n";
+		Console::LogMessage(MessageType::Log, "SDL init success");
 
 		// initialise PNG image files
 		if (IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG)
 		{
-			cout << "IMG PNG init success \n";
+			Console::LogMessage(MessageType::Log, "IMG PNG init success");
 
 			// Create a window
 			mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
@@ -71,7 +72,7 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 			// if window succesful..
 			if (mainWindow != 0) 
 			{
-				cout << "Window creation success \n";
+				Console::LogMessage(MessageType::Log, "Window creation success");
 
 				// create renderer
 				mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
@@ -79,33 +80,33 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 
 				// if renderer successful...
 				if (mainRenderer != 0) {
-					cout << "Renderer creation success \n";
+					Console::LogMessage(MessageType::Log, "Renderer creation success");
 					SDL_SetRenderDrawColor(mainRenderer, 0, 0, 0, 0);
 				}
 				else 
 				{
-					cout << "renderer failed \n";
+					Console::LogMessage(MessageType::Error, "renderer failed");
 					return false;
 				}
 			}
 			else {
-				cout << "window failed \n";
+				Console::LogMessage(MessageType::Error, "window failed");
 				return false;
 			}
 		}
 		else
 		{
-			cout << "Failed to init PNG images \n";
+			Console::LogMessage(MessageType::Error, "Failed to init PNG images");
 		}
 	}
 	else 
 	{
-		cout << "SDL fail \n";
+		Console::LogMessage(MessageType::Error, "SDL fail");
 		return false;
 	}
 
 	isRunning = true;
-	cout << "SDL init success \n";
+	Console::LogMessage(MessageType::Log, "SDL init success");
 
 	InitSerialConnection();
 	InitGameComponents();
@@ -182,7 +183,7 @@ void Game::Update()
 	for (int i = 0; i < panCount; i++)
 	{
 		fryingPans[i]->Update((float)(f % 60) / 60.0f);
-		pancakes[i]->Update( ((float)(f % (rand() % 60 + 1)) / 30.0f) );// (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
+		pancakes[i]->Update( ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) );// (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
 	}
 }
 
@@ -214,7 +215,7 @@ void Game::HandleKeyboardEvents()
 			if (event.key.keysym.sym == SDLK_w)
 			{
 				f += 5;
-				if (f > 30) f = 30;
+				if (f >= 60) f = 59;
 			}
 			else if (event.key.keysym.sym == SDLK_s)
 			{
@@ -255,7 +256,7 @@ void Game::HandleEvents()
 // clean - Clean up SDL and close the port
 void Game::Clean()
 {	
-	cout << "Cleaning SDL \n";
+	Console::LogMessage(MessageType::Log, "Cleaning SDL");
 	SDL_FreeSurface(mainSurface);
 	SDL_DestroyWindow(mainWindow);
 	SDL_DestroyRenderer(mainRenderer);
