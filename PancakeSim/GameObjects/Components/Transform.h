@@ -4,7 +4,6 @@ class Vector2;
 class FVector2;
 class SDL_Rect;
 
-#define out
 //TODO: Add set Position/Scale Anchor
 //      And make Get/Set Posdition take it into account :)
 
@@ -21,8 +20,9 @@ public:
 	~Transform();
 
 	void SetPosition(int x, int y);
+	void SetAnchoredPosition(int x_pos, int y_pos, int px_width, int px_height, bool ignoreScale = false);
+
 	FVector2* GetPosition();
-	FVector2* GetAnchoredPosition(int px_width, int px_height, bool ignoreScale = false);
 	void SetAnchor(TransformAnchor anchor);
 
 	void SetScale(float x, float y);
@@ -34,8 +34,7 @@ private:
 	FVector2* position;
 	FVector2* scale;
 
-	TransformAnchor anchor = TransformAnchor::TopLeft;
-	FVector2* anchorPosition;
+	FVector2* anchor;
 
 	SDL_Rect* rect;
 
