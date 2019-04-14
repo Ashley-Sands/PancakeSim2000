@@ -44,7 +44,7 @@ void Pancake::Update(float force, int panSpriteId)
 		if(force < 0.2f)
 		{
 			SetPosition(GetPosition()->x, 365 - (5 * panSpriteId));
-			spriteID = 13 - floor(panSpriteId / 2.0f);
+			spriteID = (spriteSheet->GetTotalSprites()-1) - floor(panSpriteId / 2.0f);
 		}
 
 	}
