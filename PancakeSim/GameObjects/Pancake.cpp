@@ -41,11 +41,16 @@ void Pancake::Update(float force, int panSpriteId)
 		currentFlip = 0.0f;
 		currentFlipForce = (flipForce * force);
 		
+		// correct the pancakes position sprite when in pan
 		if(force < 0.2f)
 		{
 			SetPosition(GetPosition()->x, 365 - (5 * panSpriteId));
+			spriteID = 13 - floor(panSpriteId / 2.0f);
 		}
+
 	}
+
+	spriteSheet->GetSpriteRectByID(spriteID, OUT currentSpritePos);
 
 	rigidbody->Update();
 
