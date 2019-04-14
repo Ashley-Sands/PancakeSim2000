@@ -15,18 +15,21 @@ Game::Game()
 	staticTempCake_sprite = new Sprite();
 
 	tempcake = new SpriteSheet();
-	tempPan = new SpriteSheet();
+	tempPan_back = new SpriteSheet();
+	tempPan_front = new SpriteSheet();
 	
 }
 
 Game::~Game()
 {
 	delete tempcake;
-	delete tempPan;
+	delete tempPan_back;
+	delete tempPan_front;
 	delete staticTempCake_sprite;
 	delete staticTempCake;
 	
-	delete[] &fryingPans;
+	delete[] &fryingPans_back;
+	delete[] &fryingPans_front;
 	delete[] &pancakes;
 
 }
@@ -127,17 +130,23 @@ void Game::InitGameComponents()
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_SS.png");
 	tempcake->SetSpriteSize(200);
 
-	tempPan->SetSprite(mainRenderer, "Sprites/PAN_SS.png");
-	tempPan->SetSpriteSize(200);
+	tempPan_back->SetSprite(mainRenderer, "Sprites/pans_back_ss.png");
+	tempPan_back->SetSpriteSize(200);
 
+	tempPan_front->SetSprite(mainRenderer, "Sprites/pans_front_ss.png");
+	tempPan_front->SetSpriteSize(200);
 
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
 	{
 		//init pans and pancakes
-		fryingPans[i] = new FryingPan(tempPan);
-		fryingPans[i]->SetPosition(10 + (210 * i), 350);
-		fryingPans[i]->SetScale(1.1f, 1.1f);
+		fryingPans_back[i] = new FryingPan(tempPan_back);
+		fryingPans_back[i]->SetPosition(10 + (210 * i), 350);
+		fryingPans_back[i]->SetScale(1.1f, 1.1f);
+
+		fryingPans_front[i] = new FryingPan(tempPan_front);
+		fryingPans_front[i]->SetPosition(10 + (210 * i), 350);
+		fryingPans_front[i]->SetScale(1.1f, 1.1f);
 
 		pancakes[i] = new Pancake(tempcake);
 		pancakes[i]->SetPosition(40 + (213 * i), 0);
@@ -166,8 +175,10 @@ void Game::Render()
 
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPans[i]->Render(mainRenderer);
+		fryingPans_back[i]->Render(mainRenderer);
 		pancakes[i]->Render(mainRenderer);
+		fryingPans_front[i]->Render(mainRenderer);
+
 	}
 
 	// render new frame
@@ -183,7 +194,8 @@ void Game::Update()
 	//f++;
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPans[i]->Update((float)(f % 60) / 60.0f);
+		fryingPans_back[i]->Update((float)(f % 60) / 60.0f);
+		fryingPans_front[i]->Update((float)(f % 60) / 60.0f);
 		pancakes[i]->Update( ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) );// (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
 	}
 }

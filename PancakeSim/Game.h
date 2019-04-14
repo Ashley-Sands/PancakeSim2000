@@ -59,14 +59,16 @@ private:
 	SpriteObject* staticTempCake;
 
 	SpriteSheet* tempcake;
-	SpriteSheet* tempPan;
+	SpriteSheet* tempPan_back;
+	SpriteSheet* tempPan_front;
 	int f = 0;
 
 // BETA
 
 	// there needs to be the same amount of pans to pancakes :)
 	static const int panCount = 3;
-	FryingPan* fryingPans[panCount];
+	FryingPan* fryingPans_back[panCount];
+	FryingPan* fryingPans_front[panCount];
 	Pancake* pancakes[panCount];
 
 	float flipForce = 1.0f; //TESTING ONLY
