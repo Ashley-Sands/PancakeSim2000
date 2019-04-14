@@ -151,7 +151,7 @@ void Game::InitGameComponents()
 		pancakes[i] = new Pancake(tempcake);
 		pancakes[i]->SetPosition(40 + (213 * i), 0);
 		pancakes[i]->SetScale(0.8f, 0.8f);
-
+		
 	}
 
 }

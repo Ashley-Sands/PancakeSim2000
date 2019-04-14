@@ -1,16 +1,31 @@
 #pragma once
 class GameManager
 {
+//Sigleton setup
 public:
-	GameManager();
-	~GameManager();
+	
+	static GameManager& GetInstance()
+	{
+		static GameManager instance;
 
-	static void AddFlip();
-	static int GetTotalFlips();
+		return instance;
+	}
+
+private:
+	GameManager() {}
+
+public:
+
+	~GameManager() {};
+
+// Main
+
+	void AddFlip();
+	int GetTotalFlips();
 
 private:
 	
-	static int totalPancakeFlips;
+	int totalPancakeFlips = 0;
 
 
 };
