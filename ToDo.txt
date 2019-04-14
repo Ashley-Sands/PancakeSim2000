@@ -8,6 +8,7 @@ Pancake Sim Todo
 [C] correct temp pan & pancake spritesheet
 	[C] pan spritesheet
 	[C] pancake spritesheet
+[C] Add Layered Pan
 [] Create final pan & pancake spritesheets
 [] Add cooker spritesheet
 [] add steam/smoke sprite sheets
