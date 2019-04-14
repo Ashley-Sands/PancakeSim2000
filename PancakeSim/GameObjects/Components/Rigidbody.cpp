@@ -1,5 +1,7 @@
 #include "Rigidbody.h"
 
+#include "Settings/PhysicSettings.h"
+
 #include "Time.h"
 #include "Vector2.h"
 #include "Transform.h"
@@ -36,21 +38,25 @@ void Rigidbody::Update()
 
 void Rigidbody::AddForce(float x, float y)
 {
+	// Get the mutipler for force to take mass into acount
+	// if mass is 0 prevent divByZero and silly values
+	float forceMuti = 1;	
+	if (mass != 0)
+		forceMuti = (1.0f / mass);
+
 	//Add Force thingy
-	velocity->x += x;
-	velocity->y += y;
 	velocity->x += PhysicSettings::MetersTo_PxPerSecond_x( x * forceMuti );
 	velocity->y += PhysicSettings::MetersTo_PxPerSecond_y( y * forceMuti );
 
 }
 
+void Rigidbody::SetVelocity(float x, float y)
+{
+	velocity->x = PhysicSettings::MetersTo_PxPerSecond_x(x);
+	velocity->y = PhysicSettings::MetersTo_PxPerSecond_y(y);
+}
+
 FVector2* Rigidbody::GetVelocity()
 {
 	return velocity;
-}
-
-void Rigidbody::SetVelocity(float x, float y)
-{
-	velocity->x = x;
-	velocity->y = y;
 }
