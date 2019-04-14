@@ -21,7 +21,7 @@ Pancake::~Pancake()
 	delete rigidbody;
 }
 
-void Pancake::Update(float inputValue)
+void Pancake::Update(float force, int panSpriteId)
 {
 
 	// Get the current sprite position on the sprite sheet
@@ -33,9 +33,9 @@ void Pancake::Update(float inputValue)
 	//RB bits
 	if( GetPosition()->y >= 350 )//TODO: this should really be in the pan bit
 	{
-		rigidbody->SetVelocity(0.0f, 1.5f * inputValue);
+		rigidbody->SetVelocity(0.0f, 1.5f * force);
 		currentFlip = 0.0f;
-		currentFlipForce = (flipForce * inputValue);
+		currentFlipForce = (flipForce * force);
 	}
 
 	rigidbody->Update();

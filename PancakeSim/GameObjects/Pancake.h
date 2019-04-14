@@ -10,7 +10,7 @@ public:
 	Pancake(SpriteSheet* sprite);
 	~Pancake();
 
-	void Update(float inputValue);
+	void Update(float force, int panSpriteId);
 
 
 private:

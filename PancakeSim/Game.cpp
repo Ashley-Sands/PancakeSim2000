@@ -196,7 +196,8 @@ void Game::Update()
 	{
 		fryingPans_back[i]->Update((float)(f % 60) / 60.0f);
 		fryingPans_front[i]->Update((float)(f % 60) / 60.0f);
-		pancakes[i]->Update( ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) );// (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
+
+		pancakes[i]->Update( ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f), 0);// (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
 	}
 }
 
