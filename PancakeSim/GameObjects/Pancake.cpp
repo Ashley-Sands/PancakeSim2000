@@ -46,7 +46,11 @@ float Pancake::GetFlipPercentage()
 	currentFlipForce -= (counterForce * Time::GetDeltaSeconds());
 
 	if (currentFlipForce < 0.0f) currentFlipForce = 0.0f;
-	if (currentFlip > flipLength) currentFlip -= flipLength;
 
-	return currentFlip / flipLength;
+	// prevent the flip going over 100%
+	// always keep it within the flipLength 
+	while(currentFlip > flipLength)
+		currentFlip -= flipLength;
+
+	return 1.0f - (currentFlip / flipLength);		// invert the flip (sprit sheet is backwards :S )
 }
