@@ -18,7 +18,7 @@ public:
 	void SetVelocity(float x, float y);
 
 private:
-	FVector2* gravity;
+	const FVector2* gravity;
 
 	FVector2* velocity;
 	

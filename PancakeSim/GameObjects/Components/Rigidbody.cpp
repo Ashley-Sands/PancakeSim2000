@@ -7,7 +7,7 @@
 Rigidbody::Rigidbody(Transform* attachedTransform, FVector2* gravityForce)
 {
 	transform = attachedTransform;
-	gravity = gravityForce;
+	gravity = PhysicSettings::GetGravity();
 	velocity = new FVector2();
 }
 
