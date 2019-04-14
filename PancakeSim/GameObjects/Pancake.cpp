@@ -4,6 +4,7 @@
 #include "Components/Rigidbody.h"
 #include "Components/Time.h"
 #include "Components/Vector2.h"
+#include "Components/Managers/GameManager.h"
 
 // debuging
 #include "Components/Debug/Console.h"
@@ -70,8 +71,13 @@ float Pancake::GetFlipPercentage()
 
 	// prevent the flip going over 100%
 	// always keep it within the flipLength 
-	while(currentFlip > flipLength)
+	while (currentFlip > flipLength)
+	{
+		GameManager::GetInstance().AddFlip();
 		currentFlip -= flipLength;
+	}
+
+	Console::LogMessage(MessageType::Log, "TotalFlips: "+ std::to_string(GameManager::GetInstance().GetTotalFlips()) );
 
 	return 1.0f - (currentFlip / flipLength);		// invert the flip (sprit sheet is backwards :S )
 }
