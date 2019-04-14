@@ -7,7 +7,7 @@
 
 Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
-	rigidbody = new Rigidbody(this, new FVector2(0.0f, -1.5f));
+	rigidbody = new Rigidbody(this, 0.2f);
 }
 
 
@@ -26,11 +26,11 @@ void Pancake::Update(float inputValue)
 	spriteSheet->GetSpriteRectByID(spriteID, currentSpritePos);
 
 	//RB bits
-	if( GetPosition()->y >= 200 )//TODO: this should really be in the pan bit
+	if( GetPosition()->y >= 350 )//TODO: this should really be in the pan bit
 	{
-		rigidbody->SetVelocity(0.0f, 4.0f); 
+		rigidbody->SetVelocity(0.0f, 1.5f);
 		currentFlip = 0.0f;
-		flipForce = 4;
+		currentFlipForce = flipForce;
 	}
 
 	rigidbody->Update();
@@ -39,10 +39,11 @@ void Pancake::Update(float inputValue)
 
 float Pancake::GetFlipPercentage()
 {
-	currentFlip += (Time::GetDeltaSeconds() * flipForce);
-	flipForce -= (counterForce * Time::GetDeltaSeconds());
+	// make the flip fast to start and slow down until theres no force left to apply
+	currentFlip += (Time::GetDeltaSeconds() * currentFlipForce);
+	currentFlipForce -= (counterForce * Time::GetDeltaSeconds());
 
-	if (flipForce < 0.0f) flipForce = 0.0f;
+	if (currentFlipForce < 0.0f) currentFlipForce = 0.0f;
 	if (currentFlip > flipLength) currentFlip -= flipLength;
 
 	return currentFlip / flipLength;

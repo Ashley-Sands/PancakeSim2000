@@ -18,10 +18,12 @@ private:
 	
 	float GetFlipPercentage();	// Get the flip playback position in %
 
-	float flipLength = 2;
+	float flipLength = 1.5;			//@ fliForce = 1
 	float currentFlip = 0;
-	float flipForce = 1;
-	float counterForce = 0.6f;
+	
+	const float flipForce = 4;
+	float currentFlipForce = 8.25f;
+	float counterForce = 2.0f;
 
 };
 
