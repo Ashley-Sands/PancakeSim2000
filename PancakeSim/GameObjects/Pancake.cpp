@@ -30,9 +30,9 @@ void Pancake::Update(float inputValue)
 	//RB bits
 	if( GetPosition()->y >= 350 )//TODO: this should really be in the pan bit
 	{
-		rigidbody->SetVelocity(0.0f, 1.5f);
+		rigidbody->SetVelocity(0.0f, 1.5f * inputValue);
 		currentFlip = 0.0f;
-		currentFlipForce = flipForce;
+		currentFlipForce = (flipForce * inputValue);
 	}
 
 	rigidbody->Update();

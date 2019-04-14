@@ -178,11 +178,11 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
-	f++;
+	//f++;
 	for (int i = 0; i < panCount; i++)
 	{
 		fryingPans[i]->Update((float)(f % 60) / 60.0f);
-		pancakes[i]->Update((float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
+		pancakes[i]->Update( ((float)(f % (rand() % 60 + 1)) / 30.0f) );// (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
 	}
 }
 
@@ -211,13 +211,15 @@ void Game::HandleKeyboardEvents()
 			break;
 		case SDL_KEYDOWN:
 			
-			if (event.key.keysym.sym == SDLK_0)
+			if (event.key.keysym.sym == SDLK_w)
 			{
-				flipForce = 0;
+				f += 5;
+				if (f > 30) f = 30;
 			}
-			else if (event.key.keysym.sym == SDLK_1)
+			else if (event.key.keysym.sym == SDLK_s)
 			{
-				flipForce = 0.5f;
+				f -= 5;
+				if (f < 0)f = 0;
 			}
 			else if (event.key.keysym.sym == SDLK_2)
 			{
