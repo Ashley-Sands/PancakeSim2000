@@ -229,9 +229,12 @@ void Game::HandleKeyboardEvents()
 			
 			if (event.key.keysym.sym == SDLK_w)
 			{
+				if (f <= 55)
+					flipForce = 0.25f + ((rand() % 100) / 100.0f);// 0.75;
+				
 				f += 5;
 				if (f >= 60) f = 59;
-				flipForce = 0.75;
+				
 			}
 			else if (event.key.keysym.sym == SDLK_s)
 			{
