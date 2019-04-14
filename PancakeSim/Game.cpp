@@ -170,8 +170,8 @@ void Game::Render()
 	//SDL_RenderFillRect(mainRenderer,&playerOnePosition);		// render a rect to screen. (renderer, rect)
 	//SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
 	
-	staticTempCake->Render(mainRenderer);
-	staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
+	//staticTempCake->Render(mainRenderer);
+	//staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
 
 	for (int i = 0; i < panCount; i++)
 	{
