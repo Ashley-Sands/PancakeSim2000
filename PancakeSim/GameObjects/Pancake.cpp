@@ -13,6 +13,7 @@
 Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
 	rigidbody = new Rigidbody(this, 0.2f);
+	rigidbody->SetVelocity(0.0f, 0.0f);
 }
 
 
