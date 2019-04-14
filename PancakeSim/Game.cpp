@@ -197,8 +197,9 @@ void Game::Update()
 		fryingPans_back[i]->Update((float)(f % 60) / 60.0f);
 		fryingPans_front[i]->Update((float)(f % 60) / 60.0f);
 
-		pancakes[i]->Update( ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f), 0);// (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
+		pancakes[i]->Update( flipForce, fryingPans_back[i]->GetCurrentSpriteId() );// ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) // (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
 	}
+	flipForce = 0;
 }
 
 void Game::HandleSerialEvents()
@@ -230,6 +231,7 @@ void Game::HandleKeyboardEvents()
 			{
 				f += 5;
 				if (f >= 60) f = 59;
+				flipForce = 1;
 			}
 			else if (event.key.keysym.sym == SDLK_s)
 			{
