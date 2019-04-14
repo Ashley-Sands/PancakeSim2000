@@ -31,7 +31,8 @@ private:
 	const FVector2* gravity;
 
 	FVector2* velocity;
-	
+	bool velocityChanged = false;
+
 	float mass;
 
 };

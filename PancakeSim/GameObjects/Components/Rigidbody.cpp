@@ -22,9 +22,13 @@ Rigidbody::~Rigidbody()
 void Rigidbody::Update()
 {
 
-	// Update th velocity and translate it onto the attached transform
-	velocity->x += ( (gravity->x * mass) * Time::GetDeltaSeconds() );
-	velocity->y += ( (gravity->y * mass) * Time::GetDeltaSeconds() );
+	// Update the velocity and translate it onto the attached transform
+
+	if (!skipGravity)	// Only apply gravity if force has not been applied (add or set)
+	{
+		velocity->x += ((gravity->x * mass) * Time::GetDeltaSeconds());
+		velocity->y += ((gravity->y * mass) * Time::GetDeltaSeconds());
+	}
 
 	FVector2* currentPosition = transform->GetPosition();
 
@@ -32,6 +36,7 @@ void Rigidbody::Update()
 	currentPosition->x += -velocity->x;
 	currentPosition->y += -velocity->y;
 
+	skipGravity = false;
 }
 
 void Rigidbody::AddForce(float x, float y)
@@ -45,13 +50,13 @@ void Rigidbody::AddForce(float x, float y)
 	//Add Force thingy
 	velocity->x += PhysicSettings::MetersTo_PxPerSecond_x( x * forceMuti );
 	velocity->y += PhysicSettings::MetersTo_PxPerSecond_y( y * forceMuti );
-
 }
 
 void Rigidbody::SetVelocity(float x, float y)
 {
 	velocity->x = PhysicSettings::MetersTo_PxPerSecond_x(x);
 	velocity->y = PhysicSettings::MetersTo_PxPerSecond_y(y);
+	skipGravity = true;		// prevent gravity being appled gravity on the first update after velocity has be set
 }
 
 FVector2* Rigidbody::GetVelocity()
