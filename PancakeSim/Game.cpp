@@ -236,18 +236,6 @@ void Game::HandleKeyboardEvents()
 				f -= 5;
 				if (f < 0)f = 0;
 			}
-			else if (event.key.keysym.sym == SDLK_2)
-			{
-				flipForce = 1;
-			}
-			else if (event.key.keysym.sym == SDLK_EQUALS)
-			{
-				flipForce += 0.5f;
-			}
-			else if (event.key.keysym.sym == SDLK_MINUS)
-			{
-				flipForce -= 0.5f;
-			}
 
 			break;
 		default:
