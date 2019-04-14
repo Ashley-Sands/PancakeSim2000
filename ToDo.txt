@@ -10,12 +10,9 @@ Game
 [C] correct temp pan & pancake spritesheet
 	[C] pan spritesheet
 	[C] pancake spritesheet
-[C] Add Layered Pan
-[] Create final pan & pancake spritesheets
-[] Add cooker spritesheet
-[] add steam/smoke sprite sheets
-[] add fire alarm sprite
-
+[C] Count pancake flips
+[] Score
+[] UI
 
 ===============================
 Refactoring
@@ -24,7 +21,17 @@ Refactoring
 	[] PhysicSettings
 	[] GameSettings
 	[] Console
-	
+
+===============================
+Sprites and Sheets
+===============================
+[C] Add Layered Pan
+[] Create final pan & pancake spritesheets
+[] Add cooker spritesheet
+[] add steam/smoke sprite sheets
+[] add fire alarm sprite
+[] add fire sprite
+
 	
 ===============================
 Controler
