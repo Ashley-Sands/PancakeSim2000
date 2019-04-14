@@ -13,6 +13,8 @@ public:
 
 private:
 	GameManager() {}
+	GameManager(GameManager const&);
+	GameManager& operator=(GameManager const&);
 
 public:
 
