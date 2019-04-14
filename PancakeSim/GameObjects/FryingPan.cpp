@@ -17,8 +17,13 @@ FryingPan::~FryingPan()
 void FryingPan::Update(float inputValue)
 {
 	SpriteSheet* spriteSheet = GetSpriteSheet();
-	int spriteID = spriteSheet->GetSpriteIdByPercentage(inputValue);
+	currentSpriteID = spriteSheet->GetSpriteIdByPercentage(inputValue);
 	
-	spriteSheet->GetSpriteRectByID(spriteID, currentSpritePos);
+	spriteSheet->GetSpriteRectByID(currentSpriteID, currentSpritePos);
 
+}
+
+int FryingPan::GetCurrentSpriteId()
+{
+	return currentSpriteID;
 }

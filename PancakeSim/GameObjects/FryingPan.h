@@ -10,5 +10,9 @@ public:
 
 	void Update(float inputValue);
 
+	int GetCurrentSpriteId();
+
+private:
+	int currentSpriteID = 0;
 };
 
