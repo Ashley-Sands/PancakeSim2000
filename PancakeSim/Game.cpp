@@ -149,7 +149,7 @@ void Game::InitGameComponents()
 		fryingPans_front[i]->SetScale(1.1f, 1.1f);
 
 		pancakes[i] = new Pancake(tempcake);
-		pancakes[i]->SetPosition(40 + (213 * i), 0);
+		pancakes[i]->SetPosition(40 + (213 * i), 250);
 		pancakes[i]->SetScale(0.8f, 0.8f);
 		
 	}
