@@ -245,7 +245,7 @@ void Game::HandleKeyboardEvents(SDL_Event* event)
 				
 				fryingPans_keyboardInputValues[1] += 100;
 				if (fryingPans_keyboardInputValues[1] > 1023)
-					fryingPans_keyboardInputValues[1] = 1023; //leak me bitch!
+					fryingPans_keyboardInputValues[1] = 1023;
 
 			}
 			else if (event->key.keysym.sym == SDLK_s)
