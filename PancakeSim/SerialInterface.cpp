@@ -102,6 +102,22 @@ void SerialInterface::GetPositions()
 	}
 }
 
+int* SerialInterface::GetPot(int id)
+{
+	switch (id)
+	{
+		case 1:
+			return &pot1;
+		case 2:
+			return &pot2;
+		default:
+			Console::LogMessage(MessageType::Error, "Pot not found (id: "+std::to_string(id)+")");
+			return &ERROR_POT;
+
+
+	}
+}
+
 void SerialInterface::Close()
 {
 	mySerial->flush();
