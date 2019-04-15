@@ -13,6 +13,8 @@ public:
 	static int GetDelta();						//in ticks
 	static float GetDeltaSeconds();
 
+	static float GetTicksPerUpdate();
+
 private:
 	static float targetFPS;// = 60;
 
