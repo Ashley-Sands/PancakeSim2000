@@ -35,6 +35,10 @@ void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)
 
 int SpriteSheet::GetSpriteIdByPercentage(float percentage) const
 {
+	//clamp the precentage to prevent us going out of range :)
+	if (percentage < 0.0f) percentage = 0.0f;
+	else if (percentage > 1.0f) percentage = 1.0f;
+
 	// find the sprite id 
 	int spriteId = floor((totalSprites) * percentage);;
 	
