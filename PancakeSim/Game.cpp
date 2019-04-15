@@ -306,6 +306,9 @@ void Game::HandleEvents()
 void Game::Clean()
 {	
 	Console::LogMessage(MessageType::Log, "Cleaning SDL");
+	if (serial)
+		serial->Close();
+
 	SDL_FreeSurface(mainSurface);
 	SDL_DestroyWindow(mainWindow);
 	SDL_DestroyRenderer(mainRenderer);
