@@ -19,7 +19,7 @@ String GetPaddedValue(int16_t num)
   char buff[ OUTPUT_BUFFER_SIZE ];
   char padded[ OUTPUT_BUFFER_SIZE + 1 ];
   
-  sprintf(buff, "%8d", num);
+  sprintf(buff, "%.8i", num);
 
   for(int i = 0; i < OUTPUT_BUFFER_SIZE; i++)
     padded[i] = buff[i];
