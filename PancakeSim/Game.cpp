@@ -231,7 +231,7 @@ void Game::HandleKeyboardEvents()
 {
 	SDL_Event event;
 
-	if (SDL_PollEvent(&event)) {
+	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 		case SDL_QUIT:
 			isRunning = false;
