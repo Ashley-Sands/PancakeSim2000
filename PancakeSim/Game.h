@@ -50,8 +50,8 @@ private:
 
 	// serial input/outpit commuication 
 	SerialInterface* serial;
-	bool ignoreSerial = true;// false;
-	int forceComPort = -1;
+	bool ignoreSerial = false;// true;// false;
+	int forceComPort = 3;
 
 
 
@@ -75,6 +75,12 @@ private:
 	Pancake* pancakes[panCount];
 
 	float flipForce = 1.0f; //TESTING ONLY
+
+//BETE INPUT (using pong controller)
+	int* fryingPans_inputValue[panCount];
+
+	int fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
+	int fryingPans_inputDelta[panCount];
 
 };
 

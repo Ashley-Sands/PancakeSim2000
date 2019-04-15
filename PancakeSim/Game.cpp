@@ -152,6 +152,9 @@ void Game::InitGameComponents()
 		pancakes[i]->SetAnchor(TransformAnchor::Center);
 		pancakes[i]->SetAnchoredPosition(140 + (213 * i), 250 , pancakes[i]->GetSpriteSheet()->GetSpriteSize()->x, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->y);
 		pancakes[i]->SetScale(0.8f, 0.8f);
+
+		//Setup inputs :)
+		fryingPans_inputValue[i] = serial->GetPot(i);
 	}
 
 }
@@ -194,10 +197,10 @@ void Game::Update()
 	//f++;
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPans_back[i]->Update((float)(f % 60) / 60.0f);
-		fryingPans_front[i]->Update((float)(f % 60) / 60.0f);
+		fryingPans_back[i]->Update(*fryingPans_inputValue[i] / 1023.0f);// (float)(f % 60) / 60.0f);
+		fryingPans_front[i]->Update(*fryingPans_inputValue[i] / 1023.0f);// (float)(f % 60) / 60.0f);
 
-		pancakes[i]->Update( flipForce, fryingPans_back[i]->GetCurrentSpriteId() );// ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) // (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
+		pancakes[i]->Update( fryingPans_inputDelta[i] / 150.0f, fryingPans_back[i]->GetCurrentSpriteId() );// ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) // (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
 
 
 
@@ -209,9 +212,13 @@ void Game::HandleSerialEvents()
 {
 	if (serial->connect)
 	{
-		serial->GetPositions();	// Get an update from the controler.
-		//playerOnePosition.y = (serial->getPot1() / 1023.0f) * 405;
-		//playerTwoPosition.y = (serial->getPot2() / 1023.0f) * 405;
+		serial->GetPositions();	// Get and update from the controler.
+		
+		for (int i = 0; i < panCount; i++)
+		{
+			fryingPans_inputDelta[i] = *fryingPans_inputValue[i] - fryingPans_lastInput[i];
+			fryingPans_lastInput[i]  = *fryingPans_inputValue[i];
+		}
 	}
 }
 
