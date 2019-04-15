@@ -44,13 +44,16 @@ private:
 	//Inits
 	bool InitSerialConnection();
 	void InitGameComponents();	// use to inisalize the game compoents that require the main SDL bits
+	
+	bool isRunning;
 
+
+	// serial input/outpit commuication 
+	SerialInterface* serial;
 	bool ignoreSerial = true;// false;
 	int forceComPort = -1;
-	SerialInterface* serial;
 
 
-	bool isRunning;
 
 
 
