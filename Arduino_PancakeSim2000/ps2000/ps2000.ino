@@ -30,6 +30,10 @@ void setup()
   Wire.endTransmission(true);
 }
 
+void Loop(){
+ 
+}
+
 void loop() {
 
   //Get values from the MPU device.
@@ -41,7 +45,7 @@ void loop() {
   // Get values from MPU
   gyro_x = Wire.read()<<8  | Wire.read(); // 0X3B
   gyro_y = Wire.read()<<8  | Wire.read(); // 0X3D
-  ayro_z = Wire.read()<<8  | Wire.read(); // 0X3F
+  gyro_z = Wire.read()<<8  | Wire.read(); // 0X3F
 
   temp = Wire.read()<<8   | Wire.read(); // 0X41
 
