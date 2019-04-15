@@ -227,20 +227,15 @@ void Game::HandleSerialEvents()
 
 
 // handleEvents - Poll Events and uses switch case to process specific events
-void Game::HandleKeyboardEvents()
+void Game::HandleKeyboardEvents(SDL_Event* event)
 {
-	SDL_Event event;
-
-	while (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		case SDL_QUIT:
-			isRunning = false;
-			break;
+	
+	switch (event->type) {
 		case SDL_MOUSEBUTTONDOWN:
 			break;
 		case SDL_KEYDOWN:
 			
-			if (event.key.keysym.sym == SDLK_w)
+			if (event->key.keysym.sym == SDLK_w)
 			{
 				if (f <= 55)
 					flipForce = 0.25f + ((rand() % 100) / 100.0f);// 0.75;
@@ -253,7 +248,7 @@ void Game::HandleKeyboardEvents()
 					fryingPans_keyboardInputValues[1] = 1023; //leak me bitch!
 
 			}
-			else if (event.key.keysym.sym == SDLK_s)
+			else if (event->key.keysym.sym == SDLK_s)
 			{
 				f -= 5;
 				if (f < 0)f = 0;
@@ -267,18 +262,27 @@ void Game::HandleKeyboardEvents()
 			break;
 		default:
 			break;
-		}
-
 	}
+
+	
 }
 
 void Game::HandleEvents()
 {
-	// use controler inputs if avable.
+	SDL_Event event;
+
+	while (SDL_PollEvent(&event)) {
+
+		if (event.type == SDL_QUIT)
+			isRunning = false;
+		else if (ignoreSerial || serial == nullptr || !serial->connect)
+			HandleKeyboardEvents(&event);
+		
+	}
+
+
 	if (!ignoreSerial && serial != nullptr && serial->connect)
 		HandleSerialEvents();
-	else
-		HandleKeyboardEvents();
 
 }
 

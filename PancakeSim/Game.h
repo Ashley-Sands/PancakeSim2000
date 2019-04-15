@@ -27,7 +27,7 @@ public:
 	void Render();
 	void Update();
 	void HandleSerialEvents();
-	void HandleKeyboardEvents();
+	void HandleKeyboardEvents(SDL_Event* event);
 	void HandleEvents();
 	void Clean();
 
@@ -50,7 +50,7 @@ private:
 
 	// serial input/outpit commuication 
 	SerialInterface* serial;
-	bool ignoreSerial = false;// true;// false;
+	bool ignoreSerial = false; //true;// false;
 	int forceComPort = 3;
 
 
