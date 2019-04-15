@@ -2,6 +2,10 @@
 #include "SerialInterface.h"
 #include <iostream>
 
+#include "GameObjects/Components/Debug/Console.h"
+#include "GameObjects/Components/Time.h"			//use time to sync the timeout with the frame rate :)
+
+
 SerialInterface::SerialInterface()
 {
 	std::vector <serial::PortInfo> devicesFound = serial::list_ports();
@@ -33,7 +37,7 @@ SerialInterface::~SerialInterface()
 bool SerialInterface::TryConnection(std::string port)
 {
 	try {
-		mySerial = new serial::Serial(port, 9600, serial::Timeout::simpleTimeout(25));
+		mySerial = new serial::Serial(port, 9600, serial::Timeout::simpleTimeout( floor(Time::GetTicksPerUpdate())-1 ));
 
 		if (mySerial->isOpen())
 		{
