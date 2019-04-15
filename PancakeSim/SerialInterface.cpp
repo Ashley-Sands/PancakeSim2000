@@ -84,19 +84,29 @@ void SerialInterface::GetPositions()
 {
 	if (connect)
 	{
-		mySerial->write("P");
+		mySerial->write("I");
 
 		std::string result = mySerial->readline();
 
 		//std::cout << result << std::endl;
 
+		Console::LogMessage(MessageType::Log, "Read Value: " + result );
 
-		if (result.length() > 5) {
-			std::string sub1 = result.substr(0, 4);
-			pot1 = std::stoi(sub1);
+		if (result.length() > 6) {
+			std::string sub1 = result.substr(0, 7);
+			Console::LogMessage(MessageType::Log, "@Read Value: " + sub1 + " : LEN: " + std::to_string(result.length()));
 
+			try {
+				pot1 = std::stoi(sub1);
+			}
+			catch(std::exception &e)
+			{
+				Console::LogMessage(MessageType::Error, "E_Value: " + result + " : LEN: "+ std::to_string(result.length()) );
+			}
+/*
 			std::string sub2 = result.substr(5, 9);
 			pot2 = std::stoi(sub2);
+*/
 		}
 
 	}
