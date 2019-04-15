@@ -20,10 +20,11 @@ public:
 	bool connect = false;
 
 	void Send( std::string msg );
-	void GetPositions();
-	void GetButton();
+	void GetPositions();		//TODO: rename
+	void GetButton();			//TODO: removed?
 
-	int GetPot1() { return pot1; };
+	// TODO: rename and combine POT's
+	int* GetPot1() { return &pot1; };
 	int GetPot2() { return pot2; };
 
 	void Close();
@@ -33,7 +34,7 @@ public:
 private:
 	serial::Serial* mySerial;
 
-
+	//TODO: sort this out according to above TODO's
 	int pot1 = 0;
 	int pot2 = 0;
 	int button1;
