@@ -82,5 +82,6 @@ private:
 	int fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
 	int fryingPans_inputDelta[panCount];
 
+	int fryingPans_keyboardInputValues[panCount];
 };
 

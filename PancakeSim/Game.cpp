@@ -32,6 +32,9 @@ Game::~Game()
 	delete[] &fryingPans_front;
 	delete[] &pancakes;
 
+	if (ignoreSerial)
+		delete[] &fryingPans_inputValue;
+
 }
 
 bool Game::InitSerialConnection()
@@ -154,7 +157,7 @@ void Game::InitGameComponents()
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
 		//Setup inputs :)
-		fryingPans_inputValue[i] = serial->GetPot(i);
+		fryingPans_inputValue[i] = (ignoreSerial ? &fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
 	}
 
 }
@@ -245,11 +248,20 @@ void Game::HandleKeyboardEvents()
 				f += 5;
 				if (f >= 60) f = 59;
 				
+				fryingPans_keyboardInputValues[1] += 100;
+				if (fryingPans_keyboardInputValues[1] > 1023)
+					fryingPans_keyboardInputValues[1] = 1023; //leak me bitch!
+
 			}
 			else if (event.key.keysym.sym == SDLK_s)
 			{
 				f -= 5;
 				if (f < 0)f = 0;
+
+				fryingPans_keyboardInputValues[1] -= 100;
+				if (fryingPans_keyboardInputValues[1] < 0)
+					fryingPans_keyboardInputValues[1] = 0;
+
 			}
 
 			break;
