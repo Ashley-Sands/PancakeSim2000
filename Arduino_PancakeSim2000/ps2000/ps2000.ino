@@ -12,13 +12,21 @@ int16_t temp;
 
 int incomingByte = 0;
 
-char out_str[8];
+const int OUTPUT_BUFFER_SIZE = 7;
 
-//convert int16_t to string
-char* convert_int16_to_str(int16_t val) 
+String GetPaddedValue(int16_t num)
 {
-  sprintf(out_str, "%6d", val);
-  return out_str;
+  char buff[ OUTPUT_BUFFER_SIZE ];
+  char padded[ OUTPUT_BUFFER_SIZE + 1 ];
+  
+  sprintf(buff, "%8d", num);
+
+  for(int i = 0; i < OUTPUT_BUFFER_SIZE; i++)
+    padded[i] = buff[i];
+  
+  padded[7] = '\0';
+
+  return String(padded);
 }
 
 
@@ -49,14 +57,11 @@ void loop(){
     if( incomingByte == 'N' )        // Normalize Device 
       MPU( &s_gyro_x, &s_gyro_y, &s_gyro_z );
     else if( incomingByte == 'I' )   // Print values (Normalized)
-      Serial.print( convert_int16_to_str(gyro_x - s_gyro_x));
+      Serial.print( GetPaddedValue( gyro_x - s_gyro_x ) );//convert_int16_to_str(gyro_x - s_gyro_x));
     else if( incomingByte == 'i' )   // Print values (RAW)
-      Serial.print( convert_int16_to_str(gyro_x));
+      Serial.print( GetPaddedValue( gyro_x ) );//convert_int16_to_str(gyro_x));
   }
   //print value to console nomalized.
-  
-
-  delay(1000);
 }
 
 void MPU(int16_t* Gx, int16_t* Gy, int16_t* Gz) {
