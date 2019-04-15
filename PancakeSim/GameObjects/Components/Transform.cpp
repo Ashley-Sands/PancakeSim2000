@@ -78,6 +78,16 @@ FVector2* Transform::GetScale()
 	return scale;
 }
 
+void Transform::SetRotation(int rot)
+{
+	rotation = rot;
+}
+
+int Transform::GetRotation()
+{
+	return rotation;
+}
+
 SDL_Rect* Transform::GetRectScaled(int px_width, int px_height)
 {
 	rect->x = position->x;

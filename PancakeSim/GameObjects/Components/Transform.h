@@ -28,10 +28,14 @@ public:
 	void SetScale(float x, float y);
 	FVector2* GetScale();
 
+	void SetRotation(int rot);
+	int GetRotation();
+
 	SDL_Rect* GetRectScaled(int px_width, int px_height);
 
 private:
 	FVector2* position;
+	int       rotation;			// rotation around the center of the sprite, in degres.
 	FVector2* scale;
 
 	FVector2* anchor;
