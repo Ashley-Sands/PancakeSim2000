@@ -77,7 +77,5 @@ float Pancake::GetFlipPercentage()
 		currentFlip -= flipLength;
 	}
 
-	Console::LogMessage(MessageType::Log, "TotalFlips: "+ std::to_string(GameManager::GetInstance().GetTotalFlips()) );
-
 	return 1.0f - (currentFlip / flipLength);		// invert the flip (sprit sheet is backwards :S )
 }
