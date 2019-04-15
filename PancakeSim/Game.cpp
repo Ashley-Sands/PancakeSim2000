@@ -272,12 +272,28 @@ void Game::HandleEvents()
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event)) {
-
+		// loop all input events and send the event to keyboard events only if serial is not in use
+		// we need to do the DSL_QUIT check here so we can exit the game via 'X'
 		if (event.type == SDL_QUIT)
+		{
 			isRunning = false;
+		}
+		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_n)		//Normalize the MPU devices
+		{
+			if (!ignoreSerial && serial != nullptr && serial->connect)
+			{
+				serial->Send("N");
+				Console::LogMessage(MessageType::Log, "Normalizing Devices");
+			}
+			else
+			{
+				Console::LogMessage(MessageType::Error, "Unable to Normalize devices. Serial is unavailable");
+			}
+		}
 		else if (ignoreSerial || serial == nullptr || !serial->connect)
+		{
 			HandleKeyboardEvents(&event);
-		
+		}
 	}
 
 
