@@ -23,9 +23,10 @@ public:
 	/*
 	* @Prama renderer:		renderer
 	* @Prama destRect:		position and size on screen to render to
+	* @Prama angle	 :		Angle to render sprite 
 	* @Prama srcRect :		area of sprite to renderer
 	*/
-	void RenderSprite(SDL_Renderer* renderer, SDL_Rect* destRect, SDL_Rect* srcRect = NULL);
+	void RenderSprite(SDL_Renderer* renderer, SDL_Rect* destRect, int angle = 0,  SDL_Rect* srcRect = NULL);
 
 protected:
 

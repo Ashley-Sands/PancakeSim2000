@@ -42,10 +42,10 @@ Vector2* Sprite::GetSpriteSize()
 	return spriteSize;
 }
 
-void Sprite::RenderSprite(SDL_Renderer* renderer, SDL_Rect* destRect, SDL_Rect* srcRect /* = NULL */)
+void Sprite::RenderSprite(SDL_Renderer* renderer, SDL_Rect* destRect, int angle /* = 0 */, SDL_Rect* srcRect /* = NULL */)
 {
 
-	SDL_RenderCopy(renderer, spriteTexture, srcRect, destRect);
+	SDL_RenderCopyEx(renderer, spriteTexture, srcRect, destRect, angle, NULL, SDL_FLIP_NONE);
 
 
 }

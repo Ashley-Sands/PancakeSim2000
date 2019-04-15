@@ -26,6 +26,6 @@ void SpriteAnimator::Render(SDL_Renderer* renderer)
 	// Get the position to render the sprite
 	SDL_Rect* destPos = GetRectScaled(sprite->GetSpriteSize()->x, sprite->GetSpriteSize()->y);
 
-	sprite->RenderSprite(renderer, destPos, currentSpritePos);
+	sprite->RenderSprite(renderer, destPos, GetRotation(), currentSpritePos);
 
 }
