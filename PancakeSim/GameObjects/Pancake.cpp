@@ -50,6 +50,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation)	//TODO: adde
 		currentFlipForce = (flipForce * force);
 		
 		// correct the pancakes position when in pan
+		// Todo: put min force back!!
 		SetPosition(GetPosition()->x, 365 - (5 * panSpriteId));
 		spriteID = (spriteSheet->GetTotalSprites()-1) - floor(panSpriteId / 2.0f);
 
@@ -105,13 +106,28 @@ void Pancake::SetCurrentCookingState()
 {
 
 	if (currentCookingTime < (cookingLength * mixtureMutiplyer))
+	{
 		currentCookState = CookingState::Mixture;
+		GetSpriteSheet()->SetSpriteRow(0);
+	}
 	else if (currentCookingTime < (cookingLength * rawMutiplyer))
+	{
 		currentCookState = CookingState::Raw;
+		GetSpriteSheet()->SetSpriteRow(1);
+	}
 	else if (currentCookingTime > (cookingLength * fireMutiplyer))
+	{
 		currentCookState = CookingState::Fire;
+		GetSpriteSheet()->SetSpriteRow(6);
+	}
 	else if (currentCookingTime > (cookingLength * burntMutiplyer))
+	{
 		currentCookState = CookingState::Burnt;
+		GetSpriteSheet()->SetSpriteRow(4);
+	}
 	else
+	{
 		currentCookState = CookingState::Perfect;
+		GetSpriteSheet()->SetSpriteRow(3);
+	}
 }
