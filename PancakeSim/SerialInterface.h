@@ -24,8 +24,8 @@ public:
 	void GetButton();			//TODO: removed?
 
 	// TODO: rename and combine POT's
-	int* GetPot1() { return &pot1; };
-	int GetPot2() { return pot2; };
+	//int* GetPot1() { return &pot1; };
+	//int GetPot2() { return pot2; };
 
 	int* GetPot(int id);
 
@@ -38,6 +38,7 @@ private:
 
 	//TODO: sort this out according to above TODO's
 	int pot1 = 0;
+
 	int pot2 = 0;
 
 	int ERROR_POT = 0;		// prevent errors (this will never be updated)

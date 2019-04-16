@@ -197,15 +197,13 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
-	//f++;
+
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPans_back[i]->Update(*fryingPans_inputValue[i] / 800.0f);// (float)(f % 60) / 60.0f);
-		fryingPans_front[i]->Update(*fryingPans_inputValue[i] / 800.0f);// (float)(f % 60) / 60.0f);
+		fryingPans_back[i]->Update(*fryingPans_inputValue[i] / 800.0f);
+		fryingPans_front[i]->Update(*fryingPans_inputValue[i] / 800.0f);
 
-		pancakes[i]->Update( fryingPans_inputDelta[i] / 400.0f, fryingPans_back[i]->GetCurrentSpriteId() );// ((float)(f % 60/*(rand() % 60 + 1)*/) / 60.0f) // (float)(f % (int)(60.0f * flipForce)) / (60.0f * flipForce));
-
-
+		pancakes[i]->Update( fryingPans_inputDelta[i] / 400.0f, fryingPans_back[i]->GetCurrentSpriteId() );
 	}
 	flipForce = 0;
 }

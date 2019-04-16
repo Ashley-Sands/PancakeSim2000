@@ -61,8 +61,6 @@ void loop(){
     else if( incomingByte == 'I' )   // Print values (Normalized)
     {
       PrintPaddedValue( gyro_x - s_gyro_x );
-      Serial.print( "#" );
-      PrintPaddedValue( gyro_y - s_gyro_y );
     }
     else if( incomingByte == 'i' )   // Print values (RAW)
     {
