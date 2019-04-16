@@ -214,7 +214,7 @@ void Game::Update()
 		fryingPans_back[i]->SetRotation(fryingPans_inputValue[i]->x);
 		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->x);
 
-		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f, fryingPans_back[i]->GetCurrentSpriteId() );
+		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f, fryingPans_back[i]->GetCurrentSpriteId(), fryingPans_inputValue[i]->x);
 
 	}
 
