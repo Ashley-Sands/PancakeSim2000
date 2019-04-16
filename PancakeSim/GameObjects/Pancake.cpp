@@ -34,7 +34,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation)	//TODO: adde
 	if (GetPosition()->y >= 365 - (5 * panSpriteId))//TODO: this should really be in the pan bit
 	{
 
-		if (panSpriteId < 4 || force < 0.2f || currentCookState == CookingState::Mixture) force = 0.0f;	// can not flip if pan has not roted enought
+		if (panSpriteId < 4 || currentCookState == CookingState::Mixture) force = 0.0f;	// can not flip if pan has not roted enought
 		
 		//RB / flip
 		rigidbody->SetVelocity(0.0f, 1.5f * force);
@@ -42,11 +42,8 @@ void Pancake::Update(float force, int panSpriteId, int panRotation)	//TODO: adde
 		currentFlipForce = (flipForce * force);
 		
 		// correct the pancakes position when in pan
-		if(force < 0.2f)
-		{
-			SetPosition(GetPosition()->x, 365 - (5 * panSpriteId));
-			spriteID = (spriteSheet->GetTotalSprites()-1) - floor(panSpriteId / 2.0f);
-		}
+		SetPosition(GetPosition()->x, 365 - (5 * panSpriteId));
+		spriteID = (spriteSheet->GetTotalSprites()-1) - floor(panSpriteId / 2.0f);
 
 		currentCookingTime += Time::GetDeltaSeconds(); //TODO: Add cooking temp mutiplyer
 		SetCurrentCookingState();
