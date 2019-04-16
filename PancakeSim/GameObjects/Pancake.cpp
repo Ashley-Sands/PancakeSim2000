@@ -21,7 +21,7 @@ Pancake::~Pancake()
 	delete rigidbody;
 }
 
-void Pancake::Update(float force, int panSpriteId)	//TODO: added cooking temp.
+void Pancake::Update(float force, int panSpriteId, int panRotation)	//TODO: added cooking temp.
 {
 
 	// Get the current sprite position on the sprite sheet, when being fliped
@@ -51,10 +51,13 @@ void Pancake::Update(float force, int panSpriteId)	//TODO: added cooking temp.
 		currentCookingTime += Time::GetDeltaSeconds(); //TODO: Add cooking temp mutiplyer
 		SetCurrentCookingState();
 
+		SetRotation(panRotation);
+
 	}
 	else if ( GetPosition()->y >= 310 && rigidbody->GetVelocity()->y < 0)	//correct position when entering pan
 	{
 		spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
+		SetRotation(panRotation);
 	}
 	else // we're fliping pancakes :D
 	{
