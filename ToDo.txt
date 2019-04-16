@@ -18,8 +18,9 @@ Game
 	# or any other offset.
 [] Implerment Burnt Pancakes
 [] Implerment Cooking temp
-[] Implerment Jug / Poure new pancake
+[] Implerment Jug / Pure new pancake
 [] Implerment Plate for cooked pancakes
+[] Implerment Fire
 
 
 ===============================
