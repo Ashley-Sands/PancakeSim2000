@@ -84,5 +84,7 @@ private:
 	Vector2* fryingPans_inputDelta[panCount];
 
 	Vector2* fryingPans_keyboardInputValues[panCount];
+
+	const int maxPanRotation = 40;
 };
 

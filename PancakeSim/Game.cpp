@@ -229,6 +229,12 @@ void Game::HandleSerialEvents()
 		
 		for (int i = 0; i < panCount; i++)
 		{
+			// Limit the pans rotation to max pan Rotation
+			if (fryingPans_inputValue[i]->x < -maxPanRotation)
+				fryingPans_inputValue[i]->x = -maxPanRotation;
+			else if (fryingPans_inputValue[i]->x > maxPanRotation)
+				fryingPans_inputValue[i]->x = maxPanRotation;
+
 			// Invert the inputValue Y since its the opersit to what we want :)
 			fryingPans_inputDelta[i]->x = fryingPans_inputValue[i]->x - fryingPans_lastInput[i]->x;
 			fryingPans_inputDelta[i]->y = fryingPans_inputValue[i]->y - fryingPans_lastInput[i]->y;
