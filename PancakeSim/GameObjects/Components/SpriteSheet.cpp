@@ -13,13 +13,25 @@ SpriteSheet::~SpriteSheet()
 {
 }
 
-void SpriteSheet::SetSpriteSize( int width )
+void SpriteSheet::SetSpriteSize( int width, int height /*= -1 */)
 {
 
 	int spriteSheetWidth = GetSpriteSize()->x;
+	int spriteSheetHeight = GetSpriteSize()->y;
 
 	totalSprites = spriteSheetWidth / width;
 	spriteSize->x = width;	//update the sprite size to match the size of a single sprite.
+
+	if (height >= 0)
+	{
+		totalSpriteRows = spriteSheetHeight / height;
+		spriteSize->y = height;
+	}
+	else
+	{
+		totalSpriteRows = 1;
+		currentSpriteRow = 0;
+	}
 }
 
 void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)
@@ -29,7 +41,7 @@ void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)
 	outRect->h = GetSpriteSize()->y;
 
 	outRect->x = GetSpriteSize()->x * id;
-	outRect->y = 0;
+	outRect->y = GetSpriteSize()->y * currentSpriteRow;
 
 }
 
@@ -53,4 +65,19 @@ int SpriteSheet::GetSpriteIdByPercentage(float percentage) const
 int SpriteSheet::GetTotalSprites()
 {
 	return totalSprites;
+}
+
+int SpriteSheet::GetTotalSpriteRows()
+{
+	return totalSpriteRows;
+}
+
+void SpriteSheet::SetSpriteRow( int rowId )
+{
+
+	// Keep id in range
+	if (rowId < 0) rowId = 0;
+	else if( rowId >= totalSpriteRows ) rowId = totalSpriteRows - 1;
+	
+	currentSpriteRow = rowId;
 }
