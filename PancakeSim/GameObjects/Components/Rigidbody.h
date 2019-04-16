@@ -25,15 +25,24 @@ public:
 	*/
 	void SetVelocity(float x, float y);
 
+	/* Set the max velocity in meters per sec
+	*
+	*/
+	void SetMaxVelocity(float maxVal);
+
 	FVector2* GetVelocity();
 
 private:
 	const FVector2* gravity;
 
 	FVector2* velocity;
+	float maxVelocity = 250.0f;		//max vel in px.
 	bool skipGravity = false;
 
 	float mass;
+
+	// clamps velocity to max Velocity
+	void ClampVelocity();
 
 };
 

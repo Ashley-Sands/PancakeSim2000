@@ -13,6 +13,7 @@ public:
 
 	/* Returns Gravity in px */
 	static const FVector2* GetGravity();
+	static const int GetPxPerMeter();
 
 	static void MetersTo_PxPerSecond(FVector2* metersPerSecond);
 

@@ -32,6 +32,8 @@ void Rigidbody::Update()
 
 	FVector2* currentPosition = transform->GetPosition();
 
+	ClampVelocity();
+
 	// just for now :) //TODO Update me.
 	currentPosition->x += -velocity->x;
 	currentPosition->y += -velocity->y;
@@ -59,7 +61,28 @@ void Rigidbody::SetVelocity(float x, float y)
 	skipGravity = true;		// prevent gravity being appled gravity on the first update after velocity has be set
 }
 
+void Rigidbody::SetMaxVelocity(float maxVel)
+{
+	maxVelocity = maxVel * PhysicSettings::GetPxPerMeter();
+}
+
 FVector2* Rigidbody::GetVelocity()
 {
 	return velocity;
+}
+
+void Rigidbody::ClampVelocity()	//TODO: maybe move this into physic settings so its the same throughtout the game??
+{
+	// Clamp x
+	if (velocity->x > maxVelocity)
+		velocity->x = maxVelocity;
+	else if (velocity->x < -maxVelocity)
+		velocity->x = -maxVelocity;
+
+	//Clamp y
+	if (velocity->y > maxVelocity)
+		velocity->y = maxVelocity;
+	else if (velocity->y < -maxVelocity)
+		velocity->y = -maxVelocity;
+
 }

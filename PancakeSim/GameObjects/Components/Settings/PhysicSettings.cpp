@@ -26,6 +26,11 @@ const FVector2* PhysicSettings::GetGravity()
 	return px_gravity;
 }
 
+const int PhysicSettings::GetPxPerMeter()
+{
+	return px_per_meter;
+}
+
 void PhysicSettings::MetersTo_PxPerSecond(FVector2* metersPerSecond)
 {
 	metersPerSecond->x *= (float)px_per_meter;
