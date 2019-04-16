@@ -160,6 +160,8 @@ void Game::InitGameComponents()
 		pancakes[i]->SetAnchoredPosition(140 + (213 * i), 250 , pancakes[i]->GetSpriteSheet()->GetSpriteSize()->x, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->y);
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
+		pancakes[i]->Begin();
+
 		//Setup inputs :)
 		fryingPans_inputDelta[i] = new Vector2();
 		fryingPans_lastInput[i] = new Vector2();

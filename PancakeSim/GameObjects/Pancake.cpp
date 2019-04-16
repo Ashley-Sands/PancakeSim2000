@@ -21,6 +21,11 @@ Pancake::~Pancake()
 	delete rigidbody;
 }
 
+void Pancake::Begin()
+{
+	startPosition = GetPosition()->x;
+}
+
 void Pancake::Update(float force, int panSpriteId, int panRotation)	//TODO: added cooking temp.
 {
 

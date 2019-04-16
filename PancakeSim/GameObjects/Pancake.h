@@ -19,6 +19,7 @@ public:
 	Pancake(SpriteSheet* sprite);
 	~Pancake();
 
+	void Begin();
 	void Update(float force, int panSpriteId, int panRotation);
 
 	CookingState GetCurrentCookingState();
@@ -26,6 +27,8 @@ public:
 private:
 	Rigidbody* rigidbody;
 	
+	float startPosition;
+
 	float GetFlipPercentage();	// Get the flip playback position in %
 
 	float flipLength = 1.5;			//@ fliForce = 1
