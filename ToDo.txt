@@ -49,4 +49,14 @@ Controler
 [] Mark all three pans work
 
 [WIP] Solder gyro's
-	
+
+-------------------------------------------------------------------
+
+===============================
+Key
+===============================
+[C]   = Compleat
+[?]   = Maybe
+[WIP] = Work in progress
+[R]   = Removed / Canceled
+[]    = TODO
