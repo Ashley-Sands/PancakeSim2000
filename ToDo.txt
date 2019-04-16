@@ -4,8 +4,8 @@ Pancake Sim Todo
 ===============================
 Game
 ===============================
-[] Pan and pancake collision/detection
-[] pan force
+[?] Pan and pancake collision/detection
+[C] pan force
 	# so we can detect how much force is to be applied to the pancake
 [C] correct temp pan & pancake spritesheet
 	[C] pan spritesheet
@@ -13,9 +13,13 @@ Game
 [C] Count pancake flips
 [] Score
 [] UI
-[] Add Position offset to trasform
+[WIP] Add Position offset to trasform
 	# so we can use the center of the sprite to set the position
 	# or any other offset.
+[] Implerment Burnt Pancakes
+[] Implerment Cooking temp
+[] Implerment Jug / Poure new pancake
+[] Implerment Plate for cooked pancakes
 
 
 ===============================
@@ -35,11 +39,14 @@ Sprites and Sheets
 [] add steam/smoke sprite sheets
 [] add fire alarm sprite
 [] add fire sprite
+[C] Burnt Pancake sprites
 
 	
 ===============================
 Controler
 ===============================
-[] ...
+[C] Basic functality for a sigle pan
+[] Mark all three pans work
 
+[WIP] Solder gyro's
 	
