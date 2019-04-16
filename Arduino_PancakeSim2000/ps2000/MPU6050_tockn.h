@@ -15,7 +15,7 @@
 #define MPU6050_TEMP_L       0x42
 
 class MPU6050{
-  public:
+public:
 
   MPU6050(TwoWire &w);
   MPU6050(TwoWire &w, float aC, float gC);
@@ -62,11 +62,16 @@ class MPU6050{
   float getGyroAngleY(){ return angleGyroY; };
   float getGyroAngleZ(){ return angleGyroZ; };
 
-  float getAngleX(){ return angleX; };
-  float getAngleY(){ return angleY; };
-  float getAngleZ(){ return angleZ; };
+//AMS addition
 
-  private:
+  float getAngleX(bool norm = false){ return angleX - (norm ? normAng_x : 0.0f); };
+  float getAngleY(bool norm = false){ return angleY - (norm ? normAng_y : 0.0f); };
+  float getAngleZ(bool norm = false){ return angleZ - (norm ? normAng_z : 0.0f); };
+
+  void normalize();   
+  
+
+private:
 
   TwoWire *wire;
 
@@ -86,6 +91,10 @@ class MPU6050{
   long preInterval;
 
   float accCoef, gyroCoef;
+
+//AMS addition
+  float normAng_x, normAng_y, normAng_z; //alt to useing calcGyroOffsets which doesnt seam to zero the angle :|
+  
 };
 
 #endif

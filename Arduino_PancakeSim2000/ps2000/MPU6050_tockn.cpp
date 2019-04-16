@@ -49,6 +49,13 @@ void MPU6050::setGyroOffsets(float x, float y, float z){
   gyroZoffset = z;
 }
 
+void MPU6050::normalize()
+{   
+    normAng_x = getAngleX();
+    normAng_y = getAngleY();
+    normAng_z = getAngleZ();
+}
+
 void MPU6050::calcGyroOffsets(bool console, uint16_t delayBefore, uint16_t delayAfter){
 	float x = 0, y = 0, z = 0;
 	int16_t rx, ry, rz;
