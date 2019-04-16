@@ -14,7 +14,7 @@ int incomingByte = 0;
 
 const int OUTPUT_BUFFER_SIZE = 7;
 
-String GetPaddedValue(int16_t num)
+void PrintPaddedValue(int16_t num)
 {
   char buff[ OUTPUT_BUFFER_SIZE ];
   char padded[ OUTPUT_BUFFER_SIZE + 1 ];
@@ -26,7 +26,7 @@ String GetPaddedValue(int16_t num)
   
   padded[7] = '\0';
 
-  return String(padded);
+  Serial.print( String(padded) );
 }
 
 
@@ -54,12 +54,20 @@ void loop(){
   {
     incomingByte = Serial.read();
 
-    if( incomingByte == 'N' )        // Normalize Device 
+    if( incomingByte == 'N' )        // Normalize Device
+    { 
       MPU( &s_gyro_x, &s_gyro_y, &s_gyro_z );
+    }
     else if( incomingByte == 'I' )   // Print values (Normalized)
-      Serial.print( GetPaddedValue( gyro_x - s_gyro_x ) );//convert_int16_to_str(gyro_x - s_gyro_x));
+    {
+      PrintPaddedValue( gyro_x - s_gyro_x );
+      Serial.print( "#" );
+      PrintPaddedValue( gyro_y - s_gyro_y );
+    }
     else if( incomingByte == 'i' )   // Print values (RAW)
-      Serial.print( GetPaddedValue( gyro_x ) );//convert_int16_to_str(gyro_x));
+    {
+      PrintPaddedValue( gyro_x );
+    }
   }
   //print value to console nomalized.
 }
