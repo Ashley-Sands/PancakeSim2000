@@ -34,6 +34,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation)	//TODO: adde
 	SpriteSheet* spriteSheet = GetSpriteSheet();
 	int spriteID = 0;
 
+	//sort pancake rotation in pan.
 	GetPosition()->x = startPosition + ((float)panRotation * 0.85f ) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f-(float)panSpriteId));  //TODO: Make this better
 
 	//we're in the pan :)
