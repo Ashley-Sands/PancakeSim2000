@@ -67,6 +67,8 @@ void loop()
     { // if incomingByte is 'I' then get angle noralized
       int16_t x = floor( MPU.getAngleX( incomingByte == 'I' || DEBUG ) );
       int16_t y = floor( MPU.getAngleY( incomingByte == 'I' || DEBUG ) );
+
+      // write to console
       PrintPaddedValue( x );
       Serial.print("#");
       PrintPaddedValue( y );
