@@ -134,8 +134,8 @@ void Game::InitGameComponents()
 
 	staticTempCake->SetPosition(-200, -200);
 
-	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_SS.png");
-	tempcake->SetSpriteSize(200);
+	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_all.png");
+	tempcake->SetSpriteSize(200, 200);
 
 	tempPan_back->SetSprite(mainRenderer, "Sprites/pans_back_ss.png");
 	tempPan_back->SetSpriteSize(200);
