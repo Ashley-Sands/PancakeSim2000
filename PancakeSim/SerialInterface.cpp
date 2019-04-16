@@ -21,6 +21,12 @@ SerialInterface::SerialInterface()
 			break;
 
 	}
+
+	for (int i = 0; i < TOTAL_VECT_POTS; i++)
+		pot[i] = new Vector2(0, 0);
+
+	ERROR_POT = new Vector2();
+
 }
 
 
@@ -29,13 +35,25 @@ SerialInterface::SerialInterface(int port)
 {
 	std::string comPort = "COM" + std::to_string(port);
 	TryConnection(comPort);
+
+	for (int i = 0; i < TOTAL_VECT_POTS; i++)
+		pot[i] = new Vector2(0, 0);
+
+	ERROR_POT = new Vector2();
+
 }
 
 
 SerialInterface::~SerialInterface()
-{}
+{
+
+	delete[] &pot;
+
+}
+
 bool SerialInterface::TryConnection(std::string port)
 {
+
 	try {
 		mySerial = new serial::Serial(port, 9600, serial::Timeout::simpleTimeout( floor(Time::GetTicksPerUpdate())-1 ));
 
@@ -84,48 +102,56 @@ void SerialInterface::GetPositions()
 {
 	if (connect)
 	{
-		mySerial->write("I");
+		mySerial->write("I");	//Get the values normalized for the controller :)
 
 		std::string result = mySerial->readline();
 
-		//std::cout << result << std::endl;
-
 		Console::LogMessage(MessageType::Log, "Read Value: " + result );
 
-		if (result.length() > 6) {
-			std::string sub1 = result.substr(0, 7);
-			Console::LogMessage(MessageType::Log, "@Read Value: " + sub1 + " : LEN: " + std::to_string(result.length()));
+		if (result.length() > 0) { //TODO: give me the real value
 
-			try {
-				pot1 = std::stoi(sub1);
-			}
-			catch(std::exception &e)
+			int currentStrPos = 0;
+			std::string sub;
+
+			for (int i = 0; i < TOTAL_VECT_POTS; i++)
 			{
-				Console::LogMessage(MessageType::Error, "E_Value: " + result + " : LEN: "+ std::to_string(result.length()) );
+				try {
+
+					sub = result.substr(currentStrPos, INPUT_LEN);
+					pot[i]->x = std::stoi(sub);
+
+					currentStrPos += INPUT_LEN + INPUT_SPACING;
+
+					sub = result.substr(currentStrPos, INPUT_LEN);
+					pot[i]->y = std::stoi(sub);
+
+					currentStrPos += INPUT_LEN + INPUT_SPACING;
+
+				}
+				catch (std::exception &e)
+				{
+					Console::LogMessage(MessageType::Error, "E_Value: " + result + " : LEN: " + std::to_string(result.length()));
+				}
 			}
-/*
-			std::string sub2 = result.substr(5, 9);
-			pot2 = std::stoi(sub2);
-*/
+
 		}
 
 	}
 }
 
-int* SerialInterface::GetPot(int id)
+Vector2* SerialInterface::GetPot(int id)
 {
-	switch (id)
+
+	if (id >= 0 && id < TOTAL_VECT_POTS)
 	{
-		case 1:
-			return &pot1;
-		case 2:
-			return &pot2;
-		default:
-			Console::LogMessage(MessageType::Error, "Pot not found (id: "+std::to_string(id)+")");
-			return &ERROR_POT;
-
-
+		return pot[id];
 	}
+	else
+	{
+		Console::LogMessage(MessageType::Error, "Pot not found (id: " + std::to_string(id) + ")");
+		return ERROR_POT;
+	}
+
 }
 
 void SerialInterface::Close()

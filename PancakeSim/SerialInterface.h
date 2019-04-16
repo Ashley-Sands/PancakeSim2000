@@ -6,6 +6,8 @@
 #include <vector>
 #include <iterator>
 
+#include "GameObjects/Components/Vector2.h"
+
 class SerialInterface
 {
 public:
@@ -23,11 +25,8 @@ public:
 	void GetPositions();		//TODO: rename
 	void GetButton();			//TODO: removed?
 
-	// TODO: rename and combine POT's
-	//int* GetPot1() { return &pot1; };
-	//int GetPot2() { return pot2; };
 
-	int* GetPot(int id);
+	Vector2* GetPot(int id);
 
 	void Close();
 
@@ -36,13 +35,19 @@ public:
 private:
 	serial::Serial* mySerial;
 
+	const int INPUT_LEN = 7;
+	const int INPUT_SPACING = 1;
+
+	static const int TOTAL_VECT_POTS = 1;
+	Vector2* pot[TOTAL_VECT_POTS];
+
+	Vector2* ERROR_POT;		// prevent errors (this will never be updated)
+
+
+
+
 	//TODO: sort this out according to above TODO's
-	int pot1 = 0;
-
-	int pot2 = 0;
-
-	int ERROR_POT = 0;		// prevent errors (this will never be updated)
-
+	//?????
 	int button1;
 	int button2;
 };

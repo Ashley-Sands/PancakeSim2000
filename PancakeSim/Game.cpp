@@ -32,6 +32,10 @@ Game::~Game()
 	delete[] &fryingPans_front;
 	delete[] &pancakes;
 
+	delete[] &fryingPans_lastInput;
+	delete[] &fryingPans_inputDelta;
+	delete[] &fryingPans_keyboardInputValues;
+
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
 
@@ -157,7 +161,11 @@ void Game::InitGameComponents()
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
 		//Setup inputs :)
-		fryingPans_inputValue[i] = (ignoreSerial ? &fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
+		fryingPans_inputDelta[i] = new Vector2();
+		fryingPans_lastInput[i] = new Vector2();
+		fryingPans_keyboardInputValues[i] = new Vector2();
+
+		fryingPans_inputValue[i] = (ignoreSerial ? fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
 	}
 
 }
@@ -200,11 +208,13 @@ void Game::Update()
 
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPans_back[i]->Update(*fryingPans_inputValue[i] / 800.0f);
-		fryingPans_front[i]->Update(*fryingPans_inputValue[i] / 800.0f);
+		//TODO: sort out the raw values.
+		fryingPans_back[i]->Update(fryingPans_inputValue[i]->y / 800.0f);
+		fryingPans_front[i]->Update(fryingPans_inputValue[i]->y / 800.0f);
 
-		pancakes[i]->Update( fryingPans_inputDelta[i] / 400.0f, fryingPans_back[i]->GetCurrentSpriteId() );
+		pancakes[i]->Update( fryingPans_inputDelta[i]->y / 400.0f, fryingPans_back[i]->GetCurrentSpriteId() );
 	}
+
 	flipForce = 0;
 }
 
@@ -216,8 +226,11 @@ void Game::HandleSerialEvents()
 		
 		for (int i = 0; i < panCount; i++)
 		{
-			fryingPans_inputDelta[i] = *fryingPans_inputValue[i] - fryingPans_lastInput[i];
-			fryingPans_lastInput[i]  = *fryingPans_inputValue[i];
+			fryingPans_inputDelta[i]->x = fryingPans_inputValue[i]->x - fryingPans_lastInput[i]->x;
+			fryingPans_inputDelta[i]->y = fryingPans_inputValue[i]->y - fryingPans_lastInput[i]->y;
+
+			fryingPans_lastInput[i]->x  = fryingPans_inputValue[i]->x;
+			fryingPans_lastInput[i]->y  = fryingPans_inputValue[i]->y;
 		}
 	}
 }
@@ -241,8 +254,8 @@ void Game::HandleKeyboardEvents(SDL_Event* event)
 				if (f >= 60) f = 59;
 				
 				fryingPans_keyboardInputValues[1] += 100;
-				if (fryingPans_keyboardInputValues[1] > 1023)
-					fryingPans_keyboardInputValues[1] = 1023;
+				if (fryingPans_keyboardInputValues[1]->y > 1023)
+					fryingPans_keyboardInputValues[1]->y = 1023;
 
 			}
 			else if (event->key.keysym.sym == SDLK_s)

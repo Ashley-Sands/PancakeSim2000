@@ -77,11 +77,12 @@ private:
 	float flipForce = 1.0f; //TESTING ONLY
 
 //BETE INPUT (using pong controller)
-	int* fryingPans_inputValue[panCount];
+	Vector2* fryingPans_inputValue[panCount];
 
-	int fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
-	int fryingPans_inputDelta[panCount];
+	//TODO: INIT AND DELETE!!
+	Vector2* fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
+	Vector2* fryingPans_inputDelta[panCount];
 
-	int fryingPans_keyboardInputValues[panCount];
+	Vector2* fryingPans_keyboardInputValues[panCount];
 };
 
