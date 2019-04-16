@@ -1,7 +1,7 @@
 #include "MPU6050_tockn.h"
 #include "Wire.h"
 
-const bool DEBUG = true;            // forces print to console    // Also displays data normalized (if it been called)
+const bool DEBUG = false;            // forces print to console    // Also displays data normalized (if it been called)
 const int DEBUG_INTERVALS = 1000;   //millis
 unsigned int DEBUG_LAST_INTERVAL = 0;
 
