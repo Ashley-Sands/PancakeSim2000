@@ -208,11 +208,14 @@ void Game::Update()
 
 	for (int i = 0; i < panCount; i++)
 	{
-		//TODO: sort out the raw values.
-		fryingPans_back[i]->Update(fryingPans_inputValue[i]->y / 800.0f);
-		fryingPans_front[i]->Update(fryingPans_inputValue[i]->y / 800.0f);
+		fryingPans_back[i]->Update(fryingPans_inputValue[i]->y / -35.0f);
+		fryingPans_front[i]->Update(fryingPans_inputValue[i]->y / -35.0f);
 
-		pancakes[i]->Update( fryingPans_inputDelta[i]->y / 400.0f, fryingPans_back[i]->GetCurrentSpriteId() );
+		fryingPans_back[i]->SetRotation(fryingPans_inputValue[i]->x);
+		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->x);
+
+		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f, fryingPans_back[i]->GetCurrentSpriteId() );
+		pancakes[i]->SetRotation(fryingPans_inputValue[i]->x);
 	}
 
 	flipForce = 0;
@@ -226,6 +229,7 @@ void Game::HandleSerialEvents()
 		
 		for (int i = 0; i < panCount; i++)
 		{
+			// Invert the inputValue Y since its the opersit to what we want :)
 			fryingPans_inputDelta[i]->x = fryingPans_inputValue[i]->x - fryingPans_lastInput[i]->x;
 			fryingPans_inputDelta[i]->y = fryingPans_inputValue[i]->y - fryingPans_lastInput[i]->y;
 
