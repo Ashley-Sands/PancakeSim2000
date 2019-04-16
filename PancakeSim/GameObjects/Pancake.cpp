@@ -13,6 +13,7 @@ Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
 	rigidbody = new Rigidbody(this, 0.2f);
 	rigidbody->SetVelocity(0.0f, 0.0f);
+
 }
 
 
@@ -33,10 +34,11 @@ void Pancake::Update(float force, int panSpriteId, int panRotation)	//TODO: adde
 	SpriteSheet* spriteSheet = GetSpriteSheet();
 	int spriteID = 0;
 
-	
+	GetPosition()->x = startPosition + ((float)panRotation * 0.85f ) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f-(float)panSpriteId));  //TODO: Make this better
+
 	//we're in the pan :)
 	//TODO: replace magic numbers throughtout this if statment
-	if (GetPosition()->y >= 365 - (5 * panSpriteId))//TODO: this should really be in the pan bit
+	if (GetPosition()->y >= 365 - (5 * panSpriteId)) //TODO: this should really be in the pan bit
 	{
 
 		if (panSpriteId < 4 || currentCookState == CookingState::Mixture) force = 0.0f;	// can not flip if pan has not roted enought
