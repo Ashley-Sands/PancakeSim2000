@@ -172,6 +172,7 @@
     <ClInclude Include="GameObjects\Components\Settings\GameSettings.h" />
     <ClInclude Include="GameObjects\Components\Settings\PhysicSettings.h" />
     <ClInclude Include="GameObjects\Components\InputDataTypes\InputData.h" />
+    <ClInclude Include="GameObjects\PanFire.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="GameObjects\Components\Sprite.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="GameObjects\Components\Rigidbody.cpp" />
     <ClCompile Include="GameObjects\Components\Settings\GameSettings.cpp" />
     <ClCompile Include="GameObjects\Components\Settings\PhysicSettings.cpp" />
+    <ClCompile Include="GameObjects\PanFire.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="Game.cpp" />
