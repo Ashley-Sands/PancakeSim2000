@@ -121,7 +121,7 @@ void Pancake::SetCurrentCookingState()
 	}
 	else if (currentCookingTime > (cookingLength * fireMutiplyer))
 	{
-		currentCookState = CookingState::Fire;
+		currentCookState = CookingState::OnFire;
 		currentSpriteRow = 6;
 	}
 	else if (currentCookingTime > (cookingLength * burntMutiplyer))
