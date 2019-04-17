@@ -5,11 +5,21 @@
 
 Fire::Fire(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
+	startPosition = new Vector2();
 }
 
 
 Fire::~Fire()
 {
+
+	delete startPosition;
+
+}
+
+void Fire::Begin()
+{
+	startPosition->x = GetPosition()->x;
+	startPosition->y = GetPosition()->y;
 }
 
 void Fire::Update(float flameSize_percentage)
@@ -34,6 +44,6 @@ void Fire::Update(float flameSize_percentage)
 	currentFalmeSize = minFlameSize + ((maxFlameSize - minFlameSize) * flameSize_percentage);
 
 	SetScale(currentFalmeSize, currentFalmeSize);
-	//SetAnchoredPosition(GetPosition()->x, 465, GetSpriteSheet()->GetSpriteSize()->x, GetSpriteSheet()->GetSpriteSize()->y, true);
+	SetAnchoredPosition(startPosition->x , startPosition->y , GetSpriteSheet()->GetSpriteSize()->x, GetSpriteSheet()->GetSpriteSize()->y );
 
 }
