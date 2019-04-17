@@ -19,7 +19,7 @@ public:
 private:
 
 	Vector2* gyroAxis;
-	int hob;
+	int hob = 512;
 
 };
 
