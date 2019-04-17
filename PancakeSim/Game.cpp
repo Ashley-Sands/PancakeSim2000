@@ -169,7 +169,7 @@ void Game::InitGameComponents()
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
 		hobFire[i] = new Fire(spriteSheet_fire);
-		hobFire[i]->SetAnchoredPosition(140 + (213 * i), 250, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->x, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->y);
+		hobFire[i]->SetPosition(14 + (210 * i), 355);
 
 		//Setup inputs :)
 		fryingPans_inputDelta[i] = new Vector2();
@@ -231,6 +231,8 @@ void Game::Update()
 						     fryingPans_inputValue[i]->GetGyroAxis()->x, 
 							 fryingPans_inputValue[i]->GetHob() / (float)hobMaxValue
 						   );
+
+		hobFire[i]->Update();
 
 	}
 
