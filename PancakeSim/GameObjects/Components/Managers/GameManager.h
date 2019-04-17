@@ -1,4 +1,10 @@
 #pragma once
+#include "stdio.h"
+#include <array>
+#include "..\..\..\Game.h"
+
+
+
 class GameManager
 {
 //Sigleton setup
@@ -25,8 +31,14 @@ public:
 	void AddFlip();
 	int GetTotalFlips();
 
+	typedef void (Game::* OnScoreChanged_)();
+	OnScoreChanged_ onScoreChanged;
+
+	void TriggerOnScoreChanged();
+
 	void SetActiveGame(Game* activeGame);
 	Game* GetActiveGame();
+
 private:
 	
 	int totalPancakeFlips = 0;

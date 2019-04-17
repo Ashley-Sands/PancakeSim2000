@@ -139,7 +139,6 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 	InitSerialConnection();
 	InitGameComponents();
 
-
 	return true;
 }
 
@@ -274,6 +273,8 @@ void Game::Render()
 	UI_flipsLable->Render(mainRenderer);
 	UI_flipsCount->Render(mainRenderer);
 
+	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
+
 	// render new frame
 	//SDL_UpdateWindowSurface(mainWindow);
 
@@ -306,6 +307,13 @@ void Game::Update()
 	}
 
 	flipForce = 0;
+}
+
+void Game::OnScoreChanged()
+{
+
+	UI_flipsCount->SetText( std::to_string(GameManager::GetInstance().GetTotalFlips()) );
+
 }
 
 void Game::HandleSerialEvents()

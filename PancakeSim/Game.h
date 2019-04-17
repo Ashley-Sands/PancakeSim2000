@@ -25,7 +25,6 @@ class Game
 {
 public:
 	Game();
-	Game(Time* time);
 	~Game();
 
 	bool Init(const char* title, int xpos, int ypos, int width, int height, int flags);
@@ -38,7 +37,7 @@ public:
 
 	
 	bool Running() { return isRunning; };
-
+	void OnScoreChanged();
 private:
 	
 	// main SDL win, renderer & surface :)
@@ -77,6 +76,8 @@ private:
 
 	TextTransform* UI_flipsLable;
 	TextTransform* UI_flipsCount;
+
+	
 
 // Not UI
 
