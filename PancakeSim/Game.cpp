@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "SDL_image.h"
+#include "SDL_ttf.h"
 
 #include <iostream>
 //Pancake Sim 2000
@@ -71,43 +72,54 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 	{
 		Console::LogMessage(MessageType::Log, "SDL init success");
 
-		// initialise PNG image files
-		if (IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG)
+		// Initialise TTF fonts
+		if (TTF_Init() == 0)
 		{
-			Console::LogMessage(MessageType::Log, "IMG PNG init success");
 
-			// Create a window
-			mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
-			mainSurface = SDL_GetWindowSurface(mainWindow);
-			
-			// if window succesful..
-			if (mainWindow != 0) 
+			Console::LogMessage(MessageType::Log, "TTF font init success");
+
+			// initialise PNG image files
+			if (IMG_Init(IMG_INIT_PNG) == IMG_INIT_PNG)
 			{
-				Console::LogMessage(MessageType::Log, "Window creation success");
+				Console::LogMessage(MessageType::Log, "IMG PNG init success");
 
-				// create renderer
-				mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
-				SDL_SetRenderDrawBlendMode(mainRenderer, SDL_BLENDMODE_BLEND);
+				// Create a window
+				mainWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+				mainSurface = SDL_GetWindowSurface(mainWindow);
 
-				// if renderer successful...
-				if (mainRenderer != 0) {
-					Console::LogMessage(MessageType::Log, "Renderer creation success");
-					SDL_SetRenderDrawColor(mainRenderer, 0, 0, 0, 0);
-				}
-				else 
+				// if window succesful..
+				if (mainWindow != 0)
 				{
-					Console::LogMessage(MessageType::Error, "renderer failed");
+					Console::LogMessage(MessageType::Log, "Window creation success");
+
+					// create renderer
+					mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
+					SDL_SetRenderDrawBlendMode(mainRenderer, SDL_BLENDMODE_BLEND);
+
+					// if renderer successful...
+					if (mainRenderer != 0) {
+						Console::LogMessage(MessageType::Log, "Renderer creation success");
+						SDL_SetRenderDrawColor(mainRenderer, 0, 0, 0, 0);
+					}
+					else
+					{
+						Console::LogMessage(MessageType::Error, "renderer failed");
+						return false;
+					}
+				}
+				else {
+					Console::LogMessage(MessageType::Error, "window failed");
 					return false;
 				}
 			}
-			else {
-				Console::LogMessage(MessageType::Error, "window failed");
-				return false;
+			else
+			{
+				Console::LogMessage(MessageType::Error, "Failed to init PNG images");
 			}
 		}
 		else
 		{
-			Console::LogMessage(MessageType::Error, "Failed to init PNG images");
+			Console::LogMessage(MessageType::Error, "Failed to init TTF fonts");
 		}
 	}
 	else 
