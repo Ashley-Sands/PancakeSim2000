@@ -172,7 +172,7 @@ void Game::InitGameComponents()
 
 		pancakes[i] = new Pancake(tempcake);
 		pancakes[i]->SetAnchor(TransformAnchor::Center);
-		pancakes[i]->SetAnchoredPosition(140 + (213 * i), 250 , pancakes[i]->GetSpriteSheet()->GetSpriteSize()->x, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->y);
+		pancakes[i]->SetAnchoredPosition(40 + (213 * i), 250);
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
 		pancakes[i]->Begin();
@@ -181,7 +181,7 @@ void Game::InitGameComponents()
 		hobFire[i] = new Fire(spriteSheet_fire);
 		hobFire[i]->SetAnchor(TransformAnchor::Center);
 		hobFire[i]->SetScale(1.05f, 1.05f);
-		hobFire[i]->SetAnchoredPosition(220 + (210 * i), 570 , hobFire[i]->GetSpriteSheet()->GetSpriteSize()->x, hobFire[i]->GetSpriteSheet()->GetSpriteSize()->y);
+		hobFire[i]->SetAnchoredPosition(120 + (210 * i), 470);
 
 		hobFire[i]->Begin();
 
