@@ -210,6 +210,16 @@ void Game::InitGameComponents()
 	UI_scoreValue->SetPosition( 275, 15 );
 	UI_scoreValue->SetScale( 0.5f, 0.5f );
 
+	UI_flipsLable = new TextTransform(mainFontFace);
+	UI_flipsLable->SetText("Flips");
+	UI_flipsLable->SetPosition( 350, 15 );
+	UI_flipsLable->SetScale( 0.5f, 0.5f );
+
+	UI_flipsCount = new TextTransform(mainFontFace);
+	UI_flipsCount->SetText("0");
+	UI_flipsCount->SetPosition(420, 15);
+	UI_flipsCount->SetScale(0.5f, 0.5f);
+
 
 }
 
@@ -257,6 +267,8 @@ void Game::Render()
 
 	UI_scoreLable->Render(mainRenderer);
 	UI_scoreValue->Render(mainRenderer);
+	UI_flipsLable->Render(mainRenderer);
+	UI_flipsCount->Render(mainRenderer);
 
 	// render new frame
 	//SDL_UpdateWindowSurface(mainWindow);
