@@ -69,9 +69,11 @@ void loop()
       int16_t y = floor( MPU.getAngleY( incomingByte == 'I' || DEBUG ) );
 
       // write to console
-      PrintPaddedValue( x );
+      PrintPaddedValue( x );                // Gyro X
       Serial.print("#");
-      PrintPaddedValue( y );
+      PrintPaddedValue( y );                // Gyro Y
+      Serial.print("#");
+      PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)
       
       if(DEBUG)
         Serial.print("\n");
