@@ -8,6 +8,7 @@ Transform::Transform()
 
 	position = new FVector2(0, 0);
 	scale = new FVector2(1, 1);
+	size_px = new Vector2(1, 1);
 	rect = new SDL_Rect();
 	anchor = new FVector2(0, 0);
 
@@ -18,6 +19,7 @@ Transform::~Transform()
 
 	delete position;
 	delete scale;
+	delete size_px;
 	delete rect;
 	delete anchor;
 
@@ -76,6 +78,16 @@ void Transform::SetScale(float x, float y)
 FVector2* Transform::GetScale()
 {
 	return scale;
+}
+
+void Transform::SetSize(int px_x, int px_y) 
+{
+	size_px->SetVector(px_x, px_y);
+}
+
+Vector2* Transform::GetSize()
+{
+	return size_px;
 }
 
 void Transform::SetRotation(int rot)

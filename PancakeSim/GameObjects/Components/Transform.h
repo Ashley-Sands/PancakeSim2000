@@ -28,6 +28,11 @@ public:
 	void SetScale(float x, float y);
 	FVector2* GetScale();
 
+	// Sets the size of the transform in px
+	// This should be the size of the final rect when the scale is set 1,1
+	void SetSize(int px_x, int px_y);
+	Vector2* GetSize();
+
 	void SetRotation(int rot);
 	int GetRotation();
 
@@ -37,6 +42,8 @@ private:
 	FVector2* position;
 	int       rotation;			// rotation around the center of the sprite, in degres.
 	FVector2* scale;
+
+	Vector2* size_px;			// The size of the transform in px.
 
 	FVector2* anchor;
 
