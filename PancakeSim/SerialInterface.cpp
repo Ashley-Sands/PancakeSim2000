@@ -4,7 +4,8 @@
 
 #include "GameObjects/Components/Debug/Console.h"
 #include "GameObjects/Components/Time.h"			//use time to sync the timeout with the frame rate :)
-
+#include "GameObjects/Components/Vector2.h"
+#include "GameObjects/Components/InputDataTypes/InputData.h"
 
 SerialInterface::SerialInterface()
 {
@@ -23,9 +24,9 @@ SerialInterface::SerialInterface()
 	}
 
 	for (int i = 0; i < TOTAL_VECT_POTS; i++)
-		pot[i] = new Vector2(0, 0);
+		pot[i] = new InputData();
 
-	ERROR_POT = new Vector2();
+	ERROR_POT = new InputData();
 
 }
 
@@ -37,9 +38,9 @@ SerialInterface::SerialInterface(int port)
 	TryConnection(comPort);
 
 	for (int i = 0; i < TOTAL_VECT_POTS; i++)
-		pot[i] = new Vector2(0, 0);
+		pot[i] = new InputData();
 
-	ERROR_POT = new Vector2();
+	ERROR_POT = new InputData();
 
 }
 
@@ -118,12 +119,17 @@ void SerialInterface::GetPositions()
 				try {
 
 					sub = result.substr(currentStrPos, INPUT_LEN);
-					pot[i]->x = std::stoi(sub);
+					pot[i]->GetGyroAxis()->x = std::stoi(sub);
 
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
 
 					sub = result.substr(currentStrPos, INPUT_LEN);
-					pot[i]->y = std::stoi(sub);
+					pot[i]->GetGyroAxis()->y = std::stoi(sub);
+
+					currentStrPos += INPUT_LEN + INPUT_SPACING;
+
+					sub = result.substr(currentStrPos, INPUT_LEN);
+					pot[i]->SetHob( std::stoi(sub) );
 
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
 
@@ -139,7 +145,7 @@ void SerialInterface::GetPositions()
 	}
 }
 
-Vector2* SerialInterface::GetPot(int id)
+InputData* SerialInterface::GetPot(int id)
 {
 
 	if (id >= 0 && id < TOTAL_VECT_POTS)

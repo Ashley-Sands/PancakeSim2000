@@ -6,7 +6,7 @@
 #include <vector>
 #include <iterator>
 
-#include "GameObjects/Components/Vector2.h"
+class InputData;
 
 class SerialInterface
 {
@@ -26,7 +26,7 @@ public:
 	void GetButton();			//TODO: removed?
 
 
-	Vector2* GetPot(int id);
+	InputData* GetPot(int id);
 
 	void Close();
 
@@ -39,9 +39,9 @@ private:
 	const int INPUT_SPACING = 1;
 
 	static const int TOTAL_VECT_POTS = 1;
-	Vector2* pot[TOTAL_VECT_POTS];
+	InputData* pot[TOTAL_VECT_POTS];
 
-	Vector2* ERROR_POT;		// prevent errors (this will never be updated)
+	InputData* ERROR_POT;		// prevent errors (this will never be updated)
 
 
 

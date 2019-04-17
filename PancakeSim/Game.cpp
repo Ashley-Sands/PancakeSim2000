@@ -6,6 +6,7 @@
 //Pancake Sim 2000
 #include "GameObjects/Components/Components.h"
 #include "GameObjects/GameObjects.h"
+#include "GameObjects/Components/InputDataTypes/InputData.h"
 
 //Debuging
 #include "GameObjects/Components/Debug/Console.h"
@@ -165,7 +166,7 @@ void Game::InitGameComponents()
 		//Setup inputs :)
 		fryingPans_inputDelta[i] = new Vector2();
 		fryingPans_lastInput[i] = new Vector2();
-		fryingPans_keyboardInputValues[i] = new Vector2();
+		fryingPans_keyboardInputValues[i] = new InputData();
 
 		fryingPans_inputValue[i] = (ignoreSerial ? fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
 	}
@@ -210,13 +211,13 @@ void Game::Update()
 
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPans_back[i]->Update(fryingPans_inputValue[i]->y / -35.0f);
-		fryingPans_front[i]->Update(fryingPans_inputValue[i]->y / -35.0f);
+		fryingPans_back[i]->Update(fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f);
+		fryingPans_front[i]->Update(fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f);
 
-		fryingPans_back[i]->SetRotation(fryingPans_inputValue[i]->x);
-		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->x);
+		fryingPans_back[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
+		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 
-		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f, fryingPans_back[i]->GetCurrentSpriteId(), fryingPans_inputValue[i]->x);
+		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f, fryingPans_back[i]->GetCurrentSpriteId(), fryingPans_inputValue[i]->GetGyroAxis()->x);
 
 	}
 
@@ -232,17 +233,19 @@ void Game::HandleSerialEvents()
 		for (int i = 0; i < panCount; i++)
 		{
 			// Limit the pans rotation to max pan Rotation
-			if (fryingPans_inputValue[i]->x < -maxPanRotation)
-				fryingPans_inputValue[i]->x = -maxPanRotation;
-			else if (fryingPans_inputValue[i]->x > maxPanRotation)
-				fryingPans_inputValue[i]->x = maxPanRotation;
+			if (fryingPans_inputValue[i]->GetGyroAxis()->x < -maxPanRotation)
+				fryingPans_inputValue[i]->GetGyroAxis()->x = -maxPanRotation;
+			else if (fryingPans_inputValue[i]->GetGyroAxis()->x > maxPanRotation)
+				fryingPans_inputValue[i]->GetGyroAxis()->x = maxPanRotation;
 
 			// Invert the inputValue Y since its the opersit to what we want :)
-			fryingPans_inputDelta[i]->x = fryingPans_inputValue[i]->x - fryingPans_lastInput[i]->x;
-			fryingPans_inputDelta[i]->y = fryingPans_inputValue[i]->y - fryingPans_lastInput[i]->y;
+			fryingPans_inputDelta[i]->x = fryingPans_inputValue[i]->GetGyroAxis()->x - fryingPans_lastInput[i]->x;
+			fryingPans_inputDelta[i]->y = fryingPans_inputValue[i]->GetGyroAxis()->y - fryingPans_lastInput[i]->y;
 
-			fryingPans_lastInput[i]->x  = fryingPans_inputValue[i]->x;
-			fryingPans_lastInput[i]->y  = fryingPans_inputValue[i]->y;
+			fryingPans_lastInput[i]->x  = fryingPans_inputValue[i]->GetGyroAxis()->x;
+			fryingPans_lastInput[i]->y  = fryingPans_inputValue[i]->GetGyroAxis()->y;
+
+			fryingPans_inputValue[i]->SetHob( fryingPans_inputValue[i]->GetHob() -  435 );	//Todo.
 		}
 	}
 }
@@ -265,9 +268,9 @@ void Game::HandleKeyboardEvents(SDL_Event* event)
 				f += 5;
 				if (f >= 60) f = 59;
 				
-				fryingPans_keyboardInputValues[1] += 100;
-				if (fryingPans_keyboardInputValues[1]->y > 1023)
-					fryingPans_keyboardInputValues[1]->y = 1023;
+				fryingPans_keyboardInputValues[1]->GetGyroAxis()->y += 100;
+				if (fryingPans_keyboardInputValues[1]->GetGyroAxis()->y > 1023)
+					fryingPans_keyboardInputValues[1]->GetGyroAxis()->y = 1023;
 
 			}
 			else if (event->key.keysym.sym == SDLK_s)
@@ -275,9 +278,9 @@ void Game::HandleKeyboardEvents(SDL_Event* event)
 				f -= 5;
 				if (f < 0)f = 0;
 
-				fryingPans_keyboardInputValues[1] -= 100;
-				if (fryingPans_keyboardInputValues[1] < 0)
-					fryingPans_keyboardInputValues[1] = 0;
+				fryingPans_keyboardInputValues[1]->GetGyroAxis()->y -= 100;
+				if (fryingPans_keyboardInputValues[1]->GetGyroAxis()->y < 0)
+					fryingPans_keyboardInputValues[1]->GetGyroAxis()->y = 0;
 
 			}
 

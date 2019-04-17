@@ -15,6 +15,8 @@ class SpriteObject;
 class Time;
 class FryingPan;
 class Pancake;
+class InputData;
+class Vector2;
 
 class Game
 {
@@ -77,13 +79,12 @@ private:
 	float flipForce = 1.0f; //TESTING ONLY
 
 //BETE INPUT (using pong controller)
-	Vector2* fryingPans_inputValue[panCount];
+	InputData* fryingPans_inputValue[panCount];
 
-	//TODO: INIT AND DELETE!!
 	Vector2* fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
 	Vector2* fryingPans_inputDelta[panCount];
 
-	Vector2* fryingPans_keyboardInputValues[panCount];
+	InputData* fryingPans_keyboardInputValues[panCount];
 
 	const int maxPanRotation = 40;
 };
