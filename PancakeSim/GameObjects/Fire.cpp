@@ -43,7 +43,13 @@ void Fire::Update(float flameSize_percentage)
 
 	currentFalmeSize = minFlameSize + ((maxFlameSize - minFlameSize) * flameSize_percentage);
 
+	// scale flame size
 	SetScale(currentFalmeSize, currentFalmeSize);
 	SetAnchoredPosition(startPosition->x , startPosition->y , GetSpriteSheet()->GetSpriteSize()->x, GetSpriteSheet()->GetSpriteSize()->y );
 
+}
+
+float Fire::GetFlameSize()
+{
+	return currentFalmeSize;
 }

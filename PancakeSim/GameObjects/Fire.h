@@ -14,6 +14,8 @@ public:
 	// @Param flameSize : in %
 	void Update(float flameSize);
 
+	float GetFlameSize();
+
 private:
 
 	Vector2* startPosition;
