@@ -23,6 +23,9 @@ Vector2* InputData::GetGyroAxis()
 
 void InputData::SetHob(int hValue)
 {
+	// Clamp 0, 1023
+	if (hValue < 0.0f) hValue = 0;
+	else if (hValue > 1023) hValue = 1023;
 
 	hob = hValue;
 
