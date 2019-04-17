@@ -2,6 +2,7 @@
 #include "Components/Time.h"
 #include "Components/SpriteSheet.h"
 
+
 Fire::Fire(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
 }

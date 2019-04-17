@@ -15,6 +15,7 @@ class SpriteObject;
 class Time;
 class FryingPan;
 class Pancake;
+class Fire;
 class InputData;
 class Vector2;
 
@@ -66,6 +67,7 @@ private:
 	SpriteSheet* tempcake;
 	SpriteSheet* tempPan_back;
 	SpriteSheet* tempPan_front;
+	SpriteSheet* spriteSheet_fire;
 
 // BETA
 
@@ -76,6 +78,9 @@ private:
 	Pancake* pancakes[panCount];
 
 	int f = 0;
+
+	Fire* hobFire[panCount];
+
 	float flipForce = 1.0f; //TESTING ONLY
 
 //BETE INPUT (using pong controller)

@@ -19,6 +19,7 @@ Game::Game()
 	tempPan_back = new SpriteSheet();
 	tempPan_front = new SpriteSheet();
 	
+	spriteSheet_fire = new SpriteSheet();
 	
 }
 
@@ -137,6 +138,9 @@ void Game::InitGameComponents()
 	tempPan_front->SetSprite(mainRenderer, "Sprites/pans_front_ss.png");
 	tempPan_front->SetSpriteSize(200);
 
+	spriteSheet_fire->SetSprite(mainRenderer, "Sprites/Fire_SS.png");
+	spriteSheet_fire->SetSpriteSize(200);
+
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
 	{
@@ -160,6 +164,12 @@ void Game::InitGameComponents()
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
 		pancakes[i]->Begin();
+		pancakes[i]->SetAnchor(TransformAnchor::Center);
+		pancakes[i]->SetAnchoredPosition(140 + (213 * i), 250, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->x, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->y);
+		pancakes[i]->SetScale(0.8f, 0.8f);
+
+		hobFire[i] = new Fire(spriteSheet_fire);
+		hobFire[i]->SetAnchoredPosition(140 + (213 * i), 250, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->x, pancakes[i]->GetSpriteSheet()->GetSpriteSize()->y);
 
 		//Setup inputs :)
 		fryingPans_inputDelta[i] = new Vector2();
@@ -190,6 +200,7 @@ void Game::Render()
 
 	for (int i = 0; i < panCount; i++)
 	{
+		hobFire[i]->Render(mainRenderer);
 		fryingPans_back[i]->Render(mainRenderer);
 		pancakes[i]->Render(mainRenderer);
 		fryingPans_front[i]->Render(mainRenderer);
