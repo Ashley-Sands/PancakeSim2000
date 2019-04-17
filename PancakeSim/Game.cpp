@@ -228,13 +228,13 @@ void Game::Update()
 		fryingPans_back[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 
+		hobFire[i]->Update(fryingPans_inputValue[i]->GetHobFire() / 1023.0f);
+
 		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f,
 							 fryingPans_back[i]->GetCurrentSpriteId(), 
 						     fryingPans_inputValue[i]->GetGyroAxis()->x, 
-							 fryingPans_inputValue[i]->GetHobValue() / (float)hobMaxValue
+							 ( (fryingPans_inputValue[i]->GetHobValue() / (float)hobMaxValue) ) * hobFire[i]->GetFlameSize()
 						   );
-
-		hobFire[i]->Update( fryingPans_inputValue[i]->GetHobFire()/1023.0f );
 
 	}
 
