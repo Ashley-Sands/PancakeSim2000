@@ -377,7 +377,8 @@ void Game::HandleEvents()
 void Game::Clean()
 {	
 	Console::LogMessage(MessageType::Log, "Cleaning SDL");
-	if (serial)
+
+	if (serial && serial->connect)
 		serial->Close();
 
 	SDL_FreeSurface(mainSurface);
