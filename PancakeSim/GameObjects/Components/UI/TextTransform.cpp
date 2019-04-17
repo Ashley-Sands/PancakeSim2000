@@ -62,8 +62,8 @@ void TextTransform::UpdateFontTexture(SDL_Renderer* renderer)
 	fontRenderSurface = TTF_RenderText_Solid(fontFace, text.c_str(), *fontColor);
 	fontRenderTexture = SDL_CreateTextureFromSurface(renderer, fontRenderSurface);
 	
-	//Update the transform size //TODO: 
-	//fontRenderSurface->
+	//Update the transform size
+	SetSize( fontRenderSurface->w, fontRenderSurface->w);
 
 	// Clean up the old surface.
 	SDL_FreeSurface(fontRenderSurface);
