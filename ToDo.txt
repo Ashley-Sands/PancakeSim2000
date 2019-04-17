@@ -16,12 +16,13 @@ Game
 [WIP] Add Position offset to trasform
 	# so we can use the center of the sprite to set the position
 	# or any other offset.
-[] Implerment Burnt Pancakes
-[] Implerment Cooking temp
+[C] Implerment Burnt Pancakes
+[C] Implerment Cooking temp
 [] Implerment Jug / Pure new pancake
-[] Implerment Plate for cooked pancakes
-[] Implerment Fire
-
+[R] Implerment Plate for cooked pancakes
+[] Implerment Pan Fire
+[C] Implerment Hob Fire
+[] Implerment face to throw pancakes at
 
 ===============================
 Refactoring
@@ -30,7 +31,8 @@ Refactoring
 	[] PhysicSettings
 	[] GameSettings
 	[] Console
-
+[] Improve pancake rotation	
+	
 ===============================
 Sprites and Sheets
 ===============================
@@ -39,7 +41,8 @@ Sprites and Sheets
 [] Add cooker spritesheet
 [] add steam/smoke sprite sheets
 [] add fire alarm sprite
-[] add fire sprite
+[C] add Hob fire sprite
+[] add pan fire sprite
 [C] Burnt Pancake sprites
 
 	
@@ -47,6 +50,10 @@ Sprites and Sheets
 Controler
 ===============================
 [C] Basic functality for a sigle pan
+[C] Add X and Y rotation for frying pan
+[C] Add Hob
+[C] Add Pan Sencer
+ 
 [] Mark all three pans work
 
 [WIP] Solder gyro's
