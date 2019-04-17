@@ -16,12 +16,11 @@ public:
 	// if hiehgt is not ser....  the height of the sheet is used.
 	void SetSpriteSize(int width, int height = -1);
 	
-	void GetSpriteRectByID(int id, SDL_Rect* outRect );
+	void GetSpriteRectByID(int id, int rowId, SDL_Rect* outRect );
 	int GetSpriteIdByPercentage(float percentage) const;
 
 	int GetTotalSprites();
 	int GetTotalSpriteRows();
-	void SetSpriteRow( int rowId );
 	//TODO Add version on GetSprite to return sprite @ ID
 	//TODO Add GetID_byPrecentage
 
@@ -30,7 +29,6 @@ private:
 	int totalSprites;
 
 	int totalSpriteRows = 1;
-	int currentSpriteRow = 0;
 
 };
 

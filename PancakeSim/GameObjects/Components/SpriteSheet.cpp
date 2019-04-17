@@ -30,18 +30,17 @@ void SpriteSheet::SetSpriteSize( int width, int height /*= -1 */)
 	else
 	{
 		totalSpriteRows = 1;
-		currentSpriteRow = 0;
 	}
 }
 
-void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect)
+void SpriteSheet::GetSpriteRectByID(int id, int rowId, SDL_Rect* outRect)
 {
 
 	outRect->w = GetSpriteSize()->x;
 	outRect->h = GetSpriteSize()->y;
 
 	outRect->x = GetSpriteSize()->x * id;
-	outRect->y = GetSpriteSize()->y * currentSpriteRow;
+	outRect->y = GetSpriteSize()->y * rowId;
 
 }
 
@@ -70,14 +69,4 @@ int SpriteSheet::GetTotalSprites()
 int SpriteSheet::GetTotalSpriteRows()
 {
 	return totalSpriteRows;
-}
-
-void SpriteSheet::SetSpriteRow( int rowId )
-{
-
-	// Keep id in range
-	if (rowId < 0) rowId = 0;
-	else if( rowId >= totalSpriteRows ) rowId = totalSpriteRows - 1;
-	
-	currentSpriteRow = rowId;
 }
