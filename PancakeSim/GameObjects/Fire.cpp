@@ -1,7 +1,7 @@
 #include "Fire.h"
 #include "Components/Time.h"
 #include "Components/SpriteSheet.h"
-
+#include "Components/Vector2.h"
 
 Fire::Fire(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
@@ -12,7 +12,7 @@ Fire::~Fire()
 {
 }
 
-void Fire::Update()
+void Fire::Update(float flameSize_percentage)
 {
 	currentInterval += Time::GetDeltaSeconds();
 
@@ -30,5 +30,10 @@ void Fire::Update()
 		currentSpriteId = 0;
 
 	spriteSheet->GetSpriteRectByID(currentSpriteId, /*out*/ currentSpritePos);
+
+	currentFalmeSize = minFlameSize + ((maxFlameSize - minFlameSize) * flameSize_percentage);
+
+	SetScale(currentFalmeSize, currentFalmeSize);
+	//SetAnchoredPosition(GetPosition()->x, 465, GetSpriteSheet()->GetSpriteSize()->x, GetSpriteSheet()->GetSpriteSize()->y, true);
 
 }
