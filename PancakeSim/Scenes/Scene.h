@@ -14,9 +14,8 @@ public:
 
 private:
 
-	// block default constructors
+	// block default constructor
 	Scene();		
-	Scene(Scene const&);
 
 	Game* game;
 };
