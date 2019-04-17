@@ -27,7 +27,7 @@ void Pancake::Begin()
 	startPosition = GetPosition()->x;
 }
 
-void Pancake::Update(float force, int panSpriteId, int panRotation, float hobValue)	//TODO: added cooking temp.
+void Pancake::Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize)	//TODO: added cooking temp.
 {
 
 	// Get the current sprite position on the sprite sheet, when being fliped
@@ -58,7 +58,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 		SetPosition(GetPosition()->x, 365 - (5 * panSpriteId) - offHobOffset);
 		spriteID = (spriteSheet->GetTotalSprites()-1) - floor(panSpriteId / 2.0f);
 
-		currentCookingTime += Time::GetDeltaSeconds() * hobValue; //TODO: Add cooking temp mutiplyer
+		currentCookingTime += Time::GetDeltaSeconds() * hobValue * flameSize; //TODO: Add cooking temp mutiplyer
 		SetCurrentCookingState();
 
 		SetRotation(panRotation);
