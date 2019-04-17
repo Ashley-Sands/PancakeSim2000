@@ -36,7 +36,11 @@ public:
 	void SetRotation(int rot);
 	int GetRotation();
 
-	SDL_Rect* GetRectScaled(int px_width, int px_height);
+	// Get the transfors rect (scaled)
+	SDL_Rect* GetRectScaled();
+
+	// Get the transfors rect (unscaled)
+	SDL_Rect* GetRect();
 
 private:
 	FVector2* position;
@@ -48,6 +52,7 @@ private:
 	FVector2* anchor;
 
 	SDL_Rect* rect;
+	SDL_Rect* rect_scaled;
 
 };
 

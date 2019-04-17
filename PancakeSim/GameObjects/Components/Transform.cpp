@@ -10,6 +10,7 @@ Transform::Transform()
 	scale = new FVector2(1, 1);
 	size_px = new Vector2(1, 1);
 	rect = new SDL_Rect();
+	rect_scaled = new SDL_Rect();
 	anchor = new FVector2(0, 0);
 
 }
@@ -21,6 +22,7 @@ Transform::~Transform()
 	delete scale;
 	delete size_px;
 	delete rect;
+	delete rect_scaled;
 	delete anchor;
 
 }
@@ -100,12 +102,24 @@ int Transform::GetRotation()
 	return rotation;
 }
 
-SDL_Rect* Transform::GetRectScaled(int px_width, int px_height)
+SDL_Rect* Transform::GetRectScaled()
+{
+	rect_scaled->x = position->x;
+	rect_scaled->y = position->y;
+
+	rect_scaled->w = size_px->x * scale->x;
+	rect_scaled->h = size_px->y * scale->y;
+
+	return rect_scaled;
+}
+
+SDL_Rect* Transform::GetRect()
 {
 	rect->x = position->x;
 	rect->y = position->y;
-	rect->w = px_width * scale->x;
-	rect->h = px_height * scale->y;
+
+	rect->w = size_px->x;
+	rect->h = size_px->y;
 
 	return rect;
 }
