@@ -75,7 +75,7 @@ void loop()
       Serial.print("#");
       PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)
       Serial.print("#");
-      PrintPaddedValue( analogRead(A3) );  // Hob Nob
+      PrintPaddedValue( analogRead(A2) );  // Hob Nob
       
       if(DEBUG)
         Serial.print("\n");
