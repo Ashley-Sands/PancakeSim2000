@@ -16,7 +16,7 @@ int GameManager::GetTotalFlips()
 
 void GameManager::AddScore(int score)
 {
-	totalScore = score;
+	totalScore += score;
 
 	TriggerOnScoreChanged();
 
