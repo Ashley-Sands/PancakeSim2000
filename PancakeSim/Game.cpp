@@ -21,7 +21,7 @@ Game::Game()
 	tempPan_front = new SpriteSheet();
 	
 	spriteSheet_fire = new SpriteSheet();
-	
+	spriteSheet_panFire = new SpriteSheet();
 }
 
 Game::~Game()
@@ -160,6 +160,9 @@ void Game::InitGameComponents()
 	spriteSheet_fire->SetSprite(mainRenderer, "Sprites/Fire_SS.png");
 	spriteSheet_fire->SetSpriteSize(200);
 
+	spriteSheet_panFire->SetSprite(mainRenderer, "Sprites/PanFire_SS.png");
+	spriteSheet_panFire->SetSpriteSize(200);
+
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
 	{
@@ -191,6 +194,11 @@ void Game::InitGameComponents()
 		hobFire[i]->SetAnchoredPosition(120 + (210 * i), 470);
 
 		hobFire[i]->Begin();
+
+		panFire[i] = new PanFire(spriteSheet_panFire);
+		panFire[i]->SetAnchoredPosition(120 + (210 * i), 470); //??
+
+		panFire[i]->Begin();
 
 		//Setup inputs :)
 		fryingPans_inputDelta[i] = new Vector2();
@@ -264,6 +272,7 @@ void Game::Render()
 		hobFire[i]->Render(mainRenderer);
 		fryingPans_back[i]->Render(mainRenderer);
 		pancakes[i]->Render(mainRenderer);
+		panFire[i]->Render(mainRenderer);
 		fryingPans_front[i]->Render(mainRenderer);
 
 	}
@@ -296,6 +305,7 @@ void Game::Update()
 		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 
 		hobFire[i]->Update(fryingPans_inputValue[i]->GetHobFire() / 1023.0f);
+		panFire[i]->Update(pancakes[i]->GetPosition());
 
 		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f,
 							 fryingPans_back[i]->GetCurrentSpriteId(), 

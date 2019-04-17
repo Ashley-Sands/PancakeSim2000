@@ -17,6 +17,7 @@ class Time;
 class FryingPan;
 class Pancake;
 class Fire;
+class PanFire;
 class InputData;
 class Vector2;
 class TextTransform;
@@ -84,7 +85,9 @@ private:
 	SpriteSheet* tempcake;
 	SpriteSheet* tempPan_back;
 	SpriteSheet* tempPan_front;
+
 	SpriteSheet* spriteSheet_fire;
+	SpriteSheet* spriteSheet_panFire;
 
 // BETA
 
@@ -97,6 +100,7 @@ private:
 	int f = 0;
 
 	Fire* hobFire[panCount];
+	PanFire* panFire[panCount];
 
 	float flipForce = 1.0f; //TESTING ONLY
 
