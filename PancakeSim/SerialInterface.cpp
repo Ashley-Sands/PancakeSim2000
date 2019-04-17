@@ -114,22 +114,31 @@ void SerialInterface::GetPositions()
 			int currentStrPos = 0;
 			std::string sub;
 
+			// Build the input date
 			for (int i = 0; i < TOTAL_VECT_POTS; i++)
 			{
 				try {
-
+					// gryo-x
 					sub = result.substr(currentStrPos, INPUT_LEN);
 					pot[i]->GetGyroAxis()->x = std::stoi(sub);
 
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
-
+					
+					// gryo-y
 					sub = result.substr(currentStrPos, INPUT_LEN);
 					pot[i]->GetGyroAxis()->y = std::stoi(sub);
 
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
 
+					// LDR - onHob
 					sub = result.substr(currentStrPos, INPUT_LEN);
-					pot[i]->SetHob( std::stoi(sub) );
+					pot[i]->SetHobValue( std::stoi(sub) );
+
+					currentStrPos += INPUT_LEN + INPUT_SPACING;
+
+					// heat nob
+					sub = result.substr(currentStrPos, INPUT_LEN);
+					pot[i]->SetHobFire(std::stoi(sub));
 
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
 

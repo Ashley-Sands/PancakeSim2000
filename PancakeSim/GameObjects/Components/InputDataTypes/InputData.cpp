@@ -21,17 +21,27 @@ Vector2* InputData::GetGyroAxis()
 	return gyroAxis;
 }
 
-void InputData::SetHob(int hValue)
+void InputData::SetHobValue(int hValue)
 {
 	// Clamp 0, 1023
 	if (hValue < 0.0f) hValue = 0;
 	else if (hValue > 1023) hValue = 1023;
 
-	hob = hValue;
+	onHobValue = hValue;
 
 }
 
-int InputData::GetHob()
+int InputData::GetHobValue()
 {
-	return hob;
+	return onHobValue;
+}
+
+void InputData::SetHobFire(int fValue)
+{
+	hobFireValue = fValue;
+}
+
+int InputData::GetHobFire()
+{
+	return hobFireValue;
 }

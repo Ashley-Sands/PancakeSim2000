@@ -12,14 +12,18 @@ public:
 	void SetGyroAxis(int x, int y);
 	Vector2* GetGyroAxis();
 
-	void SetHob(int hValue);
-	int GetHob();
+	void SetHobValue(int hValue);
+	int GetHobValue();
+
+	void SetHobFire(int fValue);
+	int GetHobFire();
 
 
 private:
 
 	Vector2* gyroAxis;
-	int hob = 512;
+	int onHobValue = 512;		// this is the value from the LDR, that detects if the pan in on or off the hob
+	int hobFireValue = 0;
 
 };
 
