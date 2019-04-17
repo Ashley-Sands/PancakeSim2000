@@ -87,5 +87,8 @@ private:
 	InputData* fryingPans_keyboardInputValues[panCount];
 
 	const int maxPanRotation = 40;
+
+	const int hobStartValue = 435;
+	const int hobMaxValue = 1023 - hobStartValue;
 };
 

@@ -20,7 +20,7 @@ public:
 	~Pancake();
 
 	void Begin();
-	void Update(float force, int panSpriteId, int panRotation);
+	void Update(float force, int panSpriteId, int panRotation, float hobValue);
 
 	CookingState GetCurrentCookingState();
 

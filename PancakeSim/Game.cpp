@@ -217,7 +217,11 @@ void Game::Update()
 		fryingPans_back[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 
-		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f, fryingPans_back[i]->GetCurrentSpriteId(), fryingPans_inputValue[i]->GetGyroAxis()->x);
+		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f,
+							 fryingPans_back[i]->GetCurrentSpriteId(), 
+						     fryingPans_inputValue[i]->GetGyroAxis()->x, 
+							 fryingPans_inputValue[i]->GetHob() / (float)hobMaxValue
+						   );
 
 	}
 
@@ -245,7 +249,7 @@ void Game::HandleSerialEvents()
 			fryingPans_lastInput[i]->x  = fryingPans_inputValue[i]->GetGyroAxis()->x;
 			fryingPans_lastInput[i]->y  = fryingPans_inputValue[i]->GetGyroAxis()->y;
 
-			fryingPans_inputValue[i]->SetHob( fryingPans_inputValue[i]->GetHob() -  435 );	//Todo.
+			fryingPans_inputValue[i]->SetHob( fryingPans_inputValue[i]->GetHob() -  hobStartValue );	//Todo.
 		}
 	}
 }
