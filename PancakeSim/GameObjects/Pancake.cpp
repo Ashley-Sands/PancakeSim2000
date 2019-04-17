@@ -36,7 +36,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	int spriteID = 0;
 
 	//sort pancake rotation in pan.
-	GetPosition()->x = startPosition + ((float)panRotation * 0.85f ) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f-(float)panSpriteId));  //TODO: Make this better
+	//GetPosition()->x = startPosition + ((float)panRotation * 0.85f ) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f-(float)panSpriteId));  //TODO: Make this better
 
 	float offHobOffset = 100.0f * (1 - hobValue);	//TODO: Come on...
 
@@ -47,14 +47,21 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	if (GetPosition()->y >= 365 - (5 * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
 	{
 
+		float force_x = (panRotation / -5.0f) * force;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
+
 		if (panSpriteId < 4 || force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought
 		{
 			force = 0.0f;
 			force_x = 0.0f;
 		}
+		else if (abs(force_x) < 0.25f)
+		{
+			force_x = 0.0f;
+		}
 		
+
 		//RB / flip
-		rigidbody->SetVelocity(0.0f, 1.5f * force);
+		rigidbody->SetVelocity(1.5f * (force_x * force), 1.5f * force);
 		currentFlip = 0.0f;
 		currentFlipForce = (flipForce * force);
 		
@@ -81,7 +88,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 		spriteID = spriteSheet->GetSpriteIdByPercentage(GetFlipPercentage());
 	}
 
-	Console::LogMessage(MessageType::Log, "Pancake Position y: " + std::to_string(GetPosition()->y) +" State: "+ std::to_string(currentCookState) );
+	Console::LogMessage(MessageType::Log, "Pancake Position y: " + std::to_string(GetPosition()->y) +" State: "+ std::to_string(currentCookState) + " Velocity X: "+std::to_string(rigidbody->GetVelocity()->x) );
 
 	spriteSheet->GetSpriteRectByID(spriteID, /*out*/ currentSpritePos, currentSpriteRow);
 
