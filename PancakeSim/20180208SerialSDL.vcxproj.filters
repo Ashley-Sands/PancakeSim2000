@@ -78,6 +78,9 @@
     <ClInclude Include="GameObjects\Components\Managers\GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\Components\InputDataTypes\InputData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -132,6 +135,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Components\Managers\GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Components\InputDataTypes\InputData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

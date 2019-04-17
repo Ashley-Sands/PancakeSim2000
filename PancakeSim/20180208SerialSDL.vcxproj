@@ -169,6 +169,7 @@
     <ClInclude Include="GameObjects\Components\Rigidbody.h" />
     <ClInclude Include="GameObjects\Components\Settings\GameSettings.h" />
     <ClInclude Include="GameObjects\Components\Settings\PhysicSettings.h" />
+    <ClInclude Include="GameObjects\Components\InputDataTypes\InputData.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="GameObjects\Components\Sprite.h" />
     <ClInclude Include="GameObjects\Components\SpriteAnimator.h" />
@@ -183,6 +184,7 @@
   <ItemGroup>
     <ClCompile Include="GameObjects\Components\Managers\GameManager.cpp" />
     <ClCompile Include="GameObjects\Components\Debug\Console.cpp" />
+    <ClCompile Include="GameObjects\Components\InputDataTypes\InputData.cpp" />
     <ClCompile Include="GameObjects\FryingPan.cpp" />
     <ClCompile Include="GameObjects\Pancake.cpp" />
     <ClCompile Include="GameObjects\Components\Rigidbody.cpp" />
