@@ -182,7 +182,7 @@
     <ClInclude Include="GameObjects\Components\Time.h" />
     <ClInclude Include="GameObjects\Components\Transform.h" />
     <ClInclude Include="GameObjects\Components\Vector2.h" />
-    <ClInclude Include="GameObjects\Components\TextTransform.h" />
+    <ClInclude Include="GameObjects\Components\UI\TextTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjects\Fire.cpp" />
@@ -211,7 +211,7 @@
     <ClCompile Include="GameObjects\Components\Time.cpp" />
     <ClCompile Include="GameObjects\Components\Transform.cpp" />
     <ClCompile Include="GameObjects\Components\Vector2.cpp" />
-    <ClCompile Include="GameObjects\Components\TextTransform.cpp" />
+    <ClCompile Include="GameObjects\Components\UI\TextTransform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

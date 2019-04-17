@@ -87,7 +87,7 @@
     <ClInclude Include="Scenes\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Components\TextTransform.h">
+    <ClInclude Include="GameObjects\Components\UI\TextTransform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -155,7 +155,7 @@
     <ClCompile Include="Scenes\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Components\TextTransform.cpp">
+    <ClCompile Include="GameObjects\Components\UI\TextTransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

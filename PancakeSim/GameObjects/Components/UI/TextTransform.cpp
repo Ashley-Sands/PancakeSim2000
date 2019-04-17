@@ -1,5 +1,5 @@
 #include "TextTransform.h"
-#include "Debug/Console.h"
+#include "../Debug/Console.h"
 
 
 TextTransform::TextTransform(TTF_Font* font) : Transform()
