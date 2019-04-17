@@ -35,6 +35,8 @@ void TextTransform::SetFontColor(int r, int g, int b, int a /* = 255 */)
 void TextTransform::SetText(std::string str)
 {
 
+	if (str == text) return; //no change
+
 	text = str;
 	textHasChanged = true;
 
