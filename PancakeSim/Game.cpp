@@ -152,9 +152,14 @@ void Game::InitGameComponents()
 		fryingPans_back[i]->SetPosition(10 + (210 * i), 350);
 		fryingPans_back[i]->SetScale(1.1f, 1.1f);
 
+		fryingPans_back[i]->Begin();
+
 		fryingPans_front[i] = new FryingPan(tempPan_front);
 		fryingPans_front[i]->SetPosition(10 + (210 * i), 350);
 		fryingPans_front[i]->SetScale(1.1f, 1.1f);
+
+		fryingPans_front[i]->Begin();
+
 
 		pancakes[i] = new Pancake(tempcake);
 		pancakes[i]->SetAnchor(TransformAnchor::Center);
@@ -211,8 +216,8 @@ void Game::Update()
 
 	for (int i = 0; i < panCount; i++)
 	{
-		fryingPans_back[i]->Update(fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f);
-		fryingPans_front[i]->Update(fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f);
+		fryingPans_back[i]->Update(fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f, fryingPans_inputValue[i]->GetHob() / (float)hobMaxValue);
+		fryingPans_front[i]->Update(fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f, fryingPans_inputValue[i]->GetHob() / (float)hobMaxValue);
 
 		fryingPans_back[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
