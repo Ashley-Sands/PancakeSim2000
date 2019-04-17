@@ -188,13 +188,29 @@ void Game::Render()
 {
 	// set background color
 	
-	
+	SDL_SetRenderDrawColor(mainRenderer, 155, 100, 75, 255);
+
 	// clear previous frame
 	SDL_RenderClear(mainRenderer);
 
 	// draw to the screen here!
-	//SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
-	//SDL_RenderFillRect(mainRenderer,&playerOnePosition);		// render a rect to screen. (renderer, rect)
+	SDL_Rect tempCooker_rect;
+
+	tempCooker_rect.h = 200;
+	tempCooker_rect.w = 650;
+	tempCooker_rect.x = 0;
+	tempCooker_rect.y = 425;
+
+	SDL_SetRenderDrawColor(mainRenderer, 155, 155, 155, 255);
+	SDL_RenderFillRect(mainRenderer, &tempCooker_rect);	
+
+	tempCooker_rect.h = 150;
+	tempCooker_rect.w = 150;
+	tempCooker_rect.x = 400;
+	tempCooker_rect.y = 175;
+
+	SDL_SetRenderDrawColor(mainRenderer, 0, 55, 255, 255);
+	SDL_RenderFillRect(mainRenderer, &tempCooker_rect);
 	//SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
 	
 	//staticTempCake->Render(mainRenderer);
