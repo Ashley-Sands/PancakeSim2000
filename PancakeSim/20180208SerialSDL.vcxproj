@@ -171,6 +171,7 @@
     <ClInclude Include="GameObjects\Components\Settings\GameSettings.h" />
     <ClInclude Include="GameObjects\Components\Settings\PhysicSettings.h" />
     <ClInclude Include="GameObjects\Components\InputDataTypes\InputData.h" />
+    <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="GameObjects\Components\Sprite.h" />
     <ClInclude Include="GameObjects\Components\SpriteAnimator.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="GameObjects\Components\Time.h" />
     <ClInclude Include="GameObjects\Components\Transform.h" />
     <ClInclude Include="GameObjects\Components\Vector2.h" />
+    <ClInclude Include="GameObjects\Components\TextTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjects\Fire.cpp" />
@@ -192,6 +194,7 @@
     <ClCompile Include="GameObjects\Components\Rigidbody.cpp" />
     <ClCompile Include="GameObjects\Components\Settings\GameSettings.cpp" />
     <ClCompile Include="GameObjects\Components\Settings\PhysicSettings.cpp" />
+    <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SerialInterface.cpp" />
@@ -208,6 +211,7 @@
     <ClCompile Include="GameObjects\Components\Time.cpp" />
     <ClCompile Include="GameObjects\Components\Transform.cpp" />
     <ClCompile Include="GameObjects\Components\Vector2.cpp" />
+    <ClCompile Include="GameObjects\Components\TextTransform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
