@@ -31,6 +31,11 @@ public:
 	void AddFlip();
 	int GetTotalFlips();
 
+	void AddScore(int score);
+	int GetTotalScore();
+
+	void ClearScore();
+
 	typedef void (Game::* OnScoreChanged_)();
 	OnScoreChanged_ onScoreChanged;
 
@@ -41,7 +46,10 @@ public:
 
 private:
 	
+	int scorePerFlip = 5;
+
 	int totalPancakeFlips = 0;
+	int totalScore = 0;
 
 	Game* activeGame;
 
