@@ -1,10 +1,11 @@
 #pragma once
 #include "SDL.h"
+#include "SDL_ttf.h"
 
 /* SDL Includes (note to self)
 #include "SDL_mixer.h"
 #include "SDL_image.h"
-#include "SDL_ttf.h"
+
 */
 #include <serial\serial.h>
 #include "SerialInterface.h"
@@ -57,7 +58,8 @@ private:
 	int forceComPort = 3;
 
 
-
+// Fonts
+	TTF_Font* mainFontFace;
 
 
 //TESTING ONLY

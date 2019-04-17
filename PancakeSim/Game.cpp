@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "SDL_image.h"
-#include "SDL_ttf.h"
 
 #include <iostream>
 //Pancake Sim 2000
@@ -22,6 +21,8 @@ Game::Game()
 	
 	spriteSheet_fire = new SpriteSheet();
 	
+	mainFontFace = TTF_OpenFont("Fonts/ARIALN.ttf", 48);
+
 }
 
 Game::~Game()

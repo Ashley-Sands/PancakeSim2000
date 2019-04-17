@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GameObjects\Components\UI\UI.h" />
     <ClInclude Include="GameObjects\Fire.h" />
     <ClInclude Include="GameObjects\Components\Managers\GameManager.h" />
     <ClInclude Include="GameObjects\Components\Debug\Console.h" />
