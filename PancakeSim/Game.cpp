@@ -207,7 +207,7 @@ void Game::InitGameComponents()
 
 	UI_scoreValue = new TextTransform(mainFontFace);
 	UI_scoreValue->SetText("0");
-	UI_scoreValue->SetPosition( 300, 15 );
+	UI_scoreValue->SetPosition( 275, 15 );
 	UI_scoreValue->SetScale( 0.5f, 0.5f );
 
 
