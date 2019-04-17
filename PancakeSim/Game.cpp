@@ -8,6 +8,7 @@
 #include "GameObjects/Components/Components.h"
 #include "GameObjects/Components/InputDataTypes/InputData.h"
 #include "GameObjects/Components/UI/UI.h"
+#include "GameObjects/Components/Managers/GameManager.h"
 
 //Debuging
 #include "GameObjects/Components/Debug/Console.h"
@@ -144,6 +145,9 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 
 void Game::InitGameComponents()
 {
+
+	//Load successful, set this to the active game. 
+	GameManager::GetInstance().SetActiveGame(this);
 
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_all.png");
 	tempcake->SetSpriteSize(200, 200);

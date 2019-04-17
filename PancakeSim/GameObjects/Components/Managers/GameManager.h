@@ -25,10 +25,13 @@ public:
 	void AddFlip();
 	int GetTotalFlips();
 
+	void SetActiveGame(Game* activeGame);
+	Game* GetActiveGame();
 private:
 	
 	int totalPancakeFlips = 0;
 
+	Game* activeGame;
 
 };
 

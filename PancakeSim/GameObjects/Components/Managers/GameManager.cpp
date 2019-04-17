@@ -9,4 +9,12 @@ void GameManager::AddFlip()
 int GameManager::GetTotalFlips()
 {
 	return totalPancakeFlips;
+void GameManager::SetActiveGame(Game* actGame)
+{
+	activeGame = actGame;
+}
+
+Game* GameManager::GetActiveGame()
+{
+	return activeGame;
 }
