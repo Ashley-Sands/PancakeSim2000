@@ -27,7 +27,6 @@ Game::~Game()
 	delete tempcake;
 	delete tempPan_back;
 	delete tempPan_front;
-	delete staticTempCake;
 	
 	delete[] &fryingPans_back;
 	delete[] &fryingPans_front;
@@ -128,9 +127,6 @@ bool Game::Init(const char * title, int xpos, int ypos, int width, int height, i
 
 void Game::InitGameComponents()
 {
-	//tempcake->SetSprite("Sprites/TempCake_000.png", mainSurface->format);
-	
-	staticTempCake->SetPosition(-200, -200);
 
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_all.png");
 	tempcake->SetSpriteSize(200, 200);

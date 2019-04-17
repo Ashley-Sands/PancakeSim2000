@@ -61,12 +61,11 @@ private:
 
 //TESTING ONLY
 
-	SpriteObject* staticTempCake;
+
 
 	SpriteSheet* tempcake;
 	SpriteSheet* tempPan_back;
 	SpriteSheet* tempPan_front;
-	int f = 0;
 
 // BETA
 
@@ -76,6 +75,7 @@ private:
 	FryingPan* fryingPans_front[panCount];
 	Pancake* pancakes[panCount];
 
+	int f = 0;
 	float flipForce = 1.0f; //TESTING ONLY
 
 //BETE INPUT (using pong controller)
