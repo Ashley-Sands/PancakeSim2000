@@ -21,8 +21,6 @@ Game::Game()
 	
 	spriteSheet_fire = new SpriteSheet();
 	
-	mainFontFace = TTF_OpenFont("Fonts/ARIALN.ttf", 48);
-
 }
 
 Game::~Game()
@@ -193,6 +191,9 @@ void Game::InitGameComponents()
 
 		fryingPans_inputValue[i] = (ignoreSerial ? fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
 	}
+
+	// Setup UI.
+	mainFontFace = TTF_OpenFont("/Fonts/ARIALN.ttf", 48);
 
 }
 
