@@ -33,7 +33,7 @@ void SpriteSheet::SetSpriteSize( int width, int height /*= -1 */)
 	}
 }
 
-void SpriteSheet::GetSpriteRectByID(int id, int rowId, SDL_Rect* outRect)
+void SpriteSheet::GetSpriteRectByID(int id, SDL_Rect* outRect, int rowId /* = 0 */)
 {
 
 	outRect->w = GetSpriteSize()->x;
