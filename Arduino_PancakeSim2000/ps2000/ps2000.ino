@@ -74,9 +74,14 @@ void loop()
       PrintPaddedValue( y );                // Gyro Y
       Serial.print("#");
       PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)
+      Serial.print("#");
+      PrintPaddedValue( analogRead(A3) );  // Hob Nob
       
       if(DEBUG)
         Serial.print("\n");
+    }else if(incomingByte == 'l')
+    {
+      PrintPaddedValue( analogRead(A2) ); 
     }
 
     DEBUG_LAST_INTERVAL = millis();
