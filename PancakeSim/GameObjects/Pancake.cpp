@@ -24,6 +24,7 @@ Pancake::~Pancake()
 
 void Pancake::Begin()
 {
+	SpriteAnimator::Begin();
 	startPosition = GetPosition()->x;
 }
 

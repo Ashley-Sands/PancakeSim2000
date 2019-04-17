@@ -10,7 +10,7 @@ public:
 	Fire(SpriteSheet* sprite);
 	~Fire();
 
-	void Begin();
+	virtual void Begin() override;
 	// @Param flameSize : in %
 	void Update(float flameSize);
 

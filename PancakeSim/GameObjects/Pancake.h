@@ -19,7 +19,7 @@ public:
 	Pancake(SpriteSheet* sprite);
 	~Pancake();
 
-	void Begin();
+	virtual void Begin() override;
 	void Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize);
 
 	CookingState GetCurrentCookingState();

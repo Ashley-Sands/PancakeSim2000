@@ -19,6 +19,8 @@ FryingPan::~FryingPan()
 
 void FryingPan::Begin()
 {
+	SpriteAnimator::Begin();
+
 	startPosition->x = GetPosition()->x;
 	startPosition->y = GetPosition()->y;
 }

@@ -15,6 +15,11 @@ SpriteObject::~SpriteObject()
 {
 }
 
+void SpriteObject::Begin()
+{
+	SetSize(sprite->GetSpriteSize()->x, sprite->GetSpriteSize()->y);
+}
+
 void SpriteObject::Render(SDL_Renderer* renderer)
 {
 

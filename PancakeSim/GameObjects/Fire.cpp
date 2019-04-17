@@ -18,8 +18,12 @@ Fire::~Fire()
 
 void Fire::Begin()
 {
+
+	SpriteAnimator::Begin();
+
 	startPosition->x = GetPosition()->x;
 	startPosition->y = GetPosition()->y;
+
 }
 
 void Fire::Update(float flameSize_percentage)

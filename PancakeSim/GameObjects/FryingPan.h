@@ -10,7 +10,7 @@ public:
 	FryingPan(SpriteSheet* sprite);
 	~FryingPan();
 
-	void Begin();
+	virtual void Begin() override;
 	void Update(float inputValue, float hobValue);
 
 	int GetCurrentSpriteId();
