@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameObjects/Components/SpriteAnimator.h"
+#include "Components/SpriteAnimator.h"
 
 class Fire : public SpriteAnimator
 {
