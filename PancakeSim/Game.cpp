@@ -7,17 +7,18 @@
 #include "GameObjects/Components/Components.h"
 #include "GameObjects/GameObjects.h"
 #include "GameObjects/Components/InputDataTypes/InputData.h"
+#include "GameObjects/Fire.h"
 
 //Debuging
 #include "GameObjects/Components/Debug/Console.h"
 
 Game::Game()
 {
-	staticTempCake_sprite = new Sprite();
-
+	// TODO Rename
 	tempcake = new SpriteSheet();
 	tempPan_back = new SpriteSheet();
 	tempPan_front = new SpriteSheet();
+	
 	
 }
 
@@ -26,7 +27,6 @@ Game::~Game()
 	delete tempcake;
 	delete tempPan_back;
 	delete tempPan_front;
-	delete staticTempCake_sprite;
 	delete staticTempCake;
 	
 	delete[] &fryingPans_back;
@@ -130,9 +130,6 @@ void Game::InitGameComponents()
 {
 	//tempcake->SetSprite("Sprites/TempCake_000.png", mainSurface->format);
 	
-	staticTempCake_sprite->SetSprite(mainRenderer, "Sprites/TempCake_000.png");
-	staticTempCake = new SpriteObject(staticTempCake_sprite);
-
 	staticTempCake->SetPosition(-200, -200);
 
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_all.png");

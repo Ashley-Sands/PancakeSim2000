@@ -60,7 +60,7 @@ private:
 
 
 //TESTING ONLY
-	Sprite* staticTempCake_sprite;
+
 	SpriteObject* staticTempCake;
 
 	SpriteSheet* tempcake;
