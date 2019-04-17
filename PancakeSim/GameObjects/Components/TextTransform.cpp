@@ -47,7 +47,7 @@ void TextTransform::Render(SDL_Renderer* renderer)
 		UpdateFontTexture(renderer);
 	
 
-	SDL_RenderCopy(renderer, fontRenderTexture, NULL, GetRectScaled(100, 1000));	//TODO: i really need to add size to Transform :(
+	SDL_RenderCopy(renderer, fontRenderTexture, NULL, GetRectScaled());	//TODO: i really need to add size to Transform :(
 
 }
 
