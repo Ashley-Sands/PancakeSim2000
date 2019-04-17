@@ -76,7 +76,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 	Console::LogMessage(MessageType::Log, "Pancake Position y: " + std::to_string(GetPosition()->y) +" State: "+ std::to_string(currentCookState) );
 
-	spriteSheet->GetSpriteRectByID(spriteID, /*out*/ currentSpritePos);
+	spriteSheet->GetSpriteRectByID(spriteID, /*out*/ currentSpritePos, currentSpriteRow);
 
 	rigidbody->Update();
 
@@ -112,26 +112,26 @@ void Pancake::SetCurrentCookingState()
 	if (currentCookingTime < (cookingLength * mixtureMutiplyer))
 	{
 		currentCookState = CookingState::Mixture;
-		GetSpriteSheet()->SetSpriteRow(0);
+		currentSpriteRow = 0;
 	}
 	else if (currentCookingTime < (cookingLength * rawMutiplyer))
 	{
 		currentCookState = CookingState::Raw;
-		GetSpriteSheet()->SetSpriteRow(1);
+		currentSpriteRow = 1;
 	}
 	else if (currentCookingTime > (cookingLength * fireMutiplyer))
 	{
 		currentCookState = CookingState::Fire;
-		GetSpriteSheet()->SetSpriteRow(6);
+		currentSpriteRow = 6;
 	}
 	else if (currentCookingTime > (cookingLength * burntMutiplyer))
 	{
 		currentCookState = CookingState::Burnt;
-		GetSpriteSheet()->SetSpriteRow(4);
+		currentSpriteRow = 4;
 	}
 	else
 	{
 		currentCookState = CookingState::Perfect;
-		GetSpriteSheet()->SetSpriteRow(3);
+		currentSpriteRow = 3;
 	}
 }

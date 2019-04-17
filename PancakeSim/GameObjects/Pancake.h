@@ -38,6 +38,8 @@ private:
 	float currentFlipForce = 0;
 	float counterForce = 2.2f;
 
+	int currentSpriteRow = 0;
+
 	const float cookingLength = 25.0f;		// the perfect cooking leght, in seconds
 	float currentCookingTime = 0.0f;
 
