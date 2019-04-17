@@ -313,6 +313,7 @@ void Game::OnScoreChanged()
 {
 
 	UI_flipsCount->SetText( std::to_string(GameManager::GetInstance().GetTotalFlips()) );
+	UI_scoreValue->SetText( std::to_string(GameManager::GetInstance().GetTotalScore()) );
 
 }
 
