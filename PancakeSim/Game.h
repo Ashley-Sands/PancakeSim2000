@@ -19,6 +19,7 @@ class Pancake;
 class Fire;
 class InputData;
 class Vector2;
+class TextTransform;
 
 class Game
 {
@@ -69,7 +70,15 @@ private:
 
 //TESTING ONLY
 
+// UI (BETA)
 
+	TextTransform* UI_scoreLable;
+	TextTransform* UI_scoreValue;
+
+	TextTransform* UI_flipsLable;
+	TextTransform* UI_flipsCount;
+
+// Not UI
 
 	SpriteSheet* tempcake;
 	SpriteSheet* tempPan_back;

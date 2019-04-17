@@ -37,6 +37,11 @@ Game::~Game()
 	delete[] &fryingPans_inputDelta;
 	delete[] &fryingPans_keyboardInputValues;
 
+	delete UI_scoreLable;
+	delete UI_scoreValue;
+	delete UI_flipsLable;
+	delete UI_flipsCount;
+
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
 
@@ -193,7 +198,18 @@ void Game::InitGameComponents()
 	}
 
 	// Setup UI.
-	mainFontFace = TTF_OpenFont("/Fonts/ARIALN.ttf", 48);
+	mainFontFace = TTF_OpenFont("Fonts/ARIALN.ttf", 60);
+
+	UI_scoreLable = new TextTransform(mainFontFace);
+	UI_scoreLable->SetText("Score");
+	UI_scoreLable->SetPosition( 200, 15 );
+	UI_scoreLable->SetScale( 0.5f, 0.5f );
+
+	UI_scoreValue = new TextTransform(mainFontFace);
+	UI_scoreValue->SetText("0");
+	UI_scoreValue->SetPosition( 300, 15 );
+	UI_scoreValue->SetScale( 0.5f, 0.5f );
+
 
 }
 
@@ -239,9 +255,13 @@ void Game::Render()
 
 	}
 
+	UI_scoreLable->Render(mainRenderer);
+	UI_scoreValue->Render(mainRenderer);
+
 	// render new frame
-	SDL_RenderPresent(mainRenderer);
 	//SDL_UpdateWindowSurface(mainWindow);
+
+	SDL_RenderPresent(mainRenderer);
 
 }
 
@@ -387,6 +407,7 @@ void Game::Clean()
 	SDL_DestroyWindow(mainWindow);
 	SDL_DestroyRenderer(mainRenderer);
 	IMG_Quit();
+	TTF_Quit();
 	SDL_Quit();
 }
 
