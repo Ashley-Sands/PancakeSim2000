@@ -4,7 +4,6 @@
 
 #include "Vector2.h"
 #include "Transform.h"
-#include "TextTransform.h"
 #include "Time.h"
 
 #include "Sprite.h"

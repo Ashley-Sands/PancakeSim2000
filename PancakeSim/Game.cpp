@@ -5,10 +5,10 @@
 
 #include <iostream>
 //Pancake Sim 2000
-#include "GameObjects/Components/Components.h"
 #include "GameObjects/GameObjects.h"
+#include "GameObjects/Components/Components.h"
 #include "GameObjects/Components/InputDataTypes/InputData.h"
-#include "GameObjects/Fire.h"
+#include "GameObjects/Components/UI/UI.h"
 
 //Debuging
 #include "GameObjects/Components/Debug/Console.h"
