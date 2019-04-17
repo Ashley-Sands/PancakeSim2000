@@ -34,17 +34,19 @@ void Transform::SetPosition(int x, int y)
 
 }
 
-void Transform::SetAnchoredPosition(int x_pos, int y_pos, int px_width, int px_height, bool ignoreScale /*= false*/)
+void Transform::SetAnchoredPosition(int x_pos, int y_pos, bool ignoreScale /*= false*/)
 {
 
 	if (!ignoreScale)
 	{
-		px_width *= scale->x;
-		px_height *= scale->y;
+		position->x = x_pos - ((size_px->x * scale->x) * anchor->x);
+		position->y = y_pos - ((size_px->y * scale->y) * anchor->y);
 	}
-
-	position->x = x_pos - (px_width  * anchor->x);
-	position->y = y_pos - (px_height * anchor->y);
+	else
+	{
+		position->x = x_pos - (size_px->x * anchor->x);
+		position->y = y_pos - (size_px->y * anchor->y);
+	}
 
 }
 

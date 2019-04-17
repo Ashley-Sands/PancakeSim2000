@@ -20,7 +20,7 @@ public:
 	~Transform();
 
 	void SetPosition(int x, int y);
-	void SetAnchoredPosition(int x_pos, int y_pos, int px_width, int px_height, bool ignoreScale = false);
+	void SetAnchoredPosition(int x_pos, int y_pos, bool ignoreScale = false);
 
 	FVector2* GetPosition();
 	void SetAnchor(TransformAnchor anchor);
