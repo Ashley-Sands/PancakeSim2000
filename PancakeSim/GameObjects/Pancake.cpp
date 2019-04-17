@@ -47,28 +47,36 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	if (GetPosition()->y >= 365 - (5 * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
 	{
 
-		float force_x = (panRotation / -5.0f) * force;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
+		float force_x = 0;
+		
+		if(abs(panRotation) > 25.0f)		// min rotating to throw pancakes 
+			force_x = panRotation / -35.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
 
 		if (panSpriteId < 4 || force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought
 		{
 			force = 0.0f;
 			force_x = 0.0f;
 		}
-		else if (abs(force_x) < 0.25f)
+		else if (abs(force_x) < 0.75f)
 		{
 			force_x = 0.0f;
+		}
+		else
+		{
+			force_x *= force;
 		}
 		
 
 		//RB / flip
-		rigidbody->SetVelocity(1.5f * (force_x * force), 1.5f * force);
+		rigidbody->SetVelocity(force_x, 1.5f * force);
 		currentFlip = 0.0f;
 		currentFlipForce = (flipForce * force);
 		
 		// correct the pancakes position when in pan
 		if (force < minFlipForce)
 		{
-			SetPosition(GetPosition()->x, 365 - (5 * panSpriteId) - offHobOffset);
+			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f - (float)panSpriteId));
+			SetPosition(fixed_x_pos, 365 - (5 * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		}
 
@@ -82,6 +90,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	{
 		spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		SetRotation(panRotation);
+
 	}
 	else // we're fliping pancakes :D
 	{
