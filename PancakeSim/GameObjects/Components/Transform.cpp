@@ -12,7 +12,7 @@ Transform::Transform()
 	rect = new SDL_Rect();
 	rect_scaled = new SDL_Rect();
 	anchor = new FVector2(0, 0);
-
+	anchoredPosition = new FVector2(0, 0);
 }
 
 Transform::~Transform()
@@ -24,6 +24,7 @@ Transform::~Transform()
 	delete rect;
 	delete rect_scaled;
 	delete anchor;
+	delete anchoredPosition;
 
 }
 
@@ -53,6 +54,23 @@ void Transform::SetAnchoredPosition(int x_pos, int y_pos, bool ignoreScale /*= f
 FVector2* Transform::GetPosition()
 {
 	return position;
+}
+
+FVector2* Transform::GetAnchoredPosition(bool ignoreScale /*= false*/)
+{
+
+	if (!ignoreScale)
+	{
+		anchoredPosition->x = position->x + ((size_px->x * scale->x) * anchor->x);
+		anchoredPosition->y = position->y + ((size_px->y * scale->y) * anchor->y);
+	}
+	else
+	{
+		anchoredPosition->x = position->x + (size_px->x * anchor->x);
+		anchoredPosition->y = position->y + (size_px->y * anchor->y);
+	}
+
+	return anchoredPosition;
 }
 
 void Transform::SetAnchor(TransformAnchor transfromAnchor)

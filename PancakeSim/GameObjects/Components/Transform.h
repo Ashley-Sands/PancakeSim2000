@@ -24,6 +24,8 @@ public:
 	void SetAnchoredPosition(int x_pos, int y_pos, bool ignoreScale = false);
 
 	FVector2* GetPosition();
+	FVector2* GetAnchoredPosition(bool ignoreScale = false);
+
 	void SetAnchor(TransformAnchor anchor);
 
 	void SetScale(float x, float y);
@@ -51,6 +53,7 @@ private:
 	Vector2* size_px;			// The size of the transform in px.
 
 	FVector2* anchor;
+	FVector2* anchoredPosition; // This is only updated when GetAnchoredPosition is called
 
 	SDL_Rect* rect;
 	SDL_Rect* rect_scaled;
