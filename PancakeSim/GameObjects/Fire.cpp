@@ -57,3 +57,9 @@ float Fire::GetFlameSize()
 {
 	return currentFalmeSize;
 }
+
+
+void Fire::SetInvervalLength(float len)
+{
+	updateIntervalLength = len;
+}

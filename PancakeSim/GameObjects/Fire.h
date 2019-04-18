@@ -16,6 +16,8 @@ public:
 
 	float GetFlameSize();
 
+	void SetInvervalLength(float len);
+
 private:
 
 	Vector2* startPosition;
