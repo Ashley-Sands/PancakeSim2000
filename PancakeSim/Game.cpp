@@ -242,6 +242,8 @@ void Game::InitGameComponents()
 	UI_flipsCount->SetPosition(420, 15);
 	UI_flipsCount->SetScale(0.5f, 0.5f);
 
+	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
+
 
 }
 
@@ -293,7 +295,6 @@ void Game::Render()
 	UI_flipsLable->Render(mainRenderer);
 	UI_flipsCount->Render(mainRenderer);
 
-	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
 
 	// render new frame
 	//SDL_UpdateWindowSurface(mainWindow);
