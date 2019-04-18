@@ -48,7 +48,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	}
 	//we're in the pan :)
 	//TODO: replace magic numbers throughtout this if statment
-	else if (GetAnchoredPosition()->y >= 455 - (6 * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
+	else if (GetAnchoredPosition()->y >= 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
 	{
 
 		float force_x = 0;
@@ -56,7 +56,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 		if(abs(panRotation) > 25.0f)		// min rotating to throw pancakes 
 			force_x = panRotation / -35.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
 
-		if (panSpriteId < 4 || force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought
+		if (panSpriteId < 4 || force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought //TODO: improve this so it uses the Accum delta and release when the force stops or goes backwards
 		{
 			force = 0.0f;
 			force_x = 0.0f;
@@ -80,7 +80,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 		if (force < minFlipForce)
 		{
 			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f - (float)panSpriteId));
-			SetAnchoredPosition(fixed_x_pos, 455 - (6 * panSpriteId) - offHobOffset);
+			SetAnchoredPosition(fixed_x_pos, 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		}
 

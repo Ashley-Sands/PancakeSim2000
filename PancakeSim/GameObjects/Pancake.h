@@ -29,9 +29,12 @@ public:
 	bool CanPour();
 
 private:
-	Rigidbody* rigidbody;
 	
+	Rigidbody* rigidbody;
+
 	float startPosition;
+
+	const float panSpritePositionMultiplier = 6.0f;
 
 	float GetFlipPercentage();	// Get the flip playback position in %
 
