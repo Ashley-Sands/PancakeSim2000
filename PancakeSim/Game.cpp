@@ -243,6 +243,28 @@ void Game::InitGameComponents()
 	UI_flipsCount->SetPosition(420, 15);
 	UI_flipsCount->SetScale(0.5f, 0.5f);
 
+
+	UI_servedPancakesLable = new TextTransform(mainFontFace);
+	UI_servedPancakesLable->SetText("Servered");
+	UI_servedPancakesLable->SetPosition(500, 15);
+	UI_servedPancakesLable->SetScale(0.5f, 0.5f);
+
+	UI_servedPancakesCount = new TextTransform(mainFontFace);
+	UI_servedPancakesCount->SetText("0");
+	UI_servedPancakesCount->SetPosition(570, 15);
+	UI_servedPancakesCount->SetScale(0.5f, 0.5f);
+
+	UI_happynessLable = new TextTransform(mainFontFace);
+	UI_happynessLable->SetText("Happyness");
+	UI_happynessLable->SetPosition(610, 15);
+	UI_happynessLable->SetScale(0.5f, 0.5f);
+
+	UI_happynessValue = new TextTransform(mainFontFace);
+	UI_happynessValue->SetText("100%");
+	UI_happynessValue->SetPosition(690, 15);
+	UI_happynessValue->SetScale(0.5f, 0.5f);
+
+
 	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
 
 	//Setup Face Targets
@@ -304,6 +326,10 @@ void Game::Render()
 	UI_scoreValue->Render(mainRenderer);
 	UI_flipsLable->Render(mainRenderer);
 	UI_flipsCount->Render(mainRenderer);
+	UI_servedPancakesLable->Render(mainRenderer);
+	UI_servedPancakesCount->Render(mainRenderer);
+	UI_happynessLable->Render(mainRenderer);
+	UI_happynessValue->Render(mainRenderer);
 
 	// render faces
 	for (int i = 0; i < faceCount; i++)

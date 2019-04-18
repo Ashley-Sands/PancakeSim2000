@@ -79,6 +79,12 @@ private:
 	TextTransform* UI_flipsLable;
 	TextTransform* UI_flipsCount;
 
+	TextTransform* UI_servedPancakesLable;
+	TextTransform* UI_servedPancakesCount;
+
+	TextTransform* UI_happynessLable;
+	TextTransform* UI_happynessValue;
+
 // Not UI
 
 	SpriteSheet* tempcake;
