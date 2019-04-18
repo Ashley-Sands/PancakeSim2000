@@ -11,11 +11,28 @@ PanFire::~PanFire()
 {
 }
 
-void PanFire::Update(FVector2* pancakePosition)
+void PanFire::Update(FVector2* pancakePosition, CookingState cookedState)
 {
 
-	Fire::Update(1);	// Clamp the size of fire to one
+	if (cookedState != CookingState::OnFire)
+	{
+		canRender = false;
+		return;
+	}
 
-	SetPosition(pancakePosition->x, pancakePosition->y);
+	Fire::Update(0.5f);	// Clamp the size of fire to .5
+
+	SetAnchoredPosition(pancakePosition->x+100, pancakePosition->y+20);
+
+	canRender = true;
+
+}
+
+void PanFire::Render(SDL_Renderer* renderer)
+{
+
+	if ( !canRender ) return;
+
+	Fire::Render(renderer);
 
 }

@@ -196,8 +196,9 @@ void Game::InitGameComponents()
 		hobFire[i]->Begin();
 
 		panFire[i] = new PanFire(spriteSheet_panFire);
+		panFire[i]->SetAnchor(TransformAnchor::Center);
 		panFire[i]->SetAnchoredPosition(120 + (210 * i), 470); //??
-
+		panFire[i]->SetInvervalLength(0.175f);
 		panFire[i]->Begin();
 
 		//Setup inputs :)
@@ -305,7 +306,6 @@ void Game::Update()
 		fryingPans_front[i]->SetRotation(fryingPans_inputValue[i]->GetGyroAxis()->x);
 
 		hobFire[i]->Update(fryingPans_inputValue[i]->GetHobFire() / 1023.0f);
-		panFire[i]->Update(pancakes[i]->GetPosition());
 
 		pancakes[i]->Update( fryingPans_inputDelta[i]->y / -20.0f,
 							 fryingPans_back[i]->GetCurrentSpriteId(), 
@@ -313,6 +313,8 @@ void Game::Update()
 							 ( (fryingPans_inputValue[i]->GetHobValue() / (float)hobMaxValue) ),
 							 hobFire[i]->GetFlameSize()
 						   );
+
+		panFire[i]->Update( pancakes[i]->GetPosition(), pancakes[i]->GetCurrentCookingState() );
 
 	}
 
