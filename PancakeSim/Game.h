@@ -21,6 +21,7 @@ class PanFire;
 class InputData;
 class Vector2;
 class TextTransform;
+class FaceTarget;
 
 class Game
 {
@@ -78,8 +79,6 @@ private:
 	TextTransform* UI_flipsLable;
 	TextTransform* UI_flipsCount;
 
-	
-
 // Not UI
 
 	SpriteSheet* tempcake;
@@ -104,6 +103,13 @@ private:
 	PanFire* panFire[panCount];
 
 	float flipForce = 1.0f; //TESTING ONLY
+
+//Faces [BETA]
+	static const int faceCount = 4;
+	FaceTarget* faceTargets[faceCount];
+
+	bool showFace = false;
+	FaceTarget* activeFace;
 
 //BETE INPUT (using pong controller)
 	InputData* fryingPans_inputValue[panCount];

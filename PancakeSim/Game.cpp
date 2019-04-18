@@ -50,6 +50,8 @@ Game::~Game()
 	delete UI_flipsLable;
 	delete UI_flipsCount;
 
+	delete[] faceTargets;
+
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
 
@@ -244,6 +246,15 @@ void Game::InitGameComponents()
 
 	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
 
+	//Setup Face Targets
+	for (int i = 0; i < faceCount; i++)
+	{
+		faceTargets[i] = new FaceTarget(spriteSheet_faces);
+		faceTargets[i]->SetSpriteId(i);
+
+		faceTargets[i]->Begin();
+	}
+
 
 }
 
@@ -295,6 +306,11 @@ void Game::Render()
 	UI_flipsLable->Render(mainRenderer);
 	UI_flipsCount->Render(mainRenderer);
 
+	// render faces
+	for (int i = 0; i < faceCount; i++)
+	{
+		faceTargets[i]->Render(mainRenderer);
+	}
 
 	// render new frame
 	//SDL_UpdateWindowSurface(mainWindow);
@@ -327,7 +343,31 @@ void Game::Update()
 
 		panFire[i]->Update( pancakes[i]->GetPosition(), pancakes[i]->GetCurrentCookingState() );
 
+		if (showFace == false && activeFace == nullptr)
+		{
+			showFace = pancakes[i]->GetCurrentCookingState() >= CookingState::Perfect;
+		}
+
 	}
+
+	if (showFace && activeFace == nullptr)
+	{	// Set a random active face
+
+		int randFace = rand() % faceCount; // TODO: Make more random :/
+		activeFace = faceTargets[randFace];
+		activeFace->SetActive(true);
+	}
+	else if (showFace && activeFace != nullptr && !activeFace->GetActive())
+	{
+		showFace = false;
+		activeFace = nullptr;
+	}
+	
+	if (activeFace != nullptr)
+	{
+		activeFace->Update();
+	}
+
 
 	flipForce = 0;
 }

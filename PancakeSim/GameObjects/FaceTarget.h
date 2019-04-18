@@ -22,6 +22,7 @@ public:
 
 	void SetSpriteId(int sid);
 	void SetActive(bool act);
+	bool GetActive();
 
 private:
 

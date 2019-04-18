@@ -26,7 +26,7 @@ void FaceTarget::Update()
 
 	float currentMovePosition = currentMoveTime / moveLength;
 
-	float yPosition = 200 + ((GameSettings::window_height - 400) * currentMovePosition);
+	float yPosition = 150 + ((GameSettings::window_height - 750) * currentMovePosition);
 
 	SetPosition( GetFixedFacePosition_X(), yPosition );
 
@@ -56,6 +56,15 @@ void FaceTarget::SetSpriteId(int id)
 void FaceTarget::SetActive(bool act)
 {
 	isActive = act;
+
+	if (isActive)
+		currentFaceSide = (FaceSide)(rand() % 2);
+
+}
+
+bool FaceTarget::GetActive()
+{
+	return isActive;
 }
 
 int FaceTarget::GetFixedFacePosition_X()
@@ -63,9 +72,9 @@ int FaceTarget::GetFixedFacePosition_X()
 	switch (currentFaceSide)
 	{
 	case FaceSide::Left:
-		return 0;
+		return -(GetSize()->x * 0.45f);
 	case FaceSide::Right:
-		return GameSettings::window_width - (GetSize()->x / 2.0f);
+		return GameSettings::window_width - (GetSize()->x * 0.55f);
 	default:
 		Console::LogMessage(MessageType::Error, "Can not find fade side :(");
 		return -100;
