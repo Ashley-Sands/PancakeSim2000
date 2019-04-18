@@ -25,7 +25,7 @@ Pancake::~Pancake()
 void Pancake::Begin()
 {
 	SpriteAnimator::Begin();
-	startPosition = GetPosition()->x;
+	startPosition = GetAnchoredPosition()->x;
 }
 
 void Pancake::Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize)	//TODO: added cooking temp.
@@ -44,7 +44,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 	//we're in the pan :)
 	//TODO: replace magic numbers throughtout this if statment
-	if (GetPosition()->y >= 365 - (5 * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
+	if (GetAnchoredPosition()->y >= 455 - (6 * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
 	{
 
 		float force_x = 0;
@@ -76,7 +76,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 		if (force < minFlipForce)
 		{
 			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f - (float)panSpriteId));
-			SetPosition(fixed_x_pos, 365 - (5 * panSpriteId) - offHobOffset);
+			SetAnchoredPosition(fixed_x_pos, 455 - (6 * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		}
 
