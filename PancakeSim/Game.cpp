@@ -348,7 +348,27 @@ void Game::Update()
 			showFace = pancakes[i]->GetCurrentCookingState() >= CookingState::Perfect;
 		}
 
+		// select pancake id to pour
+		if (currentPourId == -1 && pancakes[i]->CanPour())
+		{
+			currentPourId = i;
+		}
+		else if (currentPourId == i)
+		{
+			pancakes[i]->PourPancake(TMEP_POUR_RATE);
+		}
+
+		
+
+	//	pancakes[i]->SetScale(1.0f - ((f % 60) / 60.0f), 1.0f - ((f % 60) / 60.0f));
+	//	pancakes[i]->SetAnchoredPosition(140 + (213 * i), p);
+
 	}
+
+	// if we where pouring a pancake but we can no longer pour we have finished pouring
+	// since a pancake can not be poured to if its size is > 0 and the pour rate <= 0
+	if ( currentPourId > -1 && !pancakes[currentPourId]->CanPour() ) 
+		currentPourId = -1;
 
 	if (showFace && activeFace == nullptr)
 	{	// Set a random active face
@@ -428,6 +448,8 @@ void Game::HandleKeyboardEvents(SDL_Event* event)
 				if (fryingPans_keyboardInputValues[1]->GetGyroAxis()->y > 1023)
 					fryingPans_keyboardInputValues[1]->GetGyroAxis()->y = 1023;
 
+				TMEP_POUR_RATE = 0.1f;
+
 			}
 			else if (event->key.keysym.sym == SDLK_s)
 			{
@@ -439,6 +461,11 @@ void Game::HandleKeyboardEvents(SDL_Event* event)
 					fryingPans_keyboardInputValues[1]->GetGyroAxis()->y = 0;
 
 			}
+
+			break;
+		case SDL_KEYUP:
+
+			TMEP_POUR_RATE = 0;
 
 			break;
 		default:

@@ -123,5 +123,9 @@ private:
 
 	const int hobStartValue = 435;
 	const int hobMaxValue = 1023 - hobStartValue;
+
+// jug ( i think that this should be moved into the jug update when i add it )
+	int currentPourId = -1; // < 0 = not pouring
+	float TMEP_POUR_RATE = 0;
 };
 

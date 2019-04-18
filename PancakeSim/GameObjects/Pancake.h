@@ -22,7 +22,11 @@ public:
 	virtual void Begin() override;
 	void Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize);
 
+	void PourPancake(float rate);
+
 	CookingState GetCurrentCookingState();
+
+	bool CanPour();
 
 private:
 	Rigidbody* rigidbody;
@@ -42,6 +46,12 @@ private:
 
 	int currentSpriteRow = 0;
 
+// Pancake size
+	float pancakeSize = 0.0f;
+	const float maxPancakeSize = 0.75f;
+	bool canPour = true;
+
+// Cooking
 	const float cookingLength = 25.0f;		// the perfect cooking leght, in seconds
 	float currentCookingTime = 0.0f;
 

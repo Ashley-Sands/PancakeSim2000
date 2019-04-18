@@ -26,25 +26,29 @@ void Pancake::Begin()
 {
 	SpriteAnimator::Begin();
 	startPosition = GetAnchoredPosition()->x;
+
 }
 
 void Pancake::Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize)	//TODO: added cooking temp.
 {
 
+	if (pancakeSize == 0.0f) return;	//Theres no pancake to display
+
 	// Get the current sprite position on the sprite sheet, when being fliped
 	SpriteSheet* spriteSheet = GetSpriteSheet();
 	int spriteID = 0;
-
-	//sort pancake rotation in pan.
-	//GetPosition()->x = startPosition + ((float)panRotation * 0.85f ) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f-(float)panSpriteId));  //TODO: Make this better
 
 	float offHobOffset = 100.0f * (1 - hobValue);	//TODO: Come on...
 
 	Console::LogMessage(MessageType::Log, "Hob Value: " + std::to_string(hobValue));
 
+	if (GetAnchoredPosition()->x < (startPosition - (GetSize()->x / 2.0f)) || GetAnchoredPosition()->x >(startPosition + (GetSize()->x / 2.0f))) // Pancake can't be chatched // this should be worked out to the size of the pan
+	{
+
+	}
 	//we're in the pan :)
 	//TODO: replace magic numbers throughtout this if statment
-	if (GetAnchoredPosition()->y >= 455 - (6 * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
+	else if (GetAnchoredPosition()->y >= 455 - (6 * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
 	{
 
 		float force_x = 0;
@@ -105,6 +109,24 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 }
 
+void Pancake::PourPancake(float rate)
+{
+
+	if (!canPour) return;
+
+	pancakeSize += ( rate * Time::GetDeltaSeconds() );
+
+	if (pancakeSize > maxPancakeSize) pancakeSize = maxPancakeSize;
+
+	SetScale(pancakeSize, pancakeSize);
+	currentCookingTime = 0;
+	currentCookState = CookingState::Mixture;
+
+	if (pancakeSize > 0.0f && rate == 0.0f)
+		canPour = false;
+
+}
+
 float Pancake::GetFlipPercentage()
 {
 	// make the flip fast to start and slow down until theres no force left to apply
@@ -157,4 +179,9 @@ void Pancake::SetCurrentCookingState()
 		currentCookState = CookingState::Perfect;
 		currentSpriteRow = 3;
 	}
+}
+
+bool Pancake::CanPour()
+{
+	return canPour;
 }
