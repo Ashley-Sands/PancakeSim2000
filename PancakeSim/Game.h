@@ -88,6 +88,7 @@ private:
 
 	SpriteSheet* spriteSheet_fire;
 	SpriteSheet* spriteSheet_panFire;
+	SpriteSheet* spriteSheet_faces;
 
 // BETA
 

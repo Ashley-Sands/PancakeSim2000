@@ -22,6 +22,9 @@ Game::Game()
 	
 	spriteSheet_fire = new SpriteSheet();
 	spriteSheet_panFire = new SpriteSheet();
+
+	spriteSheet_faces = new SpriteSheet();
+
 }
 
 Game::~Game()
@@ -40,6 +43,8 @@ Game::~Game()
 
 	delete spriteSheet_fire;
 	delete spriteSheet_panFire;
+	delete spriteSheet_faces;
+	
 	delete UI_scoreLable;
 	delete UI_scoreValue;
 	delete UI_flipsLable;
@@ -164,6 +169,9 @@ void Game::InitGameComponents()
 
 	spriteSheet_panFire->SetSprite(mainRenderer, "Sprites/PanFire_SS.png");
 	spriteSheet_panFire->SetSpriteSize(200);
+
+	spriteSheet_faces->SetSprite(mainRenderer, "Sprites/Faces.png");
+	spriteSheet_faces->SetSpriteSize(200);
 
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
