@@ -38,6 +38,8 @@ Game::~Game()
 	delete[] &fryingPans_inputDelta;
 	delete[] &fryingPans_keyboardInputValues;
 
+	delete spriteSheet_fire;
+	delete spriteSheet_panFire;
 	delete UI_scoreLable;
 	delete UI_scoreValue;
 	delete UI_flipsLable;
