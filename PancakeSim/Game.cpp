@@ -194,11 +194,10 @@ void Game::InitGameComponents()
 
 		pancakes[i] = new Pancake(tempcake);
 		pancakes[i]->SetAnchor(TransformAnchor::Center);
-		pancakes[i]->SetAnchoredPosition(40 + (213 * i), 250);
+		pancakes[i]->SetAnchoredPosition(40 + (213 * i), 550);		// set the position of the pancakes well below the pan so it can be corrected to the correct Y position :) (Yeee-haaa)
 		pancakes[i]->SetScale(0.8f, 0.8f);
 
 		pancakes[i]->Begin();
-
 
 		hobFire[i] = new Fire(spriteSheet_fire);
 		hobFire[i]->SetAnchor(TransformAnchor::Center);
