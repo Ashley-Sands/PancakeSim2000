@@ -9,7 +9,7 @@ enum CookingState {
 	Raw     = 2,
 	Perfect = 3,
 	Burnt   = 4,
-	OnFire    = 5
+	OnFire  = 5
 };
 
 class Pancake : public SpriteAnimator
