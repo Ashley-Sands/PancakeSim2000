@@ -11,19 +11,26 @@ Game
 	[C] pan spritesheet
 	[C] pancake spritesheet
 [C] Count pancake flips
-[] Score
-[] UI
-[WIP] Add Position offset to trasform
+[C] Score
+[WIP] UI
+[C] Add Position offset to trasform
 	# so we can use the center of the sprite to set the position
 	# or any other offset.
 [C] Implerment Burnt Pancakes
 [C] Implerment Cooking temp
 [] Implerment Jug / Pure new pancake
 [R] Implerment Plate for cooked pancakes
-[] Implerment Pan Fire
+[C] Implerment Pan Fire
 [C] Implerment Hob Fire
-[] Implerment face to throw pancakes at
-
+[C] Implerment face to throw pancakes at
+[] Add collision detection to faces
+[] Implerment scenes
+	[] Move level into a scene class
+	[] Add Menu Scene
+	[] Add Splash scene
+[] Add Fire Engin animation
+[] Add p/c away from pan. so we need to make a new pan cake :)
+	
 ===============================
 Refactoring
 ===============================
@@ -42,9 +49,9 @@ Sprites and Sheets
 [] add steam/smoke sprite sheets
 [] add fire alarm sprite
 [C] add Hob fire sprite
-[] add pan fire sprite
+[C] add pan fire sprite
 [C] Burnt Pancake sprites
-
+[] add fire engin sprite
 	
 ===============================
 Controler
