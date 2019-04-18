@@ -60,11 +60,14 @@ void Transform::SetAnchor(TransformAnchor transfromAnchor)
 	switch (transfromAnchor)
 	{
 	case TransformAnchor::TopLeft:
-		anchor->x = anchor->y = 0;
+		anchor->x = anchor->y = 0.0;
 		break;
 	case TransformAnchor::Center:
 		anchor->x = anchor->y = 0.5f;
 		break;
+	case TransformAnchor::BottomCenter:
+		anchor->x = 0.5f;
+		anchor->y = 1.0f;
 	default:
 		Console::LogMessage(MessageType::Error, " Transfrom Anchor not found");
 		break;

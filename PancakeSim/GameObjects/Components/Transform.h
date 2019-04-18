@@ -10,7 +10,8 @@ class SDL_Rect;
 enum TransformAnchor		//TODO: implerment the rest iv only done the ones i need :/
 {
 	TopLeft,
-	Center
+	Center,
+	BottomCenter
 };
 
 class Transform
