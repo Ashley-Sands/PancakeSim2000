@@ -225,38 +225,38 @@ void Game::InitGameComponents()
 
 	UI_scoreLable = new TextTransform(mainFontFace);
 	UI_scoreLable->SetText("Score");
-	UI_scoreLable->SetPosition( 200, 15 );
+	UI_scoreLable->SetPosition( 80, 15 );
 	UI_scoreLable->SetScale( 0.5f, 0.5f );
 
 	UI_scoreValue = new TextTransform(mainFontFace);
 	UI_scoreValue->SetText("0");
-	UI_scoreValue->SetPosition( 275, 15 );
+	UI_scoreValue->SetPosition( 155, 15 );
 	UI_scoreValue->SetScale( 0.5f, 0.5f );
 
 	UI_flipsLable = new TextTransform(mainFontFace);
 	UI_flipsLable->SetText("Flips");
-	UI_flipsLable->SetPosition( 350, 15 );
+	UI_flipsLable->SetPosition( 230, 15 );
 	UI_flipsLable->SetScale( 0.5f, 0.5f );
 
 	UI_flipsCount = new TextTransform(mainFontFace);
 	UI_flipsCount->SetText("0");
-	UI_flipsCount->SetPosition(420, 15);
+	UI_flipsCount->SetPosition(300, 15);
 	UI_flipsCount->SetScale(0.5f, 0.5f);
 
 
 	UI_servedPancakesLable = new TextTransform(mainFontFace);
 	UI_servedPancakesLable->SetText("Servered");
-	UI_servedPancakesLable->SetPosition(500, 15);
+	UI_servedPancakesLable->SetPosition(360, 15);
 	UI_servedPancakesLable->SetScale(0.5f, 0.5f);
 
 	UI_servedPancakesCount = new TextTransform(mainFontFace);
 	UI_servedPancakesCount->SetText("0");
-	UI_servedPancakesCount->SetPosition(570, 15);
+	UI_servedPancakesCount->SetPosition(475, 15);
 	UI_servedPancakesCount->SetScale(0.5f, 0.5f);
 
 	UI_happynessLable = new TextTransform(mainFontFace);
 	UI_happynessLable->SetText("Happyness");
-	UI_happynessLable->SetPosition(610, 15);
+	UI_happynessLable->SetPosition(535, 15);
 	UI_happynessLable->SetScale(0.5f, 0.5f);
 
 	UI_happynessValue = new TextTransform(mainFontFace);
@@ -422,6 +422,7 @@ void Game::OnScoreChanged()
 
 	UI_flipsCount->SetText( std::to_string(GameManager::GetInstance().GetTotalFlips()) );
 	UI_scoreValue->SetText( std::to_string(GameManager::GetInstance().GetTotalScore()) );
+	UI_servedPancakesCount->SetText( std::to_string(GameManager::GetInstance().GetTotalServedPancakes()) );
 
 }
 
