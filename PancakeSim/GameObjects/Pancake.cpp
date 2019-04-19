@@ -195,6 +195,7 @@ void Pancake::ServePancake(bool hit)
 	currentCookingTime = 0;
 	pancakeSize = 0;
 	SetScale(0, 0);
+	canPour = true;
 
 	if (hit)
 		GameManager::GetInstance().AddServedPancake();
