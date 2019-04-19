@@ -81,7 +81,7 @@ void loop()
         Serial.print("\n");
     }else if(incomingByte == 'l')
     {
-      PrintPaddedValue( analogRead(A2) ); 
+       Serial.print( MPU.getRawGyroX() ); 
     }
 
     DEBUG_LAST_INTERVAL = millis();
