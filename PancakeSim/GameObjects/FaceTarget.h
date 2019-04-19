@@ -25,6 +25,8 @@ public:
 	void SetActive(bool act);
 	bool GetActive();
 
+	DistanceTrigger* GetTrigger();
+
 private:
 
 	DistanceTrigger* distanceTrigger;
