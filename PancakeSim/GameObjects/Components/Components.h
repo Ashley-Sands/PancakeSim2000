@@ -13,3 +13,5 @@
 #include "SpriteAnimator.h"
 
 #include "DistanceTrigger.h"
+
+#include "Helper.h"
