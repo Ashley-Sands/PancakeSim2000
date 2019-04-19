@@ -14,16 +14,25 @@ int GameManager::GetTotalFlips()
 	return totalPancakeFlips;
 }
 
-void GameManager::AddServedPancake()
+void GameManager::AddServedPancake(float happyness)
 {
 	totalPancakesServed++;
+	totalPancakesHappness += happyness;
 
-	AddScore(scorePerPancake);
+	if (happyness > 0)
+		AddScore(scorePerPancake);
+	else
+		TriggerOnScoreChanged();
 }
 
 int GameManager::GetTotalServedPancakes()
 {
 	return totalPancakesServed;
+}
+
+float GameManager::GetHappyness()
+{
+	return (totalPancakesHappness + 1) / (totalPancakesServed + 1); // +1 to avoid divByZero and so it starts at 1.0
 }
 
 void GameManager::AddScore(int score)

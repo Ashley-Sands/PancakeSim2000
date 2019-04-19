@@ -31,8 +31,9 @@ public:
 	void AddFlip();
 	int GetTotalFlips();
 
-	void AddServedPancake();
+	void AddServedPancake(float happyness);
 	int GetTotalServedPancakes();
+	float GetHappyness();
 
 	void AddScore(int score);
 	int GetTotalScore();
@@ -54,6 +55,9 @@ private:
 
 	int totalPancakeFlips = 0;
 	int totalPancakesServed = 0;
+	float totalPancakesHappness = 0.0f;
+
+
 	int totalScore = 0;
 
 	Game* activeGame;
