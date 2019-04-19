@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GameObjects\Components\DistanceTrigger.h" />
     <ClInclude Include="GameObjects\FaceTarget.h" />
     <ClInclude Include="GameObjects\Components\UI\UI.h" />
     <ClInclude Include="GameObjects\Fire.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="GameObjects\Components\UI\TextTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameObjects\Components\DistanceTrigger.cpp" />
     <ClCompile Include="GameObjects\FaceTarget.cpp" />
     <ClCompile Include="GameObjects\Fire.cpp" />
     <ClCompile Include="GameObjects\Components\Managers\GameManager.cpp" />
