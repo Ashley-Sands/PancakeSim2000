@@ -72,7 +72,7 @@ private:
 
 	// Pancakes cooking states mutiplyers (cookingLength * mutiplyer)
 	const float mixtureMutiplyer = 0.15f;		// Unflipable, any time below this the pancake is still considered batter.
-	const float rawMutiplyer = 0.75f;			// Unedable, any time below this the pancake is considered raw
+	const float rawMutiplyer = 0.65f;			// Unedable, any time below this the pancake is considered raw
 	const float burntMutiplyer = 1.25f;			// Burnt, any time affter this the pancake is considered burnt
 	const float fireMutiplyer = 1.65f;			// any time above this triggers the fire alarm, call the fire bargade!
 
