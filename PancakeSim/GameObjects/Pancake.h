@@ -26,6 +26,8 @@ public:
 
 	void PourPancake(float rate);
 
+	float GetPancakeSizePercentage();
+
 	CookingState GetCurrentCookingState();
 
 	bool CanPour();

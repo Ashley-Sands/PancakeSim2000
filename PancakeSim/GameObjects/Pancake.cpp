@@ -86,7 +86,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		}
 
-		currentCookingTime += Time::GetDeltaSeconds() * hobValue * flameSize; //TODO: Add cooking temp mutiplyer
+		currentCookingTime += Time::GetDeltaSeconds() * hobValue * flameSize * (1.2f - GetPancakeSizePercentage()); //TODO: Add cooking temp mutiplyer
 		SetCurrentCookingState();
 
 		SetRotation(panRotation);
@@ -129,6 +129,11 @@ void Pancake::PourPancake(float rate)
 	else if (pancakeSize <= 0.1f && rate == 0.0f)
 		pancakeSize = 0.0f;
 
+}
+
+float Pancake::GetPancakeSizePercentage()
+{
+	return (pancakeSize - minPancakeSize) / (maxPancakeSize - minPancakeSize);
 }
 
 float Pancake::GetFlipPercentage()

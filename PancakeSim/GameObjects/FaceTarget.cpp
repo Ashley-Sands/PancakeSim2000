@@ -5,6 +5,7 @@
 #include "Components/Time.h"
 #include "Components/Debug/Console.h"
 #include "Components/DistanceTrigger.h"
+#include "Components/Helper.h"
 
 FaceTarget::FaceTarget(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
