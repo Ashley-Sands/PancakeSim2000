@@ -46,13 +46,8 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	if (GetAnchoredPosition()->x < (startPosition - (GetSize()->x / 2.0f)) || GetAnchoredPosition()->x >(startPosition + (GetSize()->x / 2.0f))) // Pancake can't be chatched // this should be worked out to the size of the pan
 	{
 		if (GetAnchoredPosition()->y > 500 || GetAnchoredPosition()->x < -150 || GetAnchoredPosition()->x > GameSettings::window_width+150)
-		{	// Reset the pancake
-			currentCookState = CookingState::None;
-			currentCookingTime = 0;
-			pancakeSize = 0;
-			SetScale(0, 0);
-			if(GetAnchoredPosition()->y < 500) //Only count as served if it goes off the X/Y & TODO: it should only be served if it hits a face
-				GameManager::GetInstance().AddServedPancake();
+		{	
+			ServePancake(false);
 		}
 	} //we're in the pan :)
 	else if (GetAnchoredPosition()->y >= 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
@@ -191,4 +186,17 @@ void Pancake::SetCurrentCookingState()
 bool Pancake::CanPour()
 {
 	return canPour;
+}
+
+void Pancake::ServePancake(bool hit)
+{
+	// Reset the pancake
+	currentCookState = CookingState::None;
+	currentCookingTime = 0;
+	pancakeSize = 0;
+	SetScale(0, 0);
+
+	if (hit)
+		GameManager::GetInstance().AddServedPancake();
+
 }

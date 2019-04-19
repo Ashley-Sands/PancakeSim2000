@@ -28,6 +28,8 @@ public:
 
 	bool CanPour();
 
+	void ServePancake(bool hit);
+
 private:
 	
 	Rigidbody* rigidbody;
