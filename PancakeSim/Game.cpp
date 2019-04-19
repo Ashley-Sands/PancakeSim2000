@@ -377,8 +377,12 @@ void Game::Update()
 		//Check for pancake and face collision
 		if (showFace && activeFace != nullptr)
 			if (activeFace->GetTrigger()->Trigger(pancakes[i]))
+			{
 				pancakes[i]->ServePancake(true);
-
+				
+				if (activeFace != nullptr)
+					activeFace->SetActive(false);
+			}
 		// select pancake id to pour
 		if (currentPourId == -1 && pancakes[i]->CanPour())
 		{
