@@ -25,7 +25,7 @@ private:
 
 	Transform* attachedTransform;
 
-	float triggerDistance = 25;		//px
+	float triggerDistance = 150;		//px
 
 
 
