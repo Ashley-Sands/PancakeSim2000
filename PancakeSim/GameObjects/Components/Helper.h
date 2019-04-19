@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include "Time.h"
 
 class Helper
 {
@@ -12,11 +13,12 @@ public:
 
 		if (mouseY == 0) mouseY = 1;
 
-		int seed = abs((mouseX * (mouseX * 0.5f)) / mouseY);
+		int seed = abs((mouseX * (mouseX * 0.5f)) / mouseY) * Time::GetSecondsSinceStart();
 
 		if (seed == 0) seed = mouseY;
 
 		int r = rand() % seed;
+
 		return r;
 
 	}

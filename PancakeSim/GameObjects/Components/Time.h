@@ -15,6 +15,9 @@ public:
 
 	static float GetTicksPerUpdate();
 
+	static int GetTickSinceStart();
+	static float GetSecondsSinceStart();
+
 private:
 	static float targetFPS;// = 60;
 
@@ -23,6 +26,7 @@ private:
 	static int lastUpdate_tick;// = 0;
 	static float nextUpdate_tick;// = ticksPreUpdate;
 	static int delta_tick;// = 0;
+	static int time_since_start;
 
 };
 
