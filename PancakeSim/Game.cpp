@@ -271,6 +271,7 @@ void Game::InitGameComponents()
 	for (int i = 0; i < faceCount; i++)
 	{
 		faceTargets[i] = new FaceTarget(spriteSheet_faces);
+		faceTargets[i]->SetAnchor(TransformAnchor::Center);
 		faceTargets[i]->SetSpriteId(i);
 
 		faceTargets[i]->Begin();
