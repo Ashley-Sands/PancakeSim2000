@@ -2,6 +2,7 @@
 #include "Components/SpriteAnimator.h"
 
 class SDL_Renderer;
+class DistanceTrigger;
 
 enum FaceSide
 {
@@ -25,6 +26,8 @@ public:
 	bool GetActive();
 
 private:
+
+	DistanceTrigger* distanceTrigger;
 
 	int spriteId = 0;
 	FaceSide currentFaceSide = FaceSide::Left;

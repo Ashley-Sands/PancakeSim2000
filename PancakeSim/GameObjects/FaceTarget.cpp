@@ -4,14 +4,19 @@
 #include "Components/Settings/GameSettings.h"
 #include "Components/Time.h"
 #include "Components/Debug/Console.h"
+#include "Components/DistanceTrigger.h"
 
 FaceTarget::FaceTarget(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
+
+	distanceTrigger = new DistanceTrigger(this);
+
 }
 
 
 FaceTarget::~FaceTarget()
 {
+	delete distanceTrigger;
 }
 
 void FaceTarget::Begin()
@@ -79,4 +84,9 @@ int FaceTarget::GetFixedFacePosition_X()
 		Console::LogMessage(MessageType::Error, "Can not find fade side :(");
 		return -100;
 	}
+}
+
+DistanceTrigger* FaceTarget::GetTrigger()
+{
+	return distanceTrigger;
 }
