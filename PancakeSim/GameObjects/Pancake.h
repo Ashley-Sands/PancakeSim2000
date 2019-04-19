@@ -1,5 +1,7 @@
 #pragma once
 #include "Components/SpriteAnimator.h"
+#include "stdio.h"
+
 
 class Rigidbody;
 
@@ -62,6 +64,8 @@ private:
 
 	CookingState currentCookState = CookingState::None;
 	void SetCurrentCookingState();
+	
+	float GetCookStateHappyness();
 
 	// Pancakes cooking states mutiplyers (cookingLength * mutiplyer)
 	const float mixtureMutiplyer = 0.15f;		// Unflipable, any time below this the pancake is still considered batter.

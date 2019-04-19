@@ -43,7 +43,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 	Console::LogMessage(MessageType::Log, "Hob Value: " + std::to_string(hobValue));
 
-	if (GetAnchoredPosition()->x < (startPosition - (GetSize()->x / 2.0f)) || GetAnchoredPosition()->x >(startPosition + (GetSize()->x / 2.0f))) // Pancake can't be chatched // this should be worked out to the size of the pan
+	if (GetAnchoredPosition()->x < (startPosition - (GetSize()->x / 2.0f)) || GetAnchoredPosition()->x > (startPosition + (GetSize()->x / 2.0f))) // Pancake can't be chatched // this should be worked out to the size of the pan
 	{
 		if (GetAnchoredPosition()->y > 500 || GetAnchoredPosition()->x < -150 || GetAnchoredPosition()->x > GameSettings::window_width+150)
 		{	
@@ -190,14 +190,40 @@ bool Pancake::CanPour()
 
 void Pancake::ServePancake(bool hit)
 {
+	//Work out the happyness
+	float happyness = 0.0f;
+
+	if (!hit)
+		happyness = -0.15;
+	else
+		happyness =  GetCookStateHappyness();
+
 	// Reset the pancake
 	currentCookState = CookingState::None;
 	currentCookingTime = 0;
 	pancakeSize = 0;
 	SetScale(0, 0);
 	canPour = true;
+	SetPosition(startPosition, 1000);	//it needs to be set below its start position x so update can correct it :|
 
-	if (hit)
-		GameManager::GetInstance().AddServedPancake();
+
+	GameManager::GetInstance().AddServedPancake(happyness);
+
+}
+
+float Pancake::GetCookStateHappyness()
+{
+
+	switch (currentCookState)
+	{
+		case CookingState::None: 
+		case CookingState::Mixture:
+									return 0;
+		case CookingState::Raw:		return 0.25f;
+		case CookingState::Perfect: return 1.0f;
+		case CookingState::Burnt:	return 0.25f;
+		case CookingState::OnFire:	return -1000.0f;			//The lesson here is to not play with fire. :D
+		default:					return 0.0f;
+	}
 
 }
