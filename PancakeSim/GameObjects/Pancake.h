@@ -76,6 +76,8 @@ private:
 	const float burntMutiplyer = 1.25f;			// Burnt, any time affter this the pancake is considered burnt
 	const float fireMutiplyer = 1.65f;			// any time above this triggers the fire alarm, call the fire bargade!
 
+	float force_y_accum = 0;
+	int fc = 0;	//TODO give me a reall name
 
 };
 

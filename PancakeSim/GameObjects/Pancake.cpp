@@ -55,15 +55,34 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 		float force_x = 0;
 		
-		if(abs(panRotation) > 25.0f)		// min rotating to throw pancakes 
-			force_x = panRotation / -35.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
+		if(abs(panRotation) > 20.0f)		// min rotating to throw pancakes 
+			force_x = panRotation / -40.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
 
-		if (panSpriteId < 4 || force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought //TODO: improve this so it uses the Accum delta and release when the force stops or goes backwards
+		if (force_y_accum > 0 && force < 0 || panSpriteId > 4 && force_y_accum > 0.0f)
+		{
+			force = force_y_accum / fc;
+			force_y_accum = 0;
+			fc = 0;
+		}
+		else if (force > 0.1)
+		{
+			force_y_accum += force;
+			fc++;
+			force = 0;
+		}
+		else
+		{
+			force = 0;
+			force_y_accum = 0;
+			fc = 0;
+		}
+
+		if (/*panSpriteId < 4 ||*/ force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought //TODO: improve this so it uses the Accum delta and release when the force stops or goes backwards
 		{
 			force = 0.0f;
 			force_x = 0.0f;
 		}
-		else if (abs(force_x) < 0.75f)
+		else if (abs(force_x) < 0.5f)
 		{
 			force_x = 0.0f;
 		}
