@@ -27,6 +27,11 @@ bool DistanceTrigger::Trigger(Transform* otherTransform)
 
 }
 
+void DistanceTrigger::SetTriggerDistance(float distance)
+{
+	triggerDistance = distance;
+}
+
 Transform* DistanceTrigger::GetTransform()
 {
 	return attachedTransform;
