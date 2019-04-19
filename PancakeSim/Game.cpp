@@ -433,6 +433,7 @@ void Game::OnScoreChanged()
 	UI_flipsCount->SetText( std::to_string(GameManager::GetInstance().GetTotalFlips()) );
 	UI_scoreValue->SetText( std::to_string(GameManager::GetInstance().GetTotalScore()) );
 	UI_servedPancakesCount->SetText( std::to_string(GameManager::GetInstance().GetTotalServedPancakes()) );
+	UI_happynessValue->SetText( std::to_string( ceil( GameManager::GetInstance().GetHappyness() * 100.0f ) ) + "%" );
 
 }
 
