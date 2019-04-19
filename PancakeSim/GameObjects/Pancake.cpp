@@ -124,8 +124,10 @@ void Pancake::PourPancake(float rate)
 	currentCookingTime = 0;
 	currentCookState = CookingState::Mixture;
 
-	if (pancakeSize > 0.0f && rate == 0.0f)
+	if (pancakeSize > minPancakeSize && rate == 0.0f)
 		canPour = false;
+	else if (pancakeSize <= 0.1f && rate == 0.0f)
+		pancakeSize = 0.0f;
 
 }
 

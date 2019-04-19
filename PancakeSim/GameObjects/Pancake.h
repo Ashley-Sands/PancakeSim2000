@@ -56,6 +56,7 @@ private:
 // Pancake size
 	float pancakeSize = 0.0f;
 	const float maxPancakeSize = 0.75f;
+	const float minPancakeSize = 0.2f;
 	bool canPour = true;
 
 // Cooking
