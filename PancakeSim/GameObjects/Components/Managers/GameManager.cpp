@@ -14,6 +14,18 @@ int GameManager::GetTotalFlips()
 	return totalPancakeFlips;
 }
 
+void GameManager::AddServedPancake()
+{
+	totalPancakesServed++;
+
+	AddScore(scorePerPancake);
+}
+
+int GameManager::GetTotalServedPancakes()
+{
+	return totalPancakesServed;
+}
+
 void GameManager::AddScore(int score)
 {
 	totalScore += score;

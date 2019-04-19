@@ -31,6 +31,9 @@ public:
 	void AddFlip();
 	int GetTotalFlips();
 
+	void AddServedPancake();
+	int GetTotalServedPancakes();
+
 	void AddScore(int score);
 	int GetTotalScore();
 
@@ -46,9 +49,11 @@ public:
 
 private:
 	
-	int scorePerFlip = 5;
+	int scorePerFlip = 1;
+	int scorePerPancake = 5;
 
 	int totalPancakeFlips = 0;
+	int totalPancakesServed = 0;
 	int totalScore = 0;
 
 	Game* activeGame;
