@@ -55,6 +55,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 		float force_x = 0;
 		
+		//TODO: sort this mess out
 		if(abs(panRotation) > 20.0f)		// min rotating to throw pancakes 
 			force_x = panRotation / -40.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
 
