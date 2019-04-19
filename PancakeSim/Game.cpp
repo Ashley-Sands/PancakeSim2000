@@ -373,6 +373,11 @@ void Game::Update()
 			showFace = pancakes[i]->GetCurrentCookingState() >= CookingState::Perfect;
 		}
 
+		//Check for pancake and face collision
+		if (showFace && activeFace != nullptr)
+			if (activeFace->GetTrigger()->Trigger(pancakes[i]))
+				pancakes[i]->ServePancake(true);
+
 		// select pancake id to pour
 		if (currentPourId == -1 && pancakes[i]->CanPour())
 		{
