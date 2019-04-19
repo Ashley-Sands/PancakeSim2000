@@ -408,7 +408,7 @@ void Game::Update()
 	if (showFace && activeFace == nullptr)
 	{	// Set a random active face
 
-		int randFace = rand() % faceCount; // TODO: Make more random :/
+		int randFace = Helper::Random() % faceCount; // TODO: Make more random :/
 		activeFace = faceTargets[randFace];
 		activeFace->SetActive(true);
 	}

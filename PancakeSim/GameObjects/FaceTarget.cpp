@@ -63,7 +63,7 @@ void FaceTarget::SetActive(bool act)
 	isActive = act;
 
 	if (isActive)
-		currentFaceSide = (FaceSide)(rand() % 2);
+		currentFaceSide = (FaceSide)(Helper::Random() % 2);
 
 }
 
