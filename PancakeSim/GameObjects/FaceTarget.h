@@ -39,7 +39,7 @@ private:
 
 	bool isActive = false;
 
-	float moveLength = 10.0;
+	float moveLength = 250.0;
 	float currentMoveTime = 0;
 	bool moveForwards = true;
 
