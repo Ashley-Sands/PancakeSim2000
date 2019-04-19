@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GameObjects\Components\DistanceTrigger.h" />
+    <ClInclude Include="GameObjects\Components\Helper.h" />
     <ClInclude Include="GameObjects\FaceTarget.h" />
     <ClInclude Include="GameObjects\Components\UI\UI.h" />
     <ClInclude Include="GameObjects\Fire.h" />
