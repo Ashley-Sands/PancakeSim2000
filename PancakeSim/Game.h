@@ -24,6 +24,7 @@ class TextTransform;
 class FaceTarget;
 class Whisk;
 class InputData_single;
+class Jug;
 
 class Game
 {
@@ -97,6 +98,7 @@ private:
 	SpriteSheet* spriteSheet_panFire;
 	SpriteSheet* spriteSheet_faces;
 
+	SpriteSheet* spriteSheet_jug;
 	Sprite* sprite_whisk;
 
 // BETA
@@ -138,6 +140,7 @@ private:
 	const int hobMaxValue = 1023 - hobStartValue;
 
 // jug ( i think that this should be moved into the jug update when i add it )
+	Jug* jug;
 	int currentPourId = -1; // < 0 = not pouring
 	float TMEP_POUR_RATE = 0;
 

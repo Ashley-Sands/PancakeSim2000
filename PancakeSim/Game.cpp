@@ -26,6 +26,7 @@ Game::Game()
 
 	spriteSheet_faces = new SpriteSheet();
 
+	spriteSheet_jug = new SpriteSheet();
 	sprite_whisk = new Sprite();
 
 }
@@ -50,6 +51,12 @@ Game::~Game()
 	delete spriteSheet_panFire;
 	delete spriteSheet_faces;
 	
+	delete spriteSheet_jug;
+	delete sprite_whisk;
+
+	delete whisk;
+	delete jug;
+
 	delete UI_scoreLable;
 	delete UI_scoreValue;
 	delete UI_flipsLable;
@@ -182,10 +189,10 @@ void Game::InitGameComponents()
 	spriteSheet_faces->SetSprite(mainRenderer, "Sprites/Faces.png");
 	spriteSheet_faces->SetSpriteSize(200);
 
-	sprite_whisk->SetSprite(mainRenderer, "Sprites/Whisk.png");
-
+	spriteSheet_jug->SetSprite(mainRenderer, "Sprites/Jug_SS.png");
+	spriteSheet_jug->SetSpriteSize(200);
 	
-
+	sprite_whisk->SetSprite(mainRenderer, "Sprites/Whisk.png");
 
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
@@ -237,10 +244,12 @@ void Game::InitGameComponents()
 
 
 	// Jug
-	
+	jug = new Jug(spriteSheet_jug);
+	jug->SetPosition(80, 76);
+	jug->Begin();
+
 	// Whisk
 	whisk = new Whisk(sprite_whisk);
-
 	whisk->Begin();
 
 	// Setup UI.
@@ -347,6 +356,7 @@ void Game::Render()
 	}
 
 	// Jug and whisk
+	jug->Render(mainRenderer);
 	whisk->Render(mainRenderer);
 
 

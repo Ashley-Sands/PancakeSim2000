@@ -57,7 +57,7 @@ void setup()
 
   MPU.begin();
   //MPU.calcGyroOffsets(false, 0, 0); //we will do this internaly
-  
+  pinMode(A4, INPUT);
 }
 
 void loop()

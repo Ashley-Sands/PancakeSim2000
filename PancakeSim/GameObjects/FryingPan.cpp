@@ -32,7 +32,7 @@ void FryingPan::Update(float inputValue, float hobValue)
 
 	float offHobOffset = 100.0f * (1 - hobValue);	//TODO: Come on...
 
-	spriteSheet->GetSpriteRectByID(currentSpriteID, currentSpritePos);
+	spriteSheet->GetSpriteRectByID(currentSpriteID, /*out*/currentSpritePos);
 
 	SetPosition(startPosition->x, startPosition->y - (offHobOffset));
 

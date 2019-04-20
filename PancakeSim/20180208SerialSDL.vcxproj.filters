@@ -111,6 +111,9 @@
     <ClInclude Include="GameObjects\Components\InputDataTypes\InputData_single.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\Jug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -192,6 +195,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Components\InputDataTypes\InputData_sigle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Jug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
