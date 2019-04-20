@@ -18,8 +18,8 @@ Game
 	# or any other offset.
 [C] Implerment Burnt Pancakes
 [C] Implerment Cooking temp
-[] Implerment Jug
-[] Implerment whisk
+[WIP] Implerment Jug
+[WIP] Implerment whisk
 [C] pure new pancake
 [R] Implerment Plate for cooked pancakes
 [C] Implerment Pan Fire
@@ -44,20 +44,25 @@ Refactoring
 [] Improve X force
 [WIP] Improve flip force
 	* The last force added should be taken more into acount
+[] Change score and happyness to moneys
+	* so a jug of batter cost the player moneys
+	* and time limit when the player runs out of money
 	
 ===============================
 Sprites and Sheets
 ===============================
 [C] Add Layered Pan
 [] Create final pan & pancake spritesheets
-[] Add cooker spritesheet
+[] Add cooker sprite
 [] add steam/smoke sprite sheets
 [] add fire alarm sprite
 [C] add Hob fire sprite
 [C] add pan fire sprite
 [C] Burnt Pancake sprites
 [] add fire engin sprite
-	
+[C] add jug
+[c] add whisk	
+
 ===============================
 Controler
 ===============================
@@ -67,7 +72,7 @@ Controler
 [C] Add Pan Sencer
  
 [] Mark all three pans work
-[] Whisk
+[WIP] Whisk
 [] Jug
 
 [WIP] Solder gyro's
