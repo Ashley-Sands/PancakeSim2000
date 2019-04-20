@@ -4,7 +4,7 @@ Pancake Sim Todo
 ===============================
 Game
 ===============================
-[?] Pan and pancake collision/detection
+[R] Pan and pancake collision/detection
 [C] pan force
 	# so we can detect how much force is to be applied to the pancake
 [C] correct temp pan & pancake spritesheet
@@ -18,27 +18,32 @@ Game
 	# or any other offset.
 [C] Implerment Burnt Pancakes
 [C] Implerment Cooking temp
-[] Implerment Jug / Pure new pancake
+[] Implerment Jug
+[] Implerment whisk
+[C] pure new pancake
 [R] Implerment Plate for cooked pancakes
 [C] Implerment Pan Fire
 [C] Implerment Hob Fire
 [C] Implerment face to throw pancakes at
-[] Add collision detection to faces
+[C] Add collision detection to faces
 [] Implerment scenes
 	[] Move level into a scene class
 	[] Add Menu Scene
 	[] Add Splash scene
 [] Add Fire Engin animation
-[] Add p/c away from pan. so we need to make a new pan cake :)
+[C] Add p/c away from pan. so we need to make a new pan cake :)
 	
 ===============================
 Refactoring
 ===============================
-[] Make PhysicSetting, GameSettings and Console Singletons
+[?] Make PhysicSetting, GameSettings and Console Singletons
 	[] PhysicSettings
 	[] GameSettings
 	[] Console
 [] Improve pancake rotation	
+[] Improve X force
+[WIP] Improve flip force
+	* The last force added should be taken more into acount
 	
 ===============================
 Sprites and Sheets
@@ -62,6 +67,8 @@ Controler
 [C] Add Pan Sencer
  
 [] Mark all three pans work
+[] Whisk
+[] Jug
 
 [WIP] Solder gyro's
 
