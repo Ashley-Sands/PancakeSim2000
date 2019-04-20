@@ -23,6 +23,7 @@ class Vector2;
 class TextTransform;
 class FaceTarget;
 class Whisk;
+class InputData_single;
 
 class Game
 {
@@ -122,11 +123,14 @@ private:
 
 //BETE INPUT (using pong controller)
 	InputData* fryingPans_inputValue[panCount];
+	InputData_single* single_inputValue;
 
 	Vector2* fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
 	Vector2* fryingPans_inputDelta[panCount];
 
 	InputData* fryingPans_keyboardInputValues[panCount];
+	InputData_single* single_keyboardInputValue;
+
 
 	const int maxPanRotation = 40;
 

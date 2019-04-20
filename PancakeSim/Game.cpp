@@ -7,6 +7,7 @@
 #include "GameObjects/GameObjects.h"
 #include "GameObjects/Components/Components.h"
 #include "GameObjects/Components/InputDataTypes/InputData.h"
+#include "GameObjects/Components/InputDataTypes/InputData_single.h"
 #include "GameObjects/Components/UI/UI.h"
 #include "GameObjects/Components/Managers/GameManager.h"
 
@@ -42,6 +43,8 @@ Game::~Game()
 	delete[] &fryingPans_lastInput;
 	delete[] &fryingPans_inputDelta;
 	delete[] &fryingPans_keyboardInputValues;
+
+	delete single_keyboardInputValue;
 
 	delete spriteSheet_fire;
 	delete spriteSheet_panFire;
@@ -226,8 +229,12 @@ void Game::InitGameComponents()
 		fryingPans_lastInput[i] = new Vector2();
 		fryingPans_keyboardInputValues[i] = new InputData();
 
-		fryingPans_inputValue[i] = (ignoreSerial ? fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
+		fryingPans_inputValue[i] = ( ignoreSerial ? fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
 	}
+
+	single_keyboardInputValue = new InputData_single();
+	single_inputValue = ( ignoreSerial ? single_keyboardInputValue : serial->GetSinglePot() );		// Get single object input values
+
 
 	// Jug
 	
@@ -422,7 +429,7 @@ void Game::Update()
 	}
 
 	//Jug and Whisk
-	whisk->Upadate();
+	whisk->Upadate(single_inputValue->IsWhisking());
 
 	// if we where pouring a pancake but we can no longer pour we have finished pouring
 	// since a pancake can not be poured to if its size is > 0 and the pour rate <= 0
