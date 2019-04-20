@@ -18,7 +18,6 @@ public:
 	void SetHobFire(int fValue);
 	int GetHobFire();
 
-
 private:
 
 	Vector2* gyroAxis;

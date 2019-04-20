@@ -64,9 +64,10 @@ void loop()
 {
 
   MPU.update(); //must be continuously updated :| (DO NOT USE DELAY, unless you want garbage values)
+  UpdateWhisking();
   
   //Check that Serial is available and read any incoming bytes
-  if(true || Serial.available() > 0 || (DEBUG && millis() > (DEBUG_LAST_INTERVAL + DEBUG_INTERVALS)))
+  if(Serial.available() > 0 || (DEBUG && millis() > (DEBUG_LAST_INTERVAL + DEBUG_INTERVALS)))
   {
     incomingByte = Serial.read();
 
@@ -84,15 +85,18 @@ void loop()
       Serial.print("#");
       PrintPaddedValue( y );                // Gyro Y
       Serial.print("#");
-      PrintPaddedValue( analogRead(A3) );   //LDR         (27k ristor)
+      PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)
       Serial.print("#");
-      PrintPaddedValue( analogRead(A2) );  // Hob Nob     (1k ristor)
+      PrintPaddedValue( analogRead(A2) );  // Hob Nob
+        
+      Serial.print("#");
+      PrintPaddedValue( whisking );        // whisk rt tilt switch (1k ristor)
       
       if(DEBUG)
         Serial.print("\n");
-    }else if(true || incomingByte == 'l')
+    }else if(incomingByte == 'l')
     {
-       Serial.print( IsWhisking() ); // whisk rt tilt switch
+       //Serial.print( IsWhisking() ); // whisk rt tilt switch
        Serial.print( "\n" );
     }
 
@@ -102,7 +106,7 @@ void loop()
 
 }
 
-int IsWhisking()
+void UpdateWhisking()
 {
 
   int currentValue = analogRead(A4);
@@ -120,7 +124,5 @@ int IsWhisking()
   }
 
   whisking_lastWasLow = valueIsLow;
-  
-  return whisking; 
   
 }

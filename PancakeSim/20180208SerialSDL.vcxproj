@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="GameObjects\Components\DistanceTrigger.h" />
     <ClInclude Include="GameObjects\Components\Helper.h" />
+    <ClInclude Include="GameObjects\Components\InputDataTypes\InputData_single.h" />
     <ClInclude Include="GameObjects\FaceTarget.h" />
     <ClInclude Include="GameObjects\Components\UI\UI.h" />
     <ClInclude Include="GameObjects\Fire.h" />
@@ -192,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObjects\Components\DistanceTrigger.cpp" />
+    <ClCompile Include="GameObjects\Components\InputDataTypes\InputData_sigle.cpp" />
     <ClCompile Include="GameObjects\FaceTarget.cpp" />
     <ClCompile Include="GameObjects\Fire.cpp" />
     <ClCompile Include="GameObjects\Components\Managers\GameManager.cpp" />
