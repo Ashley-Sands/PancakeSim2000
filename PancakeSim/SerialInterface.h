@@ -7,6 +7,7 @@
 #include <iterator>
 
 class InputData;
+class InputData_single;
 
 class SerialInterface
 {
@@ -27,6 +28,7 @@ public:
 
 
 	InputData* GetPot(int id);
+	InputData_single* GetSinglePot();
 
 	void Close();
 
@@ -43,7 +45,7 @@ private:
 
 	InputData* ERROR_POT;		// prevent errors (this will never be updated)
 
-
+	InputData_single* pot_single;	// for for items we only have once ie whisk
 
 
 	//TODO: sort this out according to above TODO's

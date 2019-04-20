@@ -6,6 +6,7 @@
 #include "GameObjects/Components/Time.h"			//use time to sync the timeout with the frame rate :)
 #include "GameObjects/Components/Vector2.h"
 #include "GameObjects/Components/InputDataTypes/InputData.h"
+#include "GameObjects/Components/InputDataTypes/InputData_single.h"
 
 SerialInterface::SerialInterface()
 {
@@ -27,6 +28,7 @@ SerialInterface::SerialInterface()
 		pot[i] = new InputData();
 
 	ERROR_POT = new InputData();
+	pot_single = new InputData_single();
 
 }
 
@@ -41,6 +43,7 @@ SerialInterface::SerialInterface(int port)
 		pot[i] = new InputData();
 
 	ERROR_POT = new InputData();
+	pot_single = new InputData_single();
 
 }
 
@@ -114,16 +117,17 @@ void SerialInterface::GetPositions()
 			int currentStrPos = 0;
 			std::string sub;
 
-			// Build the input date
-			for (int i = 0; i < TOTAL_VECT_POTS; i++)
-			{
-				try {
+			try {
+
+				// Build the input date
+				for (int i = 0; i < TOTAL_VECT_POTS; i++)
+				{
 					// gryo-x
 					sub = result.substr(currentStrPos, INPUT_LEN);
 					pot[i]->GetGyroAxis()->x = std::stoi(sub);
 
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
-					
+
 					// gryo-y
 					sub = result.substr(currentStrPos, INPUT_LEN);
 					pot[i]->GetGyroAxis()->y = std::stoi(sub);
@@ -132,7 +136,7 @@ void SerialInterface::GetPositions()
 
 					// LDR - onHob
 					sub = result.substr(currentStrPos, INPUT_LEN);
-					pot[i]->SetHobValue( std::stoi(sub) );
+					pot[i]->SetHobValue(std::stoi(sub));
 
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
 
@@ -143,13 +147,21 @@ void SerialInterface::GetPositions()
 					currentStrPos += INPUT_LEN + INPUT_SPACING;
 
 				}
-				catch (std::exception &e)
-				{
-					Console::LogMessage(MessageType::Error, "E_Value: " + result + " : LEN: " + std::to_string(result.length()));
-				}
-			}
 
+				//Whisk
+				sub = result.substr(currentStrPos, INPUT_LEN);
+				pot_single->SetWhisking(std::stoi(sub));
+
+				currentStrPos += INPUT_LEN + INPUT_SPACING;
+
+			}
+			catch (std::exception &e)
+			{
+				Console::LogMessage(MessageType::Error, "E_Value: " + result + " : LEN: " + std::to_string(result.length()));
+			}
 		}
+
+		
 
 	}
 }
@@ -167,6 +179,11 @@ InputData* SerialInterface::GetPot(int id)
 		return ERROR_POT;
 	}
 
+}
+
+InputData_single* SerialInterface::GetSinglePot()
+{
+	return pot_single;
 }
 
 void SerialInterface::Close()
