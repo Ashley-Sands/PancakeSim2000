@@ -105,6 +105,9 @@
     <ClInclude Include="GameObjects\Components\Helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\Whisk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -180,6 +183,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Components\DistanceTrigger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Whisk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

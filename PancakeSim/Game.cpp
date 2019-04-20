@@ -159,6 +159,8 @@ void Game::InitGameComponents()
 	//Load successful, set this to the active game. 
 	GameManager::GetInstance().SetActiveGame(this);
 
+	Console::LogMessage(MessageType::Log, "LOADING SPRITES...\n");
+
 	tempcake->SetSprite(mainRenderer, "Sprites/TEMPCAKE_all.png");
 	tempcake->SetSpriteSize(200, 200);
 
@@ -178,6 +180,9 @@ void Game::InitGameComponents()
 	spriteSheet_faces->SetSpriteSize(200);
 
 	sprite_whisk->SetSprite(mainRenderer, "Sprites/Whisk.png");
+
+	
+
 
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
@@ -223,6 +228,14 @@ void Game::InitGameComponents()
 
 		fryingPans_inputValue[i] = (ignoreSerial ? fryingPans_keyboardInputValues[i] : serial->GetPot(i) );
 	}
+
+	// Jug
+	
+	// Whisk
+	whisk = new Whisk(sprite_whisk);
+	whisk->SetScale(0.5, 0.5);
+
+	whisk->Begin();
 
 	// Setup UI.
 	mainFontFace = TTF_OpenFont("Fonts/ARIALN.ttf", 60);
@@ -327,6 +340,10 @@ void Game::Render()
 
 	}
 
+	// Jug and whisk
+	whisk->Render(mainRenderer);
+
+
 	UI_scoreLable->Render(mainRenderer);
 	UI_scoreValue->Render(mainRenderer);
 	UI_flipsLable->Render(mainRenderer);
@@ -403,6 +420,9 @@ void Game::Update()
 	//	pancakes[i]->SetAnchoredPosition(140 + (213 * i), p);
 
 	}
+
+	//Jug and Whisk
+	whisk->Upadate();
 
 	// if we where pouring a pancake but we can no longer pour we have finished pouring
 	// since a pancake can not be poured to if its size is > 0 and the pour rate <= 0

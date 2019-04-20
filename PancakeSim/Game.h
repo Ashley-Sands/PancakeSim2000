@@ -22,6 +22,7 @@ class InputData;
 class Vector2;
 class TextTransform;
 class FaceTarget;
+class Whisk;
 
 class Game
 {
@@ -135,5 +136,8 @@ private:
 // jug ( i think that this should be moved into the jug update when i add it )
 	int currentPourId = -1; // < 0 = not pouring
 	float TMEP_POUR_RATE = 0;
+
+// Whisk
+	Whisk* whisk;
 };
 
