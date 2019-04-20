@@ -245,11 +245,12 @@ void Game::InitGameComponents()
 
 	// Jug
 	jug = new Jug(spriteSheet_jug);
-	jug->SetPosition(80, 76);
+	jug->SetPosition(80, 120);
 	jug->Begin();
 
 	// Whisk
 	whisk = new Whisk(sprite_whisk);
+	whisk->SetPosition(165, 100);
 	whisk->Begin();
 
 	// Setup UI.

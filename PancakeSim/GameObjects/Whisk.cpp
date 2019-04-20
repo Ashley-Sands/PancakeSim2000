@@ -29,7 +29,7 @@ void Whisk::Upadate(bool isWhisking)
 	}
 	else
 	{
-		currentRotation = 0;
+		currentRotation = 35;
 	}
 
 	SetRotation(currentRotation);
