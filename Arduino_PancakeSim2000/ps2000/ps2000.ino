@@ -1,15 +1,26 @@
 #include "MPU6050_tockn.h"
 #include "Wire.h"
 
+// Debuging
 const bool DEBUG = false;            // forces print to console    // Also displays data normalized (if it been called)
 const int DEBUG_INTERVALS = 1000;   //millis
 unsigned int DEBUG_LAST_INTERVAL = 0;
 
-int incomingByte = 0;
-
-const int OUTPUT_BUFFER_SIZE = 7;
-
+// Frying pan
 MPU6050 MPU(Wire);  //TODO: needs to be array, futhermore tocknMPU will also need modifing to support mutiple devices
+
+// Whisk
+const int whisking_switch_lowValue = 750;   // a value above this is considered high value
+int whisking_lastWasLow = false;
+
+const int whisking_valueChanged_interval = 250;             //ms
+unsigned int whisking_nextInterval = 500;
+
+bool whisking;
+
+// serial
+int incomingByte = 0;
+const int OUTPUT_BUFFER_SIZE = 7;
 
 void PrintPaddedValue(int num)
 {
@@ -55,11 +66,11 @@ void loop()
   MPU.update(); //must be continuously updated :| (DO NOT USE DELAY, unless you want garbage values)
   
   //Check that Serial is available and read any incoming bytes
-  if(Serial.available() > 0 || (DEBUG && millis() > (DEBUG_LAST_INTERVAL + DEBUG_INTERVALS)))
+  if(true || Serial.available() > 0 || (DEBUG && millis() > (DEBUG_LAST_INTERVAL + DEBUG_INTERVALS)))
   {
     incomingByte = Serial.read();
 
-    if( incomingByte == 'N' )        // Normalize Device
+    if(incomingByte == 'N' )        // Normalize Device
     { 
       MPU.normalize();
     }
@@ -73,19 +84,43 @@ void loop()
       Serial.print("#");
       PrintPaddedValue( y );                // Gyro Y
       Serial.print("#");
-      PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)
+      PrintPaddedValue( analogRead(A3) );   //LDR         (27k ristor)
       Serial.print("#");
-      PrintPaddedValue( analogRead(A2) );  // Hob Nob
+      PrintPaddedValue( analogRead(A2) );  // Hob Nob     (1k ristor)
       
       if(DEBUG)
         Serial.print("\n");
-    }else if(incomingByte == 'l')
+    }else if(true || incomingByte == 'l')
     {
-       Serial.print( MPU.getRawGyroX() ); 
+       Serial.print( IsWhisking() ); // whisk rt tilt switch
+       Serial.print( "\n" );
     }
 
     DEBUG_LAST_INTERVAL = millis();
     
   }
 
+}
+
+int IsWhisking()
+{
+
+  int currentValue = analogRead(A4);
+  bool valueIsLow = currentValue < whisking_switch_lowValue;
+  
+  if(valueIsLow != whisking_lastWasLow)
+  {
+    whisking = true;
+    whisking_nextInterval = millis() + whisking_valueChanged_interval;
+  }
+  else if(millis() >= whisking_nextInterval)
+  {
+    whisking = false;
+    whisking_nextInterval = millis() + whisking_valueChanged_interval; 
+  }
+
+  whisking_lastWasLow = valueIsLow;
+  
+  return whisking; 
+  
 }
