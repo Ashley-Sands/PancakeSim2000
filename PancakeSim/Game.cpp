@@ -357,8 +357,8 @@ void Game::Render()
 	}
 
 	// Jug and whisk
-	jug->Render(mainRenderer);
 	whisk->Render(mainRenderer);
+	jug->Render(mainRenderer);
 
 
 	UI_scoreLable->Render(mainRenderer);
@@ -426,9 +426,13 @@ void Game::Update()
 		{
 			currentPourId = i;
 		}
-		else if (currentPourId == i)
+		else if (currentPourId == i && TMEP_POUR_RATE > 0) //TODO: REMOVED TEMP
 		{
-			pancakes[i]->PourPancake(TMEP_POUR_RATE);
+			pancakes[i]->PourPancake(jug->Pour() * TMEP_POUR_RATE); //TODO: REMOVED TEMP
+		}
+		else if (currentPourId == i && TMEP_POUR_RATE == 0) //TODO: Remove. This just fixed porPancake not ending, just while jug->pour is being worked on :)
+		{
+			pancakes[i]->PourPancake(0); 
 		}
 
 		
@@ -439,6 +443,7 @@ void Game::Update()
 	}
 
 	//Jug and Whisk
+	jug->Update();
 	whisk->Upadate(single_inputValue->IsWhisking());
 
 	// if we where pouring a pancake but we can no longer pour we have finished pouring
@@ -526,7 +531,7 @@ void Game::HandleKeyboardEvents(SDL_Event* event)
 				if (fryingPans_keyboardInputValues[1]->GetGyroAxis()->y > 1023)
 					fryingPans_keyboardInputValues[1]->GetGyroAxis()->y = 1023;
 
-				TMEP_POUR_RATE = 0.1f;
+				TMEP_POUR_RATE = 1.0f;
 
 			}
 			else if (event->key.keysym.sym == SDLK_s)
