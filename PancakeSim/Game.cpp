@@ -240,7 +240,6 @@ void Game::InitGameComponents()
 	
 	// Whisk
 	whisk = new Whisk(sprite_whisk);
-	whisk->SetScale(0.5, 0.5);
 
 	whisk->Begin();
 
@@ -566,10 +565,10 @@ void Game::HandleEvents()
 				Console::LogMessage(MessageType::Error, "Unable to Normalize devices. Serial is unavailable");
 			}
 		}
-		else if (ignoreSerial || serial == nullptr || !serial->connect)
-		{
+		//else if (ignoreSerial || serial == nullptr || !serial->connect)
+		//{
 			HandleKeyboardEvents(&event);
-		}
+		//}
 	}
 
 
