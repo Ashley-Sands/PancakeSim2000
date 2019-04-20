@@ -95,6 +95,8 @@ private:
 	SpriteSheet* spriteSheet_panFire;
 	SpriteSheet* spriteSheet_faces;
 
+	Sprite* sprite_whisk;
+
 // BETA
 
 	// there needs to be the same amount of pans to pancakes :)

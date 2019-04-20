@@ -25,6 +25,8 @@ Game::Game()
 
 	spriteSheet_faces = new SpriteSheet();
 
+	sprite_whisk = new Sprite();
+
 }
 
 Game::~Game()
@@ -174,6 +176,8 @@ void Game::InitGameComponents()
 
 	spriteSheet_faces->SetSprite(mainRenderer, "Sprites/Faces.png");
 	spriteSheet_faces->SetSpriteSize(200);
+
+	sprite_whisk->SetSprite(mainRenderer, "Sprites/Whisk.png");
 
 	// Abit realer.
 	for (int i = 0; i < panCount; i++)
