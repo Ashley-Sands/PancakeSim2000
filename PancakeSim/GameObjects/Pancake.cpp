@@ -146,7 +146,7 @@ void Pancake::PourPancake(float rate)
 
 	if (pancakeSize > minPancakeSize && rate == 0.0f)
 		canPour = false;
-	else if (pancakeSize <= 0.1f && rate == 0.0f)
+	else if (pancakeSize <= minPancakeSize && rate == 0.0f)
 		pancakeSize = 0.0f;
 
 }
