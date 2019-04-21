@@ -32,6 +32,9 @@ public:
 
 	FVector2* GetVelocity();
 
+	void SetMass(float mass);
+	float GetMass();
+
 private:
 	const FVector2* gravity;
 

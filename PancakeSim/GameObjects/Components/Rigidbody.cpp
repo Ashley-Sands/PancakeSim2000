@@ -71,6 +71,16 @@ FVector2* Rigidbody::GetVelocity()
 	return velocity;
 }
 
+void Rigidbody::SetMass(float m)
+{
+	mass = m;
+}
+
+float Rigidbody::GetMass()
+{
+	return mass;
+}
+
 void Rigidbody::ClampVelocity()	//TODO: maybe move this into physic settings so its the same throughtout the game??
 {
 	// Clamp x
