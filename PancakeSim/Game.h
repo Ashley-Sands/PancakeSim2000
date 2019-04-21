@@ -40,6 +40,7 @@ public:
 	void HandleEvents();
 	void Clean();
 
+	SDL_Renderer* GetRenderer();
 	
 	bool Running() { return isRunning; };
 	void OnScoreChanged();

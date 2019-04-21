@@ -593,6 +593,11 @@ void Game::HandleEvents()
 
 }
 
+SDL_Renderer* Game::GetRenderer()
+{
+	return mainRenderer;
+}
+
 // clean - Clean up SDL and close the port
 void Game::Clean()
 {	
