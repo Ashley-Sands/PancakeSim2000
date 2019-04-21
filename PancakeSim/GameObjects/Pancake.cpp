@@ -12,7 +12,7 @@
 
 Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)
 {
-	rigidbody = new Rigidbody(this, 0.2f);
+	rigidbody = new Rigidbody(this, default_mass);
 	rigidbody->SetVelocity(0.0f, 0.0f);
 
 }
@@ -145,10 +145,15 @@ void Pancake::PourPancake(float rate)
 	currentCookState = CookingState::Mixture;
 
 	if (pancakeSize > minPancakeSize && rate == 0.0f)
+	{
 		canPour = false;
+		float newMass = (pancakeSize / maxPancakeSize) * default_mass;
+		rigidbody->SetMass(newMass);
+	}
 	else if (pancakeSize <= minPancakeSize && rate == 0.0f)
+	{
 		pancakeSize = 0.0f;
-
+	}
 }
 
 float Pancake::GetPancakeSizePercentage()
@@ -164,7 +169,7 @@ float Pancake::GetFlipPercentage()
 
 	if (currentFlipForce < 0.0f) currentFlipForce = 0.0f;
 
-	// prevent the flip going over 100%
+	// prevent the flip going over 100% 
 	// always keep it within the flipLength 
 	while (currentFlip > flipLength)
 	{
