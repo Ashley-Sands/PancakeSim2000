@@ -30,6 +30,8 @@ float Jug::Pour()
 
 	float pourRate = maxPourRate * Time::GetDeltaSeconds();
 
+	if (pourRate > currentMixture) pourRate = currentMixture;
+
 	currentMixture -= pourRate;
 
 	if (currentMixture < 0.0f) currentMixture = 0;
