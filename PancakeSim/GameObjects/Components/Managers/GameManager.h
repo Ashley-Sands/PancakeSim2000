@@ -4,6 +4,12 @@
 #include "..\..\..\Game.h"
 
 
+enum GameState {
+	Splash,		//TODO: Use this for loading ??
+	Paused,
+	Menu,
+	MainGame
+};
 
 class GameManager
 {
@@ -48,6 +54,10 @@ public:
 	void SetActiveGame(Game* activeGame);
 	Game* GetActiveGame();
 
+	void SetGameState( GameState state );
+	GameState GetGameState();
+	
+
 private:
 	
 	int scorePerFlip = 1;
@@ -61,6 +71,7 @@ private:
 	int totalScore = 0;
 
 	Game* activeGame;
+	GameState currentGameState = GameState::Splash;
 
 };
 

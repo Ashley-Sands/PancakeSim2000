@@ -68,3 +68,13 @@ Game* GameManager::GetActiveGame()
 {
 	return activeGame;
 }
+
+void GameManager::SetGameState( GameState state)
+{
+	currentGameState = state;
+}
+
+GameState GameManager::GetGameState()
+{
+	return currentGameState;
+}

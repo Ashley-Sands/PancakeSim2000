@@ -1,6 +1,7 @@
 #include "scene_splash.h"
 #include "..\GameObjects\Components\Components.h"
 #include "..\Game.h"
+#include "..\GameObjects\\Components\Managers\GameManager.h"
 
 Scene_splash::Scene_splash(Game* game) : Scene(game)
 {
@@ -14,7 +15,7 @@ Scene_splash::~Scene_splash()
 
 	delete sprite_logo;
 	delete logoPosition;
-
+	
 }
 
 void Scene_splash::Init()
@@ -38,5 +39,7 @@ void Scene_splash::Update()
 
 	currentPosition += Time::GetDeltaSeconds();
 
+	if( currentPosition > length)
+		GameManager::GetInstance().SetGameState(GameState::MainGame);
 
 }
