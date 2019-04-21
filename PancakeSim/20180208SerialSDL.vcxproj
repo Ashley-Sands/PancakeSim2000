@@ -179,6 +179,7 @@
     <ClInclude Include="GameObjects\PanFire.h" />
     <ClInclude Include="GameObjects\Jug.h" />
     <ClInclude Include="Scenes\Scene.h" />
+    <ClInclude Include="Scenes\scene_splash.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="GameObjects\Components\Sprite.h" />
     <ClInclude Include="GameObjects\Components\SpriteAnimator.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="GameObjects\PanFire.cpp" />
     <ClCompile Include="GameObjects\Jug.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
+    <ClCompile Include="Scenes\scene_splash.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SerialInterface.cpp" />
