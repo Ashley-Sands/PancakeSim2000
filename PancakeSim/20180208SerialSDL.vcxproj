@@ -179,6 +179,7 @@
     <ClInclude Include="GameObjects\PanFire.h" />
     <ClInclude Include="GameObjects\Jug.h" />
     <ClInclude Include="Scenes\Scene.h" />
+    <ClInclude Include="Scenes\scenes.h" />
     <ClInclude Include="Scenes\scene_splash.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="GameObjects\Components\Sprite.h" />

@@ -11,6 +11,8 @@
 #include "GameObjects/Components/UI/UI.h"
 #include "GameObjects/Components/Managers/GameManager.h"
 
+#include "Scenes/scenes.h"
+
 //Debuging
 #include "GameObjects/Components/Debug/Console.h"
 
@@ -28,6 +30,8 @@ Game::Game()
 
 	spriteSheet_jug = new SpriteSheet();
 	sprite_whisk = new Sprite();
+
+	currentScene = new Scene_splash(this);
 
 }
 
@@ -66,6 +70,8 @@ Game::~Game()
 
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
+
+	delete currentScene;
 
 }
 
@@ -310,6 +316,10 @@ void Game::InitGameComponents()
 		faceTargets[i]->Begin();
 	}
 
+	//////////////////////
+	// Scene
+	///////////////////////
+	currentScene->Init();
 
 }
 
@@ -378,6 +388,8 @@ void Game::Render()
 
 	// render new frame
 	//SDL_UpdateWindowSurface(mainWindow);
+
+	currentScene->Render();
 
 	SDL_RenderPresent(mainRenderer);
 
@@ -471,6 +483,13 @@ void Game::Update()
 
 
 	flipForce = 0;
+
+
+	/////////////////////////
+	// Scenes
+	////////////////////////
+
+	currentScene->Update();
 }
 
 void Game::OnScoreChanged()

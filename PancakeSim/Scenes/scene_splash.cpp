@@ -23,8 +23,8 @@ void Scene_splash::Init()
 
 	logoPosition->x = 0;
 	logoPosition->y = 0;
-	logoPosition->w = sprite_logo->GetSpriteSize()->x;
-	logoPosition->h = sprite_logo->GetSpriteSize()->y;
+	logoPosition->w = sprite_logo->GetSpriteSize()->x / 5;
+	logoPosition->h = sprite_logo->GetSpriteSize()->y / 5;
 
 }
 

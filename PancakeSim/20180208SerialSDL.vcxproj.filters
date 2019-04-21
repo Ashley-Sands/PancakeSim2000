@@ -117,6 +117,9 @@
     <ClInclude Include="Scenes\scene_splash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\scenes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

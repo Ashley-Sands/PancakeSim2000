@@ -25,6 +25,7 @@ class FaceTarget;
 class Whisk;
 class InputData_single;
 class Jug;
+class Scene;
 
 class Game
 {
@@ -147,5 +148,9 @@ private:
 
 // Whisk
 	Whisk* whisk;
+
+//Scenes
+	Scene* currentScene;
+
 };
 
