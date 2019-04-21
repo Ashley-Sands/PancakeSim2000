@@ -7,6 +7,7 @@ ADXL345::ADXL345(TwoWire &w)
 
 void ADXL345::begin()
 {
+
 	wire->beginTransmission(ADXL345_ADDR);
 	wire->write(0x2D);   // gets the register of the chip
 	wire->write(0);      // reset the byts back to 0

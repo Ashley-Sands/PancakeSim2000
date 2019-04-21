@@ -1,4 +1,5 @@
 #include "MPU6050_tockn.h"
+#include "ADXL345_Lib.h"
 #include "Wire.h"
 
 // Debuging
@@ -8,6 +9,9 @@ unsigned int DEBUG_LAST_INTERVAL = 0;
 
 // Frying pan
 MPU6050 MPU(Wire);  //TODO: needs to be array, futhermore tocknMPU will also need modifing to support mutiple devices
+
+//Jug
+//ADXL345 jug_adxl(Wire);
 
 // Whisk
 const int whisking_switch_lowValue = 750;   // a value above this is considered high value
@@ -53,17 +57,23 @@ void PrintPaddedValue(int num)
 void setup() 
 {
   //Setup Serial and Wire
+  //Wire.begin();
   Serial.begin(9600);
-
+  
+  //jug_adxl.begin();   //TODO this dont work if wire.begin is not called but if any MPU functions are called after Wire.begin is called serial does not work... hmmm..
   MPU.begin();
   //MPU.calcGyroOffsets(false, 0, 0); //we will do this internaly
-  pinMode(A4, INPUT);
+  
+  
+  //pinMode(A4, INPUT);
 }
 
 void loop()
 {
 
   MPU.update(); //must be continuously updated :| (DO NOT USE DELAY, unless you want garbage values)
+  //jug_adxl.update();
+  
   UpdateWhisking();
   
   //Check that Serial is available and read any incoming bytes
@@ -96,14 +106,19 @@ void loop()
         Serial.print("\n");
     }else if(incomingByte == 'l')
     {
-       //Serial.print( IsWhisking() ); // whisk rt tilt switch
-       Serial.print( "\n" );
+   //    Serial.print( jug_adxl.GetGyro_y()  );//analogRead(A4) ); // whisk rt tilt switch
+     //  Serial.print( "\n" );
     }
 
     DEBUG_LAST_INTERVAL = millis();
     
   }
-
+/*
+   Serial.print( analogRead(A4) );
+   Serial.print("\n");
+   Serial.print( whisking );
+   Serial.print("\n");
+*/
 }
 
 void UpdateWhisking()
