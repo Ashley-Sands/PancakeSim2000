@@ -51,7 +51,7 @@ private:
 	float currentFlipForce = 0;
 	float counterForce = 2.2f;
 
-	const float minFlipForce = 0.5f;
+	const float minFlipForce = 0.05f;// 0.5f;
 
 	int currentSpriteRow = 0;
 
