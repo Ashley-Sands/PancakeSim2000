@@ -11,7 +11,7 @@ public:
 	ADXL345(TwoWire &w);
 
 	void begin();
-	void Update();
+	void update();
 	
 	int GetGyro_x(){ return gyro_x; }
 	int GetGyro_y(){ return gyro_y; }

@@ -24,7 +24,7 @@ void ADXL345::begin()
 	
 }
 
-void ADXL345::Update()
+void ADXL345::update()
 {
 	// Define the XYZ register
 	int xyzReg = 0x32;
