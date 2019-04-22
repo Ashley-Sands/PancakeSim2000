@@ -3,9 +3,9 @@
 #include "Wire.h"
 
 // Debuging
-const bool DEBUG = false;            // forces print to console    // Also displays data normalized (if it been called)
-const int DEBUG_INTERVALS = 1000;   //millis
-unsigned int DEBUG_LAST_INTERVAL = 0;
+bool DEBUG = false;            // forces print to console    // Also displays data normalized (if it been called)
+const int DEBUG_INTERVALS = 200;   //millis
+unsigned long DEBUG_LAST_INTERVAL = 0;
 
 // Frying pan
 MPU6050 MPU(Wire);  //TODO: needs to be array, futhermore tocknMPU will also need modifing to support mutiple devices
@@ -18,9 +18,14 @@ const int whisking_switch_lowValue = 750;   // a value above this is considered 
 int whisking_lastWasLow = false;
 
 const int whisking_valueChanged_interval = 250;             //ms
-unsigned int whisking_nextInterval = 500;
+unsigned long whisking_nextInterval = 500;
 
 bool whisking;
+
+// Fire Alarm
+const int fireAlarm_pin = A0;
+unsigned long fireAlarm_length = 3350;
+unsigned long fireAlarm_startTime = 0;
 
 // serial
 int incomingByte = 0;
@@ -64,8 +69,8 @@ void setup()
   MPU.begin();
   //MPU.calcGyroOffsets(false, 0, 0); //we will do this internaly
   
+  pinMode(fireAlarm_pin, OUTPUT);
   
-  //pinMode(A4, INPUT);
 }
 
 void loop()
@@ -81,7 +86,11 @@ void loop()
   {
     incomingByte = Serial.read();
 
-    if(incomingByte == 'N' )        // Normalize Device
+    if(incomingByte == 'd' || incomingByte == 'D')  //DEBUG INPUT, D == true
+    {
+      DEBUG =  incomingByte == 'D';
+    }
+    else if(incomingByte == 'N' )        // Normalize Device
     { 
       MPU.normalize();
     }
@@ -104,15 +113,23 @@ void loop()
       
       if(DEBUG)
         Serial.print("\n");
-    }else if(incomingByte == 'l')
+    }
+    else if(incomingByte == 'f')
     {
-   //    Serial.print( jug_adxl.GetGyro_y()  );//analogRead(A4) ); // whisk rt tilt switch
-     //  Serial.print( "\n" );
+      fireAlarm_startTime = millis();
+      analogWrite(fireAlarm_pin, 1024);
     }
 
     DEBUG_LAST_INTERVAL = millis();
     
   }
+
+  if( fireAlarm_startTime > 0 && millis() > (fireAlarm_startTime + fireAlarm_length) )
+  {
+    // Stop fire alarm
+    analogWrite(fireAlarm_pin, 0);
+  }
+  
 /*
    Serial.print( analogRead(A4) );
    Serial.print("\n");
