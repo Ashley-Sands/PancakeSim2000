@@ -2,30 +2,37 @@
 #include "ADXL345_Lib.h"
 #include "Wire.h"
 
+#define MUX_ADDR    0x70
+
+
 // Debuging
 bool DEBUG = false;            // forces print to console    // Also displays data normalized (if it been called)
 const int DEBUG_INTERVALS = 200;   //millis
 unsigned long DEBUG_LAST_INTERVAL = 0;
 
 // Frying pan
-MPU6050 MPU(Wire);  //TODO: needs to be array, futhermore tocknMPU will also need modifing to support mutiple devices
+MPU6050 MPU[3](Wire);  //TODO: needs to be array, futhermore tocknMPU will also need modifing to support mutiple devices
 
 //Jug
 //ADXL345 jug_adxl(Wire);
 
 // Whisk
-const int whisking_switch_lowValue = 750;   // a value above this is considered high value
+const int whisk_pin = A0;
+const int whisking_switch_lowValue = 700;   // a value above this is considered high value
 int whisking_lastWasLow = false;
 
 const int whisking_valueChanged_interval = 250;             //ms
-unsigned long whisking_nextInterval = 500;
+unsigned long whisking_nextInterval = 200;
 
 bool whisking;
 
 // Fire Alarm
-const int fireAlarm_pin = A0;
+const int fireAlarm_pin = 6;//A0;
 unsigned long fireAlarm_length = 3350;
-unsigned long fireAlarm_startTime = 0;
+
+unsigned long fireAlarm_cookedPancake_length = 100;
+
+unsigned long fireAlarm_endTime = 0;
 
 // serial
 int incomingByte = 0;
@@ -55,32 +62,50 @@ void PrintPaddedValue(int num)
   if(neg) padded[0] = '-';  
 
   Serial.print( String(padded) ); // Output the padded value to serial console :)
-  
+  Serial.print("#");
 }
 
+void MUX_select(int8_t i2cBus)
+{
+  
+  if (i2cBus > 7) return;
+  Wire.beginTransmission(MUX_ADDR);
+  Wire.write(1 << i2cBus);
+  Wire.endTransmission(true);  
+}
 
 void setup() 
 {
   //Setup Serial and Wire
-  //Wire.begin();
+  Wire.begin();
   Serial.begin(9600);
   
   //jug_adxl.begin();   //TODO this dont work if wire.begin is not called but if any MPU functions are called after Wire.begin is called serial does not work... hmmm..
-  MPU.begin();
-  //MPU.calcGyroOffsets(false, 0, 0); //we will do this internaly
+  for(int i = 0; i < 3; i++)
+  {
+    MUX_select(i);
+    MPU[i].begin();
+  }
   
   pinMode(fireAlarm_pin, OUTPUT);
+  digitalWrite(fireAlarm_pin, LOW);
+
+  pinMode(9, OUTPUT);
+  pinMode(10, INPUT);
+  
+  pinMode(A4, INPUT);
   
 }
 
 void loop()
 {
-
-  MPU.update(); //must be continuously updated :| (DO NOT USE DELAY, unless you want garbage values)
-  //jug_adxl.update();
-  
+  MUX_select(0);
+  MPU[0].update();
+  MUX_select(1);
+  MPU[1].update();
+  MUX_select(2);
+  MPU[2].update();
   UpdateWhisking();
-  
   //Check that Serial is available and read any incoming bytes
   if(Serial.available() > 0 || (DEBUG && millis() > (DEBUG_LAST_INTERVAL + DEBUG_INTERVALS)))
   {
@@ -90,58 +115,75 @@ void loop()
     {
       DEBUG =  incomingByte == 'D';
     }
-    else if(incomingByte == 'N' )        // Normalize Device
+    else if(incomingByte == 'N' || incomingByte == 'n' )        // Normalize Device
     { 
-      MPU.normalize();
+      for(int i = 0; i < 3; i++)
+        MPU[i].normalize();
     }
-    else if( DEBUG || incomingByte == 'I' || incomingByte == 'i' )   
-    { // if incomingByte is 'I' then get angle noralized
-      int16_t x = floor( MPU.getAngleX( incomingByte == 'I' || DEBUG ) );
-      int16_t y = floor( MPU.getAngleY( incomingByte == 'I' || DEBUG ) );
-
-      // write to console
-      PrintPaddedValue( x );                // Gyro X
-      Serial.print("#");
-      PrintPaddedValue( y );                // Gyro Y
-      Serial.print("#");
-      PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)
-      Serial.print("#");
-      PrintPaddedValue( analogRead(A2) );  // Hob Nob
-        
-      Serial.print("#");
-      PrintPaddedValue( whisking );        // whisk rt tilt switch (1k ristor)
-      
-      if(DEBUG)
-        Serial.print("\n");
-    }
-    else if(incomingByte == 'f')
+    else if( DEBUG || incomingByte == 'I' || incomingByte == 'i' )
     {
-      fireAlarm_startTime = millis();
-      analogWrite(fireAlarm_pin, 1024);
+      printGroupValues();
+    }
+    
+    if(incomingByte == 'f')
+    {
+      fireAlarm_endTime = millis() + fireAlarm_length;
+      digitalWrite(fireAlarm_pin, HIGH);//fireAlarm_vol);
+    }
+    else if(incomingByte == 'e')
+    {
+      fireAlarm_endTime = millis() + fireAlarm_cookedPancake_length;
+      digitalWrite(fireAlarm_pin, HIGH);
     }
 
+     if(DEBUG)
+        Serial.print("\n");
+        
     DEBUG_LAST_INTERVAL = millis();
     
   }
-
-  if( fireAlarm_startTime > 0 && millis() > (fireAlarm_startTime + fireAlarm_length) )
+  
+  if( fireAlarm_endTime > 0 && millis() > fireAlarm_endTime )
   {
     // Stop fire alarm
-    analogWrite(fireAlarm_pin, 0);
+    //analogWrite(fireAlarm_pin, 0);
+    digitalWrite(fireAlarm_pin, LOW);
+    fireAlarm_endTime = 0;
   }
-  
-/*
-   Serial.print( analogRead(A4) );
-   Serial.print("\n");
-   Serial.print( whisking );
-   Serial.print("\n");
-*/
+  analogWrite(9, 255);
+}
+
+void printGroupValues()
+{
+    // Print Group Data
+    // Hob[n] panX#panY#onStove#hobNob#...
+    MUX_select(0);
+    PrintPaddedValue( (MPU[0].getAngleX( true )) );
+    PrintPaddedValue( (MPU[0].getAngleY( true )) );
+    PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)    //TODO: need to be in array
+    PrintPaddedValue( analogRead(A0) );  // Hob Nob             //TODO: needs to be in an array.
+    
+    MUX_select(1);
+    PrintPaddedValue( (MPU[1].getAngleX( true )) );
+    PrintPaddedValue( (MPU[1].getAngleY( true )) );
+    PrintPaddedValue( analogRead(A4) );   //LDR (27k ristor)    //TODO: need to be in array
+    PrintPaddedValue( analogRead(A1) );  // Hob Nob             //TODO: needs to be in an array.
+    
+    MUX_select(2);
+    PrintPaddedValue( (MPU[2].getAngleX( true )) );
+    PrintPaddedValue( (MPU[2].getAngleY( true )) );
+    PrintPaddedValue( analogRead(A5) );   //LDR (27k ristor)    //TODO: need to be in array
+    PrintPaddedValue( analogRead(A2) );  // Hob Nob             //TODO: needs to be in an array.
+    
+    // Print sigleData
+    // d ...#Whisking#
+    PrintPaddedValue( whisking );        // whisk rt tilt switch (1k ristor)
 }
 
 void UpdateWhisking()
 {
 
-  int currentValue = analogRead(A4);
+  int currentValue = analogRead(whisk_pin);
   bool valueIsLow = currentValue < whisking_switch_lowValue;
   
   if(valueIsLow != whisking_lastWasLow)
