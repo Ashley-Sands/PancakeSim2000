@@ -1,8 +1,8 @@
 #include "Arduino.h"
-#include "Wire.h"
 
 #define ADXL345_ADDR	(0x53)
  
+class TwoWire;
 
 class ADXL345{
 

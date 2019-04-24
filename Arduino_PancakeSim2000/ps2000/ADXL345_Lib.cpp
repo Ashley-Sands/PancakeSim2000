@@ -1,4 +1,5 @@
 #include "ADXL345_Lib.h"
+#include "Wire.h"
 
 ADXL345::ADXL345(TwoWire &w)
 {
