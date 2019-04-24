@@ -37,6 +37,7 @@ public:
 private:
 	
 	Rigidbody* rigidbody;
+	float default_mass = 0.2f;
 
 	float startPosition;
 
