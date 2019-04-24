@@ -3,6 +3,7 @@
 
 
 
+bool Console::disableConsole = true;
 
 Console::Console(){}
 
@@ -12,6 +13,8 @@ Console::~Console(){}
 void Console::LogMessage(MessageType messType, std::string message)
 {
 	
+	if (disableConsole) return;
+
 	switch (messType)
 	{
 		case MessageType::Log:
@@ -26,4 +29,9 @@ void Console::LogMessage(MessageType messType, std::string message)
 	}
 
 
+}
+
+void Console::Disable(bool disable)
+{
+	disableConsole = disable;
 }
