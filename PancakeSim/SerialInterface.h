@@ -40,7 +40,7 @@ private:
 	const int INPUT_LEN = 7;
 	const int INPUT_SPACING = 1;
 
-	static const int TOTAL_VECT_POTS = 1;
+	static const int TOTAL_VECT_POTS = 3;
 	InputData* pot[TOTAL_VECT_POTS];
 
 	InputData* ERROR_POT;		// prevent errors (this will never be updated)
