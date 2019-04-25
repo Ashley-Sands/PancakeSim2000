@@ -531,7 +531,7 @@ void Game::HandleSerialEvents()
 void Game::HandleSerialOutput(std::string output)
 {
 
-	if(!ignoreSerial && serial != nullptr && !serial->connect)
+	if (!ignoreSerial && serial != nullptr && !serial->connect) return;
 
 	serial->Send(output);
 }
