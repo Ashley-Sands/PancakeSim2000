@@ -62,7 +62,7 @@ void PrintPaddedValue(int num)
   if(neg) padded[0] = '-';  
 
   Serial.print( String(padded) ); // Output the padded value to serial console :)
-  Serial.print("#");
+  //Serial.print("#");
 }
 
 void MUX_select(int8_t i2cBus)
@@ -78,7 +78,7 @@ void setup()
 {
   //Setup Serial and Wire
   Wire.begin();
-  Serial.begin(9600);
+  Serial.begin(250000);//9600 just doesnt cut it if we want to maintaince somwhere around 30fps (anythink above 74880 seams a lil to fast)
   
   //jug_adxl.begin();   //TODO this dont work if wire.begin is not called but if any MPU functions are called after Wire.begin is called serial does not work... hmmm..
   for(int i = 0; i < 3; i++)

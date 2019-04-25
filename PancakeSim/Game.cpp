@@ -96,6 +96,9 @@ bool Game::InitSerialConnection()
 		serial = new SerialInterface(forceComPort);
 	}
 
+	if (serial && serial->connect)	// Drop the fps so the controller can keep up and we so we have a smooth frame rate
+		Time::SetFPS(20);
+
 	return true;
 }
 /*
@@ -650,10 +653,11 @@ void Game::HandleEvents()
 				showFPS = !showFPS;
 			}
 		}
-		//else if (ignoreSerial || serial == nullptr || !serial->connect)
-		//{
+		
+	//	if (ignoreSerial || serial == nullptr || !serial->connect)
+	//	{
 			HandleKeyboardEvents(&event);
-		//}
+	//	}
 	}
 
 
