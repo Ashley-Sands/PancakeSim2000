@@ -42,10 +42,13 @@ public:
 	void HandleEvents();
 	void Clean();
 
+	void SetBackgroundColor(int r, int g, int b);
 	SDL_Renderer* GetRenderer();
-	
+	TTF_Font* GetMainFontFace();
+
 	bool Running() { return isRunning; };
 	void OnScoreChanged();
+
 private:
 	
 	// main SDL win, renderer & surface :)
@@ -66,6 +69,7 @@ private:
 	int forceComPort = 3;
 
 
+	SDL_Color* backgroundColor;
 // Fonts
 	TTF_Font* mainFontFace;
 

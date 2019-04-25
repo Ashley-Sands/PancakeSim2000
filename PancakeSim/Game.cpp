@@ -34,6 +34,8 @@ Game::Game()
 
 	currentScene = new Scene_splash(this);
 
+	backgroundColor = new SDL_Color();
+
 }
 
 Game::~Game()
@@ -338,73 +340,85 @@ void Game::Render()
 {
 	// set background color
 	
-	SDL_SetRenderDrawColor(mainRenderer, 155, 100, 75, 255);
+	SDL_SetRenderDrawColor(mainRenderer, backgroundColor->r, backgroundColor->g, backgroundColor->b, 255);
 
 	// clear previous frame
 	SDL_RenderClear(mainRenderer);
 
-	// draw to the screen here!
-	SDL_Rect tempCooker_rect;
-
-	tempCooker_rect.h = 200;
-	tempCooker_rect.w = 650;
-	tempCooker_rect.x = 0;
-	tempCooker_rect.y = 425;
-
-	SDL_SetRenderDrawColor(mainRenderer, 155, 155, 155, 255);
-	SDL_RenderFillRect(mainRenderer, &tempCooker_rect);	
-
-	tempCooker_rect.h = 150;
-	tempCooker_rect.w = 150;
-	tempCooker_rect.x = 400;
-	tempCooker_rect.y = 175;
-
-	SDL_SetRenderDrawColor(mainRenderer, 0, 55, 255, 255);
-	SDL_RenderFillRect(mainRenderer, &tempCooker_rect);
-	//SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
-	
-	//staticTempCake->Render(mainRenderer);
-	//staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
-
-	for (int i = 0; i < panCount; i++)
+	if (GameManager::GetInstance().GetGameState() == GameState::MainGame)
 	{
-		hobFire[i]->Render(mainRenderer);
-		fryingPans_back[i]->Render(mainRenderer);
-		pancakes[i]->Render(mainRenderer);
-		panFire[i]->Render(mainRenderer);
-		fryingPans_front[i]->Render(mainRenderer);
+		// draw to the screen here!
+		SDL_Rect tempCooker_rect;
 
+		tempCooker_rect.h = 200;
+		tempCooker_rect.w = 650;
+		tempCooker_rect.x = 0;
+		tempCooker_rect.y = 425;
+
+		SDL_SetRenderDrawColor(mainRenderer, 155, 155, 155, 255);
+		SDL_RenderFillRect(mainRenderer, &tempCooker_rect);
+
+		tempCooker_rect.h = 150;
+		tempCooker_rect.w = 150;
+		tempCooker_rect.x = 400;
+		tempCooker_rect.y = 175;
+
+		SDL_SetRenderDrawColor(mainRenderer, 0, 55, 255, 255);
+		SDL_RenderFillRect(mainRenderer, &tempCooker_rect);
+		//SDL_RenderFillRect(mainRenderer,&playerTwoPosition);
+
+		//staticTempCake->Render(mainRenderer);
+		//staticTempCake->SetScale((float)(f % (10 * 50)) / 50.0f, (float)(f % (10 * 50)) / 50.0f);
+
+		for (int i = 0; i < panCount; i++)
+		{
+			hobFire[i]->Render(mainRenderer);
+			fryingPans_back[i]->Render(mainRenderer);
+			pancakes[i]->Render(mainRenderer);
+			panFire[i]->Render(mainRenderer);
+			fryingPans_front[i]->Render(mainRenderer);
+
+		}
+
+		// Jug and whisk
+		whisk->Render(mainRenderer);
+		jug->Render(mainRenderer);
+
+
+		UI_scoreLable->Render(mainRenderer);
+		UI_scoreValue->Render(mainRenderer);
+		UI_flipsLable->Render(mainRenderer);
+		UI_flipsCount->Render(mainRenderer);
+		UI_servedPancakesLable->Render(mainRenderer);
+		UI_servedPancakesCount->Render(mainRenderer);
+		UI_happynessLable->Render(mainRenderer);
+		UI_happynessValue->Render(mainRenderer);
+
+		
+
+		// render faces
+		for (int i = 0; i < faceCount; i++)
+		{
+			faceTargets[i]->Render(mainRenderer);
+		}
+	}
+	else
+	{
+		
+		//////////
+		// Scenes
+		//////////
+		currentScene->Render();
 	}
 
-	// Jug and whisk
-	whisk->Render(mainRenderer);
-	jug->Render(mainRenderer);
-
-
-	UI_scoreLable->Render(mainRenderer);
-	UI_scoreValue->Render(mainRenderer);
-	UI_flipsLable->Render(mainRenderer);
-	UI_flipsCount->Render(mainRenderer);
-	UI_servedPancakesLable->Render(mainRenderer);
-	UI_servedPancakesCount->Render(mainRenderer);
-	UI_happynessLable->Render(mainRenderer);
-	UI_happynessValue->Render(mainRenderer);
-
-	//FPS
-	if( showFPS )
+	//////////////////////////
+	// Rendered in all scenes
+	//////////////////////////
+	if (showFPS)
 		UI_FPS->Render(mainRenderer);
-
-	// render faces
-	for (int i = 0; i < faceCount; i++)
-	{
-		faceTargets[i]->Render(mainRenderer);
-	}
 
 	// render new frame
 	//SDL_UpdateWindowSurface(mainWindow);
-
-	currentScene->Render();
-
 	SDL_RenderPresent(mainRenderer);
 
 }
@@ -648,9 +662,23 @@ void Game::HandleEvents()
 
 }
 
+void Game::SetBackgroundColor(int r, int g, int b)
+{
+
+	backgroundColor->r = r;
+	backgroundColor->g = g;
+	backgroundColor->b = b;
+
+}
+
 SDL_Renderer* Game::GetRenderer()
 {
 	return mainRenderer;
+}
+
+TTF_Font * Game::GetMainFontFace()
+{
+	return mainFontFace;
 }
 
 // clean - Clean up SDL and close the port
