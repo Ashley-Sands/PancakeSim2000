@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "Time.h"
+#include "Settings/GameSettings.h"
 
 class Helper
 {
@@ -20,6 +21,16 @@ public:
 		int r = rand() % seed;
 
 		return r;
+
+	}
+
+	static void CenterRectToScreen(SDL_Rect* rectToCenter)
+	{
+		float screenCenter_x = GameSettings::window_width / 2.0f;
+		float screenCenter_y = GameSettings::window_height / 2.0f;
+
+		rectToCenter->x = floor( screenCenter_x - (rectToCenter->w / 2.0f) );
+		rectToCenter->y = floor( screenCenter_y - (rectToCenter->h / 2.0f) );
 
 	}
 };
