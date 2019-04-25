@@ -57,7 +57,7 @@ int Time::GetTickSinceStart()
 
 float Time::GetSecondsSinceStart()
 {
-	return time_since_start / 60.0f;
+	return time_since_start / 1000.0f;
 }
 
 //Static vars
