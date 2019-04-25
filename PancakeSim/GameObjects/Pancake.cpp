@@ -35,6 +35,8 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 	if (pancakeSize == 0.0f) return;	//Theres no pancake to display
 
+	rigidbody->Update();
+
 	// Get the current sprite position on the sprite sheet, when being fliped
 	SpriteSheet* spriteSheet = GetSpriteSheet();
 	int spriteID = 0;
@@ -61,11 +63,12 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 		if (force_y_accum > 0 && force < 0 || panSpriteId > 4 && force_y_accum > 0.0f)
 		{
-			force = force_y_accum / fc;
+			force = (force_y_accum + force) / fc;
 			force_y_accum = 0;
 			fc = 0;
+
 		}
-		else if (force > 0.1)
+		else if (force > 0)
 		{
 			force_y_accum += force;
 			fc++;
@@ -92,18 +95,27 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 			force_x *= force;
 		}
 		
-
+		/*
 		//RB / flip
-		rigidbody->SetVelocity(force_x, 1.5f * force);
-		currentFlip = 0.0f;
-		currentFlipForce = (flipForce * force);
-		
+		if (force > 0.0f)
+		{
+			rigidbody->SetVelocity(force_x, 1.5f * force);
+			currentFlip = 0.0f;
+			currentFlipForce = (flipForce * force);
+		}
+		*/
 		// correct the pancakes position when in pan
 		if (force < minFlipForce)
 		{
 			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f - (float)panSpriteId));
 			SetAnchoredPosition(fixed_x_pos, 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
+		}
+		else
+		{
+			rigidbody->SetVelocity(force_x, 1.5f * force);
+			currentFlip = 0.0f;
+			currentFlipForce = (flipForce * force);
 		}
 
 		currentCookingTime += Time::GetDeltaSeconds() * hobValue * flameSize * (1.2f - GetPancakeSizePercentage()); //TODO: Add cooking temp mutiplyer
@@ -127,7 +139,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 
 	spriteSheet->GetSpriteRectByID(spriteID, /*out*/ currentSpritePos, currentSpriteRow);
 
-	rigidbody->Update();
+	//rigidbody->Update();
 
 }
 
