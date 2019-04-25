@@ -37,7 +37,7 @@ public:
 private:
 	serial::Serial* mySerial;
 
-	const int INPUT_LEN = 7;
+	const int INPUT_LEN = 5;
 	const int INPUT_SPACING = 1;
 
 	static const int TOTAL_VECT_POTS = 3;

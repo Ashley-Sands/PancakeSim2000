@@ -36,7 +36,7 @@ unsigned long fireAlarm_endTime = 0;
 
 // serial
 int incomingByte = 0;
-const int OUTPUT_BUFFER_SIZE = 7;
+const int OUTPUT_BUFFER_SIZE = 5;
 
 void PrintPaddedValue(int num)
 {
@@ -52,13 +52,13 @@ void PrintPaddedValue(int num)
     neg = true;
   }
   
-  sprintf(buff, "%.7u", num); //Convert num to chars
+  sprintf(buff, "%.5u", num); //Convert num to chars
 
   // padd the buffer 
   for(int i = 0; i < OUTPUT_BUFFER_SIZE; i++)
     padded[i] = buff[i];
 
-  padded[7] = '\0';
+  padded[OUTPUT_BUFFER_SIZE] = '\0';
   if(neg) padded[0] = '-';  
 
   Serial.print( String(padded) ); // Output the padded value to serial console :)
