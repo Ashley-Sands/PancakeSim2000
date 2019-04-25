@@ -30,6 +30,7 @@ void TextTransform::SetFontColor(int r, int g, int b, int a /* = 255 */)
 	fontColor->g = g;
 	fontColor->b = b;
 	fontColor->a = a;
+	textHasChanged = true;
 }
 
 void TextTransform::SetText(std::string str)
