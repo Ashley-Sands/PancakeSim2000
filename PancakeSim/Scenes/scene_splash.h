@@ -5,6 +5,7 @@
 class Game;
 class Sprite;
 class SDL_Rect;
+class TextTransform;
 
 class Scene_splash : public Scene
 {
@@ -20,6 +21,7 @@ private:
 
 	Sprite* sprite_logo;
 	SDL_Rect* logoPosition;
+	TextTransform* UI_continueText;
 
 	float length = 5;
 	float currentPosition;
