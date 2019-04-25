@@ -59,7 +59,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 		
 		//TODO: sort this mess out
 		if(abs(panRotation) > 20.0f)		// min rotating to throw pancakes 
-			force_x = panRotation / -40.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: <<
+			force_x = -panRotation / 40.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: << 
 
 		if (force_y_accum > 0 && force < 0 || panSpriteId > 4 && force_y_accum > 0.0f)
 		{
@@ -95,15 +95,6 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 			force_x *= force;
 		}
 		
-		/*
-		//RB / flip
-		if (force > 0.0f)
-		{
-			rigidbody->SetVelocity(force_x, 1.5f * force);
-			currentFlip = 0.0f;
-			currentFlipForce = (flipForce * force);
-		}
-		*/
 		// correct the pancakes position when in pan
 		if (force < minFlipForce)
 		{
@@ -111,7 +102,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 			SetAnchoredPosition(fixed_x_pos, 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		}
-		else
+		else //RB / flip
 		{
 			rigidbody->SetVelocity(force_x, 1.5f * force);
 			currentFlip = 0.0f;
@@ -138,8 +129,6 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	Console::LogMessage(MessageType::Log, "Pancake Position y: " + std::to_string(GetPosition()->y) +" State: "+ std::to_string(currentCookState) + " Velocity X: "+std::to_string(rigidbody->GetVelocity()->x) );
 
 	spriteSheet->GetSpriteRectByID(spriteID, /*out*/ currentSpritePos, currentSpriteRow);
-
-	//rigidbody->Update();
 
 }
 
