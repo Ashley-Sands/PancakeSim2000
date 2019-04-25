@@ -26,13 +26,10 @@ public:
 	void GetPositions();		//TODO: rename
 	void GetButton();			//TODO: removed?
 
-
 	InputData* GetPot(int id);
 	InputData_single* GetSinglePot();
 
 	void Close();
-
-
 
 private:
 	serial::Serial* mySerial;

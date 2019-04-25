@@ -59,7 +59,7 @@ bool SerialInterface::TryConnection(std::string port)
 {
 
 	try {
-		mySerial = new serial::Serial(port, 9600, serial::Timeout::simpleTimeout( floor(Time::GetTicksPerUpdate())*1.5f ));
+		mySerial = new serial::Serial(port, 9600, serial::Timeout::simpleTimeout( ceil( Time::GetTicksPerUpdate() * 2.0f ) ));
 
 		if (mySerial->isOpen())
 		{
