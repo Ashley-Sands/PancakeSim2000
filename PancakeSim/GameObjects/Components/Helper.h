@@ -15,7 +15,7 @@ public:
 
 		int seed = abs((mouseX * (mouseX * 0.5f)) / mouseY) * Time::GetSecondsSinceStart();
 
-		if (seed == 0) seed = mouseY;
+		if (seed == 0) seed = mouseY + 1;
 
 		int r = rand() % seed;
 
