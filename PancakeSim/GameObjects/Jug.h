@@ -18,7 +18,7 @@ private:
 	const float max_mixture = 100.0f;
 	float currentMixture = 100.0f;
 
-	const float maxPourRate = 25.0f;
+	const float maxPourRate = 10.0f;
 
 };
 

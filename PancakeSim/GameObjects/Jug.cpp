@@ -34,7 +34,8 @@ float Jug::Pour()
 
 	currentMixture -= pourRate;
 
-	if (currentMixture < 0.0f) currentMixture = 0;
+	if (currentMixture < 0.0f)
+		currentMixture = 0;
 
 	return pourRate;
 
