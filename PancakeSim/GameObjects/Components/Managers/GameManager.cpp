@@ -78,3 +78,8 @@ GameState GameManager::GetGameState()
 {
 	return currentGameState;
 }
+
+void GameManager::SoundAlarm(bool shortBurst)
+{
+	activeGame->HandleSerialOutput( shortBurst ? "e" : "f" );
+}

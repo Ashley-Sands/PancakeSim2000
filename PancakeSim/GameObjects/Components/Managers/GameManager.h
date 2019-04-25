@@ -57,6 +57,7 @@ public:
 	void SetGameState( GameState state );
 	GameState GetGameState();
 	
+	void SoundAlarm(bool shortBurst);
 
 private:
 	
