@@ -202,6 +202,7 @@ void Pancake::SetCurrentCookingState()
 	{
 		currentCookState = CookingState::OnFire;
 		currentSpriteRow = 6;
+		GameManager::GetInstance().SoundAlarm(false);					//TODO: give me a real home :)
 	}
 	else if (currentCookingTime > (cookingLength * burntMutiplyer))
 	{
@@ -240,7 +241,7 @@ void Pancake::ServePancake(bool hit)
 
 
 	GameManager::GetInstance().AddServedPancake(happyness);
-
+	GameManager::GetInstance().SoundAlarm(true);
 }
 
 float Pancake::GetCookStateHappyness()
