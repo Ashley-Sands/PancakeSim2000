@@ -10,6 +10,7 @@
 #include "GameObjects/Components/InputDataTypes/InputData_single.h"
 #include "GameObjects/Components/UI/UI.h"
 #include "GameObjects/Components/Managers/GameManager.h"
+#include "GameObjects/Components/Settings/GameSettings.h"
 
 #include "Scenes/scenes.h"
 
@@ -68,6 +69,8 @@ Game::~Game()
 
 	delete[] faceTargets;
 
+	delete UI_FPS;
+	
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
 
@@ -303,6 +306,13 @@ void Game::InitGameComponents()
 	UI_happynessValue->SetPosition(690, 15);
 	UI_happynessValue->SetScale(0.5f, 0.5f);
 
+	/////////////////////
+	// FPS counter
+	////////////////////
+	UI_FPS = new TextTransform(mainFontFace);
+	UI_FPS->SetText("0 FPS");
+	UI_FPS->SetPosition(15, GameSettings::window_height-40);
+	UI_FPS->SetScale(0.5f, 0.5f);
 
 	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
 
@@ -379,6 +389,10 @@ void Game::Render()
 	UI_servedPancakesCount->Render(mainRenderer);
 	UI_happynessLable->Render(mainRenderer);
 	UI_happynessValue->Render(mainRenderer);
+
+	//FPS
+	if( showFPS )
+		UI_FPS->Render(mainRenderer);
 
 	// render faces
 	for (int i = 0; i < faceCount; i++)
@@ -490,6 +504,14 @@ void Game::Update()
 	////////////////////////
 
 	currentScene->Update();
+
+	//////////////////////////
+	// Elements that are in all scenes
+	//////////////////////////
+
+	if(showFPS)
+		UI_FPS->SetText(std::to_string( (1.0f/Time::GetDeltaSeconds()) ) + " FPS");
+
 }
 
 void Game::OnScoreChanged()
@@ -595,16 +617,23 @@ void Game::HandleEvents()
 		{
 			isRunning = false;
 		}
-		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_n)		//Normalize the MPU devices
+		else if (event.type == SDL_KEYDOWN)		//Normalize the MPU devices
 		{
-			if (!ignoreSerial && serial != nullptr && serial->connect)
+			if (event.key.keysym.sym == SDLK_n)
 			{
-				serial->Send("N");
-				Console::LogMessage(MessageType::Log, "Normalizing Devices");
+				if (!ignoreSerial && serial != nullptr && serial->connect)
+				{
+					serial->Send("N");
+					Console::LogMessage(MessageType::Log, "Normalizing Devices");
+				}
+				else
+				{
+					Console::LogMessage(MessageType::Error, "Unable to Normalize devices. Serial is unavailable");
+				}
 			}
-			else
+			else if (event.key.keysym.sym == SDLK_p)
 			{
-				Console::LogMessage(MessageType::Error, "Unable to Normalize devices. Serial is unavailable");
+				showFPS = !showFPS;
 			}
 		}
 		//else if (ignoreSerial || serial == nullptr || !serial->connect)

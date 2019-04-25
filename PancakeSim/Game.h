@@ -91,6 +91,9 @@ private:
 	TextTransform* UI_happynessLable;
 	TextTransform* UI_happynessValue;
 
+	bool showFPS;
+	TextTransform* UI_FPS;
+
 // Not UI
 
 	SpriteSheet* tempcake;
