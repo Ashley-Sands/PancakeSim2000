@@ -528,6 +528,10 @@ void Game::HandleSerialEvents()
 	}
 }
 
+void Game::HandleSerialOutput(std::string output)
+{
+	serial->Send(output);
+}
 
 // handleEvents - Poll Events and uses switch case to process specific events
 void Game::HandleKeyboardEvents(SDL_Event* event)

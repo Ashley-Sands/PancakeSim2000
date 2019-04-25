@@ -37,6 +37,7 @@ public:
 	void Render();
 	void Update();
 	void HandleSerialEvents();
+	void HandleSerialOutput(std::string output);
 	void HandleKeyboardEvents(SDL_Event* event);
 	void HandleEvents();
 	void Clean();
