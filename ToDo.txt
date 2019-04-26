@@ -26,10 +26,11 @@ Game
 [C] Implerment Hob Fire
 [C] Implerment face to throw pancakes at
 [C] Add collision detection to faces
-[] Implerment scenes
-	[] Move level into a scene class
-	[] Add Menu Scene
-	[] Add Splash scene
+[WIP] Implerment scenes
+	[C] Move level into a scene class
+	[R] Add Menu Scene
+		// there is no menu, its flip to start
+	[C] Add Splash scene
 [] Add Fire Engin animation
 [C] Add p/c away from pan. so we need to make a new pan cake :)
 	
@@ -41,7 +42,7 @@ Refactoring
 	[] GameSettings
 	[] Console
 [] Improve pancake rotation	
-[] Improve X force
+[C] Improve X force
 [WIP] Improve flip force
 	* The last force added should be taken more into acount
 [] Change score and happyness to moneys
@@ -71,11 +72,11 @@ Controler
 [C] Add Hob
 [C] Add Pan Sencer
  
-[] Mark all three pans work
-[WIP] Whisk
-[] Jug
+[C] Mark all three pans work
+[] Whisk
+[C] Jug
 
-[WIP] Solder gyro's
+[C] Solder gyro's
 
 -------------------------------------------------------------------
 
