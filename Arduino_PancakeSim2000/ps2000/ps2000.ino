@@ -14,7 +14,7 @@ unsigned long DEBUG_LAST_INTERVAL = 0;
 MPU6050 MPU[3](Wire);  //TODO: needs to be array, futhermore tocknMPU will also need modifing to support mutiple devices
 
 //Jug
-//ADXL345 jug_adxl(Wire);
+ADXL345 jug_adxl(Wire);
 
 // Whisk
 const int whisk_pin = A0;
@@ -80,7 +80,8 @@ void setup()
   Wire.begin();
   Serial.begin(250000);//9600 just doesnt cut it if we want to maintaince somwhere around 30fps (anythink above 74880 seams a lil to fast)
   
-  //jug_adxl.begin();   //TODO this dont work if wire.begin is not called but if any MPU functions are called after Wire.begin is called serial does not work... hmmm..
+  jug_adxl.begin();   //TODO this dont work if wire.begin is not called but if any MPU functions are called after Wire.begin is called serial does not work... hmmm..
+  
   for(int i = 0; i < 3; i++)
   {
     MUX_select(i);
@@ -105,7 +106,10 @@ void loop()
   MPU[1].update();
   MUX_select(2);
   MPU[2].update();
+  
+  jug_adxl.update();
   UpdateWhisking();
+  
   //Check that Serial is available and read any incoming bytes
   if(Serial.available() > 0 || (DEBUG && millis() > (DEBUG_LAST_INTERVAL + DEBUG_INTERVALS)))
   {
@@ -115,10 +119,12 @@ void loop()
     {
       DEBUG =  incomingByte == 'D';
     }
-    else if(incomingByte == 'N' || incomingByte == 'n' )        // Normalize Device
+    else if(incomingByte == 'N' || incomingByte == 'n' )        // Normalize Devices
     { 
       for(int i = 0; i < 3; i++)
         MPU[i].normalize();
+
+      jug_adxl.Normalize();
     }
     else if( DEBUG || incomingByte == 'I' || incomingByte == 'i' )
     {
@@ -162,21 +168,26 @@ void printGroupValues()
     PrintPaddedValue( (MPU[0].getAngleY( true )) );
     PrintPaddedValue( analogRead(A3) );   //LDR (27k ristor)    //TODO: need to be in array
     PrintPaddedValue( analogRead(A0) );  // Hob Nob             //TODO: needs to be in an array.
+
+    //////// IMPORTENT ///////////////////////////
+    // for some unknowen reason if i plug MPU[1] into pins 2 on the MUX none of my 3 MPU's show up
+    // So iv just fliped them round in the code :)
+    //////////////////////////////////////////////
+    MUX_select(2);  
+    PrintPaddedValue( (MPU[2].getAngleX( true )) );
+    PrintPaddedValue( (MPU[2].getAngleY( true )) );
+    PrintPaddedValue( analogRead(A4) );   //LDR (27k ristor)    //TODO: need to be in array
+    PrintPaddedValue( analogRead(A1) );  // Hob Nob             //TODO: needs to be in an array.
     
     MUX_select(1);
     PrintPaddedValue( (MPU[1].getAngleX( true )) );
     PrintPaddedValue( (MPU[1].getAngleY( true )) );
-    PrintPaddedValue( analogRead(A4) );   //LDR (27k ristor)    //TODO: need to be in array
-    PrintPaddedValue( analogRead(A1) );  // Hob Nob             //TODO: needs to be in an array.
-    
-    MUX_select(2);
-    PrintPaddedValue( (MPU[2].getAngleX( true )) );
-    PrintPaddedValue( (MPU[2].getAngleY( true )) );
     PrintPaddedValue( analogRead(A5) );   //LDR (27k ristor)    //TODO: need to be in array
     PrintPaddedValue( analogRead(A2) );  // Hob Nob             //TODO: needs to be in an array.
     
     // Print sigleData
     // d ...#Whisking#
+    PrintPaddedValue( jug_adxl.GetGyro_z() );
     PrintPaddedValue( whisking );        // whisk rt tilt switch (1k ristor)
 }
 
