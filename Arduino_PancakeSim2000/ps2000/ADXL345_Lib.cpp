@@ -53,3 +53,10 @@ void ADXL345::update()
 	gyro_z = (((int)gyro_values[5]) << 8) | gyro_values[4];
   
 }
+
+void ADXL345::Normalize()
+{
+  gyroOffset_x = gyro_x;
+  gyroOffset_y = gyro_y;
+  gyroOffset_z = gyro_z;
+}

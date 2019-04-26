@@ -12,10 +12,12 @@ public:
 
 	void begin();
 	void update();
-	
-	int GetGyro_x(){ return gyro_x; }
-	int GetGyro_y(){ return gyro_y; }
-	int GetGyro_z(){ return gyro_z; }
+
+  void Normalize();
+  
+	int GetGyro_x(){ return gyro_x - gyroOffset_x; }
+	int GetGyro_y(){ return gyro_y - gyroOffset_y; }
+	int GetGyro_z(){ return gyro_z - gyroOffset_z; }
 	
 	
 private: 
@@ -24,7 +26,11 @@ private:
 	int gyro_x = 0;
 	int gyro_y = 0;
 	int gyro_z = 0;
-	
+
+  int gyroOffset_x = 0;
+  int gyroOffset_y = 0;
+  int gyroOffset_z = 0;
+  
 	byte gyro_values[6];		// we read 6 bytes from the gyro
 	
 };
