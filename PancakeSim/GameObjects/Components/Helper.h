@@ -33,4 +33,15 @@ public:
 		rectToCenter->y = floor( screenCenter_y - (rectToCenter->h / 2.0f) );
 
 	}
+
+	static int Clamp(float min, float max, float n)
+	{
+
+		if ( n < min ) return min;
+		else if ( n > max ) return max;
+		
+		
+		return n;
+
+	}
 };
