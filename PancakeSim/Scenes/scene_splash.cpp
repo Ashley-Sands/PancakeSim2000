@@ -37,6 +37,7 @@ void Scene_splash::Init()
 	logoPosition->y = 50;
 
 	game->SetBackgroundColor(50, 50, 50);
+	game->HandleSerialOutput("N");
 }
 
 void Scene_splash::Render()
