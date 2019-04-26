@@ -15,3 +15,13 @@ bool InputData_single::IsWhisking()
 {
 	return whisking;
 }
+
+void InputData_single::SetPourRotation(int rot)
+{
+	pourRotation = rot;
+}
+
+int InputData_single::GetPourRotation()
+{
+	return pourRotation;
+}

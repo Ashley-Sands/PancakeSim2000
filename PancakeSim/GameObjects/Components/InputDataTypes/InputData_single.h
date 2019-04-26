@@ -11,7 +11,11 @@ public:
 	void SetWhisking(bool b);
 	bool IsWhisking();
 
+	void SetPourRotation(int rot);
+	int GetPourRotation();
+
 private:
 	bool whisking = false;
+	int pourRotation = 0;
 
 };

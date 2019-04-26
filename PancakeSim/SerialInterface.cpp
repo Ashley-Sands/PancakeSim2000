@@ -148,6 +148,12 @@ void SerialInterface::GetPositions()
 
 				}
 
+				//Jug
+				sub = result.substr(currentStrPos, INPUT_LEN);
+				pot_single->SetPourRotation(std::stoi(sub));
+
+				currentStrPos += INPUT_LEN + INPUT_SPACING;
+
 				//Whisk
 				sub = result.substr(currentStrPos, INPUT_LEN);
 				pot_single->SetWhisking(std::stoi(sub));
