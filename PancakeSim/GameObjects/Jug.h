@@ -10,7 +10,7 @@ public:
 	~Jug();
 
 	virtual void Begin() override;
-	void Update();
+	void Update(int rot);
 
 	float Pour();
 
@@ -19,6 +19,11 @@ private:
 	float currentMixture = 100.0f;
 
 	const float maxPourRate = 10.0f;
+
+	float currentRotation = 0;
+	const float minRotation = 5;				// min rotaiton to start pouring
+	const float maxRotation = 180;				// max pour rotation
+	const float rotationMultiplier = 0.25f;		// rotation position multiplyer
 
 };
 
