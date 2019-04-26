@@ -23,6 +23,8 @@ public:
 		return instance;
 	}
 
+	static const int panCount = 3;
+
 private:
 	GameManager() {}
 	GameManager(GameManager const&);

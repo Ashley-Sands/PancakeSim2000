@@ -9,6 +9,7 @@
 */
 #include <serial\serial.h>
 #include "SerialInterface.h"
+//#include "GameObjects/Components/Managers/GameManager.h"
 
 class Sprite;
 class SpriteSheet;
@@ -81,85 +82,40 @@ private:
 
 //TESTING ONLY
 
-// UI (BETA)
-
-	TextTransform* UI_scoreLable;
-	TextTransform* UI_scoreValue;
-
-	TextTransform* UI_flipsLable;
-	TextTransform* UI_flipsCount;
-
-	TextTransform* UI_servedPancakesLable;
-	TextTransform* UI_servedPancakesCount;
-
-	TextTransform* UI_happynessLable;
-	TextTransform* UI_happynessValue;
-
+//UI
 	bool showFPS;
 	TextTransform* UI_FPS;
 
-// Not UI
 
-	SpriteSheet* tempcake;
-	SpriteSheet* tempPan_back;
-	SpriteSheet* tempPan_front;
-
-	SpriteSheet* spriteSheet_fire;
-	SpriteSheet* spriteSheet_panFire;
-	SpriteSheet* spriteSheet_faces;
-
-	SpriteSheet* spriteSheet_jug;
-	Sprite* sprite_whisk;
 
 // BETA
 
 	// there needs to be the same amount of pans to pancakes :)
-	static const int panCount = 3;
-	FryingPan* fryingPans_back[panCount];
-	FryingPan* fryingPans_front[panCount];
-	Pancake* pancakes[panCount];
 
 	int f = 0;
-
-	Fire* hobFire[panCount];
-	PanFire* panFire[panCount];
-
 	float flipForce = 1.0f; //TESTING ONLY
 
-//Faces [BETA]
-	static const int faceCount = 4;
-	FaceTarget* faceTargets[faceCount];
-
-	bool showFace = false;
-	FaceTarget* activeFace;
-
-//BETE INPUT (using pong controller)
+//INPUTS
+public:
+	static const int panCount = 3;
+	//The inputs are public since they are heverly shared with the scene class!
 	InputData* fryingPans_inputValue[panCount];
 	InputData_single* single_inputValue;
-
-	Vector2* fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
 	Vector2* fryingPans_inputDelta[panCount];
+
+private:
+	Vector2* fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
 
 	InputData* fryingPans_keyboardInputValues[panCount];
 	InputData_single* single_keyboardInputValue;
 
-
 	const int maxPanRotation = 40;
-
 	const int hobStartValue = 435;
-	const int hobMaxValue = 1023 - hobStartValue;
-
-// jug ( i think that this should be moved into the jug update when i add it )
-	Jug* jug;
-	int currentPourId = -1; // < 0 = not pouring
-	float TMEP_POUR_RATE = 0;
-
-// Whisk
-	Whisk* whisk;
-
 //Scenes
 	Scene* currentScene;
 
+	Scene* scene_splash;
+	Scene* scene_main;
 
 };
 
