@@ -469,14 +469,11 @@ void Game::Update()
 		{
 			currentPourId = i;
 		}
-		else if (currentPourId == i && TMEP_POUR_RATE > 0) //TODO: REMOVED TEMP
+		else if (currentPourId == i)
 		{
-			pancakes[i]->PourPancake(jug->Pour() * TMEP_POUR_RATE); //TODO: REMOVED TEMP
+			pancakes[i]->PourPancake(jug->Pour());
 		}
-		else if (currentPourId == i && TMEP_POUR_RATE == 0) //TODO: Remove. This just fixed porPancake not ending, just while jug->pour is being worked on :)
-		{
-			pancakes[i]->PourPancake(0); 
-		}
+		
 
 		
 
@@ -486,7 +483,7 @@ void Game::Update()
 	}
 
 	//Jug and Whisk
-	jug->Update();
+	jug->Update( single_inputValue->GetPourRotation() );
 	whisk->Upadate(single_inputValue->IsWhisking());
 
 	// if we where pouring a pancake but we can no longer pour we have finished pouring
