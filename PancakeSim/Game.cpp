@@ -42,6 +42,7 @@ Game::~Game()
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
 
+	scenes.clear();
 	delete currentScene;
 
 }
