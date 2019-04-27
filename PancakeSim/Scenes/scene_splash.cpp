@@ -129,7 +129,7 @@ void Scene_splash::Update()
 
 	pancake->Update(game->fryingPans_inputDelta[panInputID]->y / -20.0f,
 		fryingPan_back->GetCurrentSpriteId(),
-		0,	// no rotation, heat or distacne from heat is needed on the slpash screen
+		0,	// no rotation, heat or distacne from heat is needed in the slpash screen
 		0,
 		0
 	);
