@@ -207,6 +207,13 @@ void Game::Render()
 // update - Process all variables !in charge of anything to do with rendering
 void Game::Update()
 {
+	// skip the update to help prevent any cray deltas affter the scene has been loaded or when the game starts :)
+	if (skipUpdate)
+	{
+		skipUpdate = false;
+		return;
+	}
+
 	flipForce = 0;
 
 	// Scenes
@@ -241,6 +248,7 @@ void Game::LoadScene(std::string name)
 	
 
 	currentScene = scenes[name];
+	skipUpdate = true;			// skip the update to prevent a crazzy delta on the first update affter the scene has been loaded
 
 }
 
@@ -265,7 +273,7 @@ void Game::HandleSerialEvents()
 			fryingPans_lastInput[i]->x  = fryingPans_inputValue[i]->GetGyroAxis()->x;
 			fryingPans_lastInput[i]->y  = fryingPans_inputValue[i]->GetGyroAxis()->y;
 
-			fryingPans_inputValue[i]->SetHobValue( fryingPans_inputValue[i]->GetHobValue() -  hobStartValue );	//Todo.
+			fryingPans_inputValue[i]->SetHobValue( fryingPans_inputValue[i]->GetHobValue() -  hobStartValue );
 		}
 	}
 }

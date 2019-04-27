@@ -107,6 +107,9 @@ public:
 	Vector2* fryingPans_inputDelta[panCount];
 
 private:
+
+	bool skipUpdate = false;
+
 	Vector2* fryingPans_lastInput[panCount];	//this can not be a pointer since it needs to be a copy of the last position :)
 
 	InputData* fryingPans_keyboardInputValues[panCount];
