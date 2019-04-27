@@ -188,6 +188,8 @@ void Scene_mainGame::Init()
 	UI_happynessValue->SetPosition(690, 15);
 	UI_happynessValue->SetScale(0.5f, 0.5f);
 
+	initalized = true;
+
 }
 
 void Scene_mainGame::Render()

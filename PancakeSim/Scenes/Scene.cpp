@@ -11,3 +11,8 @@ Scene::Scene(Game* mainGame)
 Scene::~Scene()
 {
 }
+
+bool Scene::HasInitalized()
+{
+	return initalized;
+}

@@ -14,14 +14,17 @@ public:
 	virtual void Update() = 0;
 	virtual void UpdateUI() = 0;
 
+	bool HasInitalized();
+
 protected:
 	Game* game;
+
+	bool initalized = false;
 
 private:
 
 	// block default constructor
 	Scene();		
-
 	
 };
 

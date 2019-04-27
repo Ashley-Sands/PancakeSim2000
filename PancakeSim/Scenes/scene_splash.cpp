@@ -38,6 +38,8 @@ void Scene_splash::Init()
 
 	game->SetBackgroundColor(50, 50, 50);
 	game->HandleSerialOutput("N");
+
+	initalized = true;
 }
 
 void Scene_splash::Render()
