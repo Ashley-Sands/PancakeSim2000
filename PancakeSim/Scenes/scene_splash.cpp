@@ -110,23 +110,42 @@ void Scene_splash::Render()
 void Scene_splash::Update()
 {
 
-	currentPosition += Time::GetDeltaSeconds();
 
-	fryingPan_back->Update ( game->fryingPans_inputValue[ panInputID ]->GetGyroAxis()->y / -35.0f, 0 );
-	fryingPan_front->Update( game->fryingPans_inputValue[ panInputID ]->GetGyroAxis()->y / -35.0f, 0 );
+	fryingPan_back->Update(game->fryingPans_inputValue[panInputID]->GetGyroAxis()->y / -35.0f, 0);
+	fryingPan_front->Update(game->fryingPans_inputValue[panInputID]->GetGyroAxis()->y / -35.0f, 0);
 
-	pancake->Update(game->fryingPans_inputDelta[ panInputID ]->y / -20.0f,
+	pancake->Update(game->fryingPans_inputDelta[panInputID]->y / -20.0f,
 		fryingPan_back->GetCurrentSpriteId(),
-		game->fryingPans_inputValue[ panInputID ]->GetGyroAxis()->x,
+		game->fryingPans_inputValue[panInputID]->GetGyroAxis()->x,
 		0,
 		0
 	);
 
+	if (!pancake->IsInPan())
+		pancake_currentAirTime += Time::GetDeltaSeconds();
+	else
+		pancake_currentAirTime = 0.0f;
+	
 
-	if (currentPosition > length)
+	if (pancake_currentAirTime > pancake_airTimeToContine)
+		canContinue = true && hasEnteredPanOnce;
+
+	if (pancake->IsInPan())
+		hasEnteredPanOnce = true;
+
+	// Contine to the maingame once we are back in the pan
+	if( canContinue && pancake->IsInPan() )
 		game->LoadScene("main");
 
-	float newColor =  Helper::Random();
-	UI_continueText->SetFontColor(newColor, newColor, newColor);
+	if( contineText_colorIncresse )
+		contineText_currentColor += Time::GetDeltaSeconds();
+	else
+		contineText_currentColor -= Time::GetDeltaSeconds();
+
+	if (contineText_currentColor < 0) contineText_currentColor = 0;
+	if (contineText_currentColor > 0) contineText_currentColor = 255;
+
+
+	UI_continueText->SetFontColor(contineText_currentColor, contineText_currentColor, contineText_currentColor);
 
 }

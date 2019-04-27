@@ -27,6 +27,9 @@ private:
 	SDL_Rect* logoPosition;
 	TextTransform* UI_continueText;
 
+	float contineText_currentColor = 0;
+	bool contineText_colorIncresse = true;
+
 	SpriteSheet* spriteSheet_pancake;
 	SpriteSheet* spriteSheet_pan_front;
 	SpriteSheet* spriteSheet_pan_back;
@@ -38,8 +41,10 @@ private:
 
 	Pancake* pancake;
 
-	float length = 5;
-	float currentPosition;
+	float pancake_airTimeToContine = 3;
+	float pancake_currentAirTime = 0;;
+	bool hasEnteredPanOnce = false;
+	bool canContinue = false;				// can contine once back in the pan :)
 
 };
 
