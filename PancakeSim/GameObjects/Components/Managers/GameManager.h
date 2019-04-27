@@ -3,7 +3,7 @@
 #include <array>
 #include "..\..\..\Game.h"
 
-
+//TODO: i  think i can remove this, since i we only have two scenes, no pause or menus, just splash and main game :)
 enum GameState {
 	Splash,		//TODO: Use this for loading ??
 	Paused,
