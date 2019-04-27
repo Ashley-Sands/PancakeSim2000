@@ -233,7 +233,7 @@ void Pancake::SetCurrentCookingState()
 	else
 	{
 		currentCookState = CookingState::Perfect;
-		currentSpriteRow = 3;
+		currentSpriteRow = 2;
 	}
 }
 
