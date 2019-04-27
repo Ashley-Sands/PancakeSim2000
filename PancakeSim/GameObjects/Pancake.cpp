@@ -157,6 +157,11 @@ void Pancake::PourPancake(float rate)
 	}
 }
 
+void Pancake::SetPancakeSize(float size)
+{
+	pancakeSize = size;
+}
+
 float Pancake::GetPancakeSizePercentage()
 {
 	return (pancakeSize - minPancakeSize) / (maxPancakeSize - minPancakeSize);
@@ -184,6 +189,21 @@ float Pancake::GetFlipPercentage()
 CookingState Pancake::GetCurrentCookingState()
 {
 	return currentCookState;
+}
+
+void Pancake::SetCurrentCookingState(CookingState state)
+{
+	currentCookState = state;
+
+	switch (state)
+	{
+		case CookingState::Raw:		currentCookingTime = 0;									break;
+		case CookingState::Mixture: currentCookingTime = (cookingLength * rawMutiplyer);	break;
+		case CookingState::Perfect: currentCookingTime =  cookingLength;					break;
+		case CookingState::Burnt:	currentCookingTime = (cookingLength * burntMutiplyer);	break;
+		case CookingState::OnFire:	currentCookingTime = (cookingLength * fireMutiplyer);	break;
+	}
+
 }
 
 void Pancake::SetCurrentCookingState()

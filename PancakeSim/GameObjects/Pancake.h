@@ -25,10 +25,13 @@ public:
 	void Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize);
 
 	void PourPancake(float rate);
+	void SetPancakeSize(float size);
 
 	float GetPancakeSizePercentage();
 
 	CookingState GetCurrentCookingState();
+	// this will lock the state of the pancake if called
+	void SetCurrentCookingState(CookingState state);
 
 	bool CanPour();
 
