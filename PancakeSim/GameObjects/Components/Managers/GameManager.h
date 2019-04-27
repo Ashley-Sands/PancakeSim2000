@@ -39,7 +39,9 @@ public:
 	void AddFlip();
 	int GetTotalFlips();
 
-	void AddServedPancake(float happyness);
+	// returns true if there was enought score to buy more mixture :)
+	bool BuyMixture();
+	void AddServedPancake(float happyness, float pancakeSize);
 	int GetTotalServedPancakes();
 	float GetHappyness();
 
@@ -62,9 +64,10 @@ public:
 	void SoundAlarm(bool shortBurst);
 
 private:
-	
-	int scorePerFlip = 1;
-	int scorePerPancake = 5;
+	// Score is no moneys
+	int scorePerFlip = 0;
+	int scorePerPancake = 5;	
+	int mixtureCost = 25;
 
 	int totalPancakeFlips = 0;
 	int totalPancakesServed = 0;

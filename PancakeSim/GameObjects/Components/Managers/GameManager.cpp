@@ -14,13 +14,28 @@ int GameManager::GetTotalFlips()
 	return totalPancakeFlips;
 }
 
-void GameManager::AddServedPancake(float happyness)
+bool GameManager::BuyMixture()
+{
+	if (mixtureCost > totalScore)
+	{
+		return false;
+	}
+	else
+	{
+		totalScore -= mixtureCost;
+		return true;
+	}
+}
+
+void GameManager::AddServedPancake(float happyness, float pancakeSize)
 {
 	totalPancakesServed++;
-	totalPancakesHappness += happyness;
+	totalPancakesHappness += happyness * pancakeSize;
+
+	float score = (happyness < 0 ? 0 : scorePerPancake * pancakeSize);
 
 	if (happyness > 0)
-		AddScore(scorePerPancake);
+		AddScore( score );
 	else
 		TriggerOnScoreChanged();
 }
