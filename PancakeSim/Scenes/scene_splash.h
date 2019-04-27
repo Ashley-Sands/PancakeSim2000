@@ -6,6 +6,9 @@ class Game;
 class Sprite;
 class SDL_Rect;
 class TextTransform;
+class SpriteSheet;
+class Pancake;
+class FryingPan;
 
 class Scene_splash : public Scene
 {
@@ -23,6 +26,17 @@ private:
 	Sprite* sprite_logo;
 	SDL_Rect* logoPosition;
 	TextTransform* UI_continueText;
+
+	SpriteSheet* spriteSheet_pancake;
+	SpriteSheet* spriteSheet_pan_front;
+	SpriteSheet* spriteSheet_pan_back;
+
+	const int panInputID = 1; //
+
+	FryingPan* fryingPan_front;
+	FryingPan* fryingPan_back;
+
+	Pancake* pancake;
 
 	float length = 5;
 	float currentPosition;
