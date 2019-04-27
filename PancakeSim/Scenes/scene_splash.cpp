@@ -97,11 +97,24 @@ void Scene_splash::Init()
 
 void Scene_splash::Render()
 {
+
+	// draw a box below the contine text 
+	SDL_Rect boarder_rect;
+
+	boarder_rect.h = 50;
+	boarder_rect.w = GameSettings::window_width;
+	boarder_rect.x = 0;
+	boarder_rect.y = 240;
+
+	float color = 255 - contineText_currentColor;
+
+	SDL_SetRenderDrawColor(game->GetRenderer(), color, color, color, 255);
+	SDL_RenderFillRect(game->GetRenderer(), &boarder_rect);
+
 	// Game
 	fryingPan_back->Render(game->GetRenderer());
 	pancake->Render(game->GetRenderer());
 	fryingPan_front->Render(game->GetRenderer());
-
 	//UI
 	sprite_logo->RenderSprite( game->GetRenderer(), logoPosition );
 	UI_continueText->Render( game->GetRenderer() );
@@ -137,14 +150,23 @@ void Scene_splash::Update()
 	if( canContinue && pancake->IsInPan() )
 		game->LoadScene("main");
 
-	if( contineText_colorIncresse )
-		contineText_currentColor += Time::GetDeltaSeconds();
+	if (contineText_colorIncresse)
+		contineText_currentColor += 4;
 	else
-		contineText_currentColor -= Time::GetDeltaSeconds();
+		contineText_currentColor -= 4;
 
-	if (contineText_currentColor < 0) contineText_currentColor = 0;
-	if (contineText_currentColor > 0) contineText_currentColor = 255;
+	if (!contineText_colorIncresse && contineText_currentColor < 0)
+	{
 
+		contineText_currentColor = 0;
+		contineText_colorIncresse = true;
+	}
+	else if (contineText_colorIncresse && contineText_currentColor > 255)
+	{
+
+		contineText_currentColor = 255;
+		contineText_colorIncresse = false;
+	}
 
 	UI_continueText->SetFontColor(contineText_currentColor, contineText_currentColor, contineText_currentColor);
 
