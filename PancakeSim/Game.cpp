@@ -42,8 +42,6 @@ Game::~Game()
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
 
-	delete scene_splash;
-	delete scene_mainGame;
 	delete currentScene;
 
 }

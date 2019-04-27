@@ -115,11 +115,8 @@ private:
 	const int maxPanRotation = 40;
 	const int hobStartValue = 435;
 //Scenes
+
 	Scene* currentScene;
-
-	Scene* scene_splash;
-	Scene* scene_mainGame;
-
 	std::map<std::string, Scene*> scenes;
 };
 
