@@ -30,7 +30,7 @@ void Pancake::Begin()
 
 }
 
-void Pancake::Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize)	//TODO: added cooking temp.
+void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobValue, float flameSize)
 {
 
 	if (pancakeSize == 0.0f) return;	//Theres no pancake to display
@@ -41,9 +41,9 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 	SpriteSheet* spriteSheet = GetSpriteSheet();
 	int spriteID = 0;
 
-	float offHobOffset = 100.0f * (1 - hobValue);	//TODO: Come on...
+	float offHobOffset = 100.0f * (1 - onHobValue);	//TODO: Come on...
 
-	Console::LogMessage(MessageType::Log, "Hob Value: " + std::to_string(hobValue));
+	Console::LogMessage(MessageType::Log, "Hob Value: " + std::to_string(onHobValue));
 
 	if (GetAnchoredPosition()->x < (startPosition - (GetSize()->x / 2.0f)) || GetAnchoredPosition()->x > (startPosition + (GetSize()->x / 2.0f))) // Pancake can't be chatched // this should be worked out to the size of the pan
 	{
@@ -109,7 +109,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float hobVal
 			currentFlipForce = (flipForce * force);
 		}
 
-		currentCookingTime += Time::GetDeltaSeconds() * hobValue * flameSize * (1.2f - GetPancakeSizePercentage()); //TODO: Add cooking temp mutiplyer
+		currentCookingTime += Time::GetDeltaSeconds() * onHobValue * flameSize * (1.2f - GetPancakeSizePercentage()); //TODO: Add cooking temp mutiplyer
 		SetCurrentCookingState();
 
 		SetRotation(panRotation);

@@ -22,7 +22,7 @@ public:
 	~Pancake();
 
 	virtual void Begin() override;
-	void Update(float force, int panSpriteId, int panRotation, float hobValue, float flameSize);
+	void Update(float force, int panSpriteId, int panRotation, float onHobValue, float flameSize);
 
 	void PourPancake(float rate);
 	void SetPancakeSize(float size);
