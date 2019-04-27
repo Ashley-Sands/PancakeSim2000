@@ -253,6 +253,9 @@ void Pancake::ServePancake(bool hit)
 	else
 		happyness =  GetCookStateHappyness();
 
+	GameManager::GetInstance().AddServedPancake(happyness, pancakeSize);
+	GameManager::GetInstance().SoundAlarm(true);
+
 	// Reset the pancake
 	currentCookState = CookingState::None;
 	currentCookingTime = 0;
@@ -261,9 +264,6 @@ void Pancake::ServePancake(bool hit)
 	canPour = true;
 	SetPosition(startPosition, 1000);	//it needs to be set below its start position x so update can correct it :|
 
-
-	GameManager::GetInstance().AddServedPancake(happyness);
-	GameManager::GetInstance().SoundAlarm(true);
 }
 
 bool Pancake::IsInPan()
