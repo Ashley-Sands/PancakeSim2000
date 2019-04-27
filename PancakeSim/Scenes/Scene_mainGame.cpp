@@ -257,6 +257,7 @@ void Scene_mainGame::Update()
 		fryingPans_back[i]->Update(game->fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f, game->fryingPans_inputValue[i]->GetHobValue() / (float)hobMaxValue);
 		fryingPans_front[i]->Update(game->fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f, game->fryingPans_inputValue[i]->GetHobValue() / (float)hobMaxValue);
 
+		//TODO: move rotation into Update
 		fryingPans_back[i]->SetRotation(game->fryingPans_inputValue[i]->GetGyroAxis()->x);
 		fryingPans_front[i]->SetRotation(game->fryingPans_inputValue[i]->GetGyroAxis()->x);
 
