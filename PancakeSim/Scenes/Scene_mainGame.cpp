@@ -310,7 +310,7 @@ void Scene_mainGame::Update()
 	if (showFace && activeFace == nullptr)
 	{	// Set a random active face
 
-		int randFace = Helper::Random() % faceCount; // TODO: Make more random :/
+		int randFace = Helper::Random() % faceCount;
 		activeFace = faceTargets[randFace];
 		activeFace->SetActive(true);
 	}

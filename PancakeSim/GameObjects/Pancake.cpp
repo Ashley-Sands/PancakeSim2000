@@ -52,7 +52,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 			ServePancake(false);
 		}
 	} //we're in the pan :)
-	else if (GetAnchoredPosition()->y >= 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset) //TODO: this should really be in the pan bit
+	else if (GetAnchoredPosition()->y >= 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset) //TODO: make into its own function :/
 	{ 	//TODO: replace magic numbers throughtout this if statment
 
 		float force_x = 0;
@@ -63,22 +63,22 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 
 		if (force_y_accum > 0 && force < 0 || panSpriteId > 4 && force_y_accum > 0.0f)
 		{
-			force = (force_y_accum + force) / fc;
+			force = (force_y_accum + force) / force_y_frameCount;
 			force_y_accum = 0;
-			fc = 0;
+			force_y_frameCount = 0;
 
 		}
 		else if (force > 0)
 		{
 			force_y_accum += force;
-			fc++;
+			force_y_frameCount++;
 			force = 0;
 		}
 		else
 		{
 			force = 0;
 			force_y_accum = 0;
-			fc = 0;
+			force_y_frameCount = 0;
 		}
 
 		if (/*panSpriteId < 4 ||*/ force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought //TODO: improve this so it uses the Accum delta and release when the force stops or goes backwards
@@ -109,7 +109,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 			currentFlipForce = (flipForce * force);
 		}
 
-		currentCookingTime += Time::GetDeltaSeconds() * onHobValue * flameSize * (1.2f - GetPancakeSizePercentage()); //TODO: Add cooking temp mutiplyer
+		currentCookingTime += Time::GetDeltaSeconds() * onHobValue * flameSize * (1.2f - GetPancakeSizePercentage());
 		SetCurrentCookingState();
 
 		SetRotation(panRotation);

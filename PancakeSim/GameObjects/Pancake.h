@@ -81,7 +81,7 @@ private:
 	const float fireMutiplyer = 1.65f;			// any time above this triggers the fire alarm, call the fire bargade!
 
 	float force_y_accum = 0;
-	int fc = 0;	//TODO give me a reall name
+	int force_y_frameCount = 0;	
 
 };
 
