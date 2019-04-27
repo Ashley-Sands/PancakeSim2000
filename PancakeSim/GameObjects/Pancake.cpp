@@ -55,6 +55,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 	else if (GetAnchoredPosition()->y >= 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset) //TODO: make into its own function :/
 	{ 	//TODO: replace magic numbers throughtout this if statment
 
+		inPan = true;
 		float force_x = 0;
 		
 		//TODO: sort this mess out
@@ -263,6 +264,11 @@ void Pancake::ServePancake(bool hit)
 
 	GameManager::GetInstance().AddServedPancake(happyness);
 	GameManager::GetInstance().SoundAlarm(true);
+}
+
+bool Pancake::IsInPan()
+{
+	return inPan;
 }
 
 float Pancake::GetCookStateHappyness()

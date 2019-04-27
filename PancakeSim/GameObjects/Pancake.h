@@ -37,6 +37,8 @@ public:
 
 	void ServePancake(bool hit);
 
+	bool IsInPan();
+
 private:
 	
 	Rigidbody* rigidbody;
@@ -58,6 +60,8 @@ private:
 	const float minFlipForce = 0.05f;// 0.5f;
 
 	int currentSpriteRow = 0;
+
+	bool inPan = false;
 
 // Pancake size
 	float pancakeSize = 0.0f;
