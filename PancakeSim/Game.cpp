@@ -3,6 +3,7 @@
 #include "SDL_image.h"
 
 #include <iostream>
+
 //Pancake Sim 2000
 #include "GameObjects/GameObjects.h"
 #include "GameObjects/Components/Components.h"
@@ -19,8 +20,10 @@
 
 Game::Game()
 {
+	// construct the scenes without initalizing :)
+	scenes["splash"] = new Scene_splash(this);
+	scenes["main"]= new Scene_mainGame(this);
 
-	currentScene = new Scene_mainGame(this);// Scene_splash(this);
 	backgroundColor = new SDL_Color();
 
 }
@@ -39,6 +42,8 @@ Game::~Game()
 	if (ignoreSerial)
 		delete[] &fryingPans_inputValue;
 
+	delete scene_splash;
+	delete scene_mainGame;
 	delete currentScene;
 
 }
@@ -172,9 +177,8 @@ void Game::InitGameComponents()
 
 	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
 
-	// Set the current scene :)
-	// TODO: set the current scene :s
-	currentScene->Init();
+	// Load the first scene.
+	LoadScene("splash");
 
 }
 
@@ -219,6 +223,25 @@ void Game::OnScoreChanged()
 {
 
 	currentScene->UpdateUI();
+
+}
+
+
+void Game::LoadScene(std::string name)
+{	//TODO: it would be cool if i unloaded (but its not really worth it for a game of this size)
+
+	if (scenes.count(name) == 0)
+	{
+		Console::LogMessage(MessageType::Error, "Scene " + name + "not found");
+		return;
+	}
+
+	//Check if the scene has been initalized.
+	if (!scenes[name]->HasInitalized())
+		scenes[name]->Init();
+	
+
+	currentScene = scenes[name];
 
 }
 

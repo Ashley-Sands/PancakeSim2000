@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include "SDL.h"
 #include "SDL_ttf.h"
 
@@ -49,6 +50,8 @@ public:
 
 	bool Running() { return isRunning; };
 	void OnScoreChanged();
+
+	void LoadScene(std::string name);
 
 private:
 	
@@ -115,7 +118,8 @@ private:
 	Scene* currentScene;
 
 	Scene* scene_splash;
-	Scene* scene_main;
+	Scene* scene_mainGame;
 
+	std::map<std::string, Scene*> scenes;
 };
 
