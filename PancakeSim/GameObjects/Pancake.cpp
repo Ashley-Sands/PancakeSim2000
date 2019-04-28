@@ -67,10 +67,10 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 		
 		//TODO: sort this mess out
 		if(abs(panRotation) > 20.0f)		// min rotating to throw pancakes 
-			force_x = -panRotation / 40.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: << 
+			force_x = -panRotation / 35.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: << 
 
 
-
+		// accumalte the force of the pancake 
 		if (force_y_accum > 0 && force < 0 || panSpriteId > 4 && force_y_accum > 0.0f)
 		{
 			force = (force_y_accum + force) / force_y_frameCount;
@@ -91,7 +91,8 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 			force_y_frameCount = 0;
 		}
 
-		if (/*panSpriteId < 4 ||*/ force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought //TODO: improve this so it uses the Accum delta and release when the force stops or goes backwards
+		// correct min force
+		if (force < minFlipForce || currentCookState == CookingState::Mixture) // can not flip if pan has not roted enought //TODO: improve this so it uses the Accum delta and release when the force stops or goes backwards
 		{
 			force = 0.0f;
 			force_x = 0.0f;
@@ -100,20 +101,19 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 		{
 			force_x = 0.0f;
 		}
-		else
-		{
-			force_x *= force;
-		}
+	
+		force_x *= force;
+		
 		
 		// correct the pancakes position when in pan
 		if (force < minFlipForce)
 		{
-			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f - (float)panSpriteId));
+			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (( ( panRotation < 0.0f ? -1.0f : 1.0f ) * 4.0f) * (3.0f - (float)panSpriteId));
 			SetAnchoredPosition(fixed_x_pos, panBottomPosition - (panBottom_spriteIdOffset * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 			rigidbody->SetVelocity(force_x, 0);
 		}
-		else //RB / flip
+		else //RB / flip start
 		{
 			rigidbody->SetVelocity(force_x, 1.5f * force);
 			currentFlip = 0.0f;
