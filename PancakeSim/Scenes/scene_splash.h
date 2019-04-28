@@ -41,7 +41,7 @@ private:
 
 	Pancake* pancake;
 
-	float pancake_airTimeToContine = 2;
+	float pancake_airTimeToContine = 1.5;
 	float pancake_currentAirTime = 0;;
 	bool hasEnteredPanOnce = false;
 	bool canContinue = false;				// can contine once back in the pan :)
