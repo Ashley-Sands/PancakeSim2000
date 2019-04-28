@@ -125,7 +125,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 		SetRotation(panRotation);
 
 	}	
-	else if ( GetPosition()->y >= panBottomPosition - (panBottom_spriteIdOffset * panSpriteId) - offHobOffset - 20 && rigidbody->GetVelocity()->y < 0)	//correct position when entering pan
+	else if ( GetPosition()->y >= panBottomPosition - (panBottom_spriteIdOffset * panSpriteId) - offHobOffset - 60 && rigidbody->GetVelocity()->y < 0)	//correct position when entering pan
 	{
 		spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		SetRotation(panRotation);
