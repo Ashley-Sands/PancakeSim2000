@@ -9,8 +9,8 @@ public:
 
 	static const std::string GetTitle() { return "Sim Pancake 2000"; }
 
-	static const int window_width = 800;
-	static const int window_height = 600;
+	static const int window_width = 1280;
+	static const int window_height = 800;
 
 	static const bool fullScreen = false;
 
