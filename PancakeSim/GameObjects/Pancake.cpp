@@ -15,12 +15,15 @@ Pancake::Pancake(SpriteSheet* sprite) : SpriteAnimator(sprite)
 	rigidbody = new Rigidbody(this, default_mass);
 	rigidbody->SetVelocity(0.0f, 0.0f);
 
+	outOfBounds = new FVector2(150, 500);
+
 }
 
 
 Pancake::~Pancake()
 {
 	delete rigidbody;
+	delete outOfBounds;
 }
 
 void Pancake::Begin()
@@ -50,12 +53,13 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 
 	if (GetAnchoredPosition()->x < (startPosition - (GetSize()->x / 2.0f)) || GetAnchoredPosition()->x > (startPosition + (GetSize()->x / 2.0f))) // Pancake can't be chatched // this should be worked out to the size of the pan
 	{
-		if (GetAnchoredPosition()->y > 500 || GetAnchoredPosition()->x < -150 || GetAnchoredPosition()->x > GameSettings::window_width+150)
+
+		if (GetAnchoredPosition()->y > outOfBounds->y || GetAnchoredPosition()->x < -outOfBounds->x || GetAnchoredPosition()->x > GameSettings::window_width + outOfBounds->x)
 		{	
 			ServePancake(false);
 		}
 	} //we're in the pan :)
-	else if (GetAnchoredPosition()->y >= 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset) //TODO: make into its own function :/
+	else if (GetAnchoredPosition()->y >= panBottomPosition - (panBottom_spriteIdOffset * panSpriteId) - offHobOffset) //TODO: make into its own function :/
 	{ 	//TODO: replace magic numbers throughtout this if statment
 
 		inPan = true;
@@ -65,6 +69,8 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 		if(abs(panRotation) > 20.0f)		// min rotating to throw pancakes 
 			force_x = -panRotation / 40.0f;	//I should realy use the force from the accel (insted of the Y delta). TODO: << 
 
+
+
 		if (force_y_accum > 0 && force < 0 || panSpriteId > 4 && force_y_accum > 0.0f)
 		{
 			force = (force_y_accum + force) / force_y_frameCount;
@@ -72,7 +78,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 			force_y_frameCount = 0;
 
 		}
-		else if (force > 0)
+		else if (force > 0 && panSpriteId <= 4)
 		{
 			force_y_accum += force;
 			force_y_frameCount++;
@@ -103,7 +109,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 		if (force < minFlipForce)
 		{
 			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (((panRotation < 0.0f ? -1.0f : 1.0f) * 4.0f) * (3.0f - (float)panSpriteId));
-			SetAnchoredPosition(fixed_x_pos, 455 - (panSpritePositionMultiplier * panSpriteId) - offHobOffset);
+			SetAnchoredPosition(fixed_x_pos, 455 - (panBottom_spriteIdOffset * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
 		}
 		else //RB / flip
@@ -113,12 +119,12 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 			currentFlipForce = (flipForce * force);
 		}
 
-		currentCookingTime += Time::GetDeltaSeconds() * onHobValue * flameSize * (1.2f - GetPancakeSizePercentage());
+		currentCookingTime += Time::GetDeltaSeconds() * onHobValue * flameSize * (2.0f - GetPancakeSizePercentage());
 		SetCurrentCookingState();
 
 		SetRotation(panRotation);
 
-	}
+	}	// TODO: improve the position at which we correct the position
 	else if ( GetPosition()->y >= 310 - offHobOffset && rigidbody->GetVelocity()->y < 0)	//correct position when entering pan
 	{
 		spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
@@ -272,6 +278,19 @@ void Pancake::ServePancake(bool hit)
 bool Pancake::IsInPan()
 {
 	return inPan;
+}
+
+void Pancake::SetPanBottom(float position, float spriteOffset)
+{
+
+	panBottomPosition = position;
+	panBottom_spriteIdOffset = spriteOffset;
+
+}
+
+void Pancake::SetBounds(float x_bounds, float y_bounds)
+{
+	outOfBounds->SetVector(x_bounds, y_bounds);
 }
 
 float Pancake::GetCookStateHappyness()

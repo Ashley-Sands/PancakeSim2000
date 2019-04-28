@@ -39,14 +39,15 @@ public:
 
 	bool IsInPan();
 
+	void SetPanBottom(float position, float spriteOffset);
+	void SetBounds(float x_bounds, float y_bounds);
+
 private:
 	
 	Rigidbody* rigidbody;
 	float default_mass = 0.2f;
 
 	float startPosition;
-
-	const float panSpritePositionMultiplier = 6.0f;
 
 	float GetFlipPercentage();	// Get the flip playback position in %
 
@@ -61,7 +62,13 @@ private:
 
 	int currentSpriteRow = 0;
 
+// Pan bits
 	bool inPan = false;
+
+	float panBottomPosition = 455;
+	float panBottom_spriteIdOffset = 6.0f;
+
+	FVector2* outOfBounds;
 
 // Pancake size
 	float pancakeSize = 0.0f;
