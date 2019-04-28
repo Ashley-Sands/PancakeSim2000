@@ -92,35 +92,37 @@ void Scene_mainGame::Init()
 	{
 		//init pans and pancakes
 		fryingPans_back[i] = new FryingPan(spriteSheet_pan_back);
-		fryingPans_back[i]->SetPosition(10 + (210 * i), 350);
+		fryingPans_back[i]->SetPosition(80 + (260 * i), 500);
 		fryingPans_back[i]->SetScale(1.1f, 1.1f);
 
 		fryingPans_back[i]->Begin();
 
 		fryingPans_front[i] = new FryingPan(spriteSheet_pan_front);
-		fryingPans_front[i]->SetPosition(10 + (210 * i), 350);
+		fryingPans_front[i]->SetPosition(80 + (260 * i), 500);
 		fryingPans_front[i]->SetScale(1.1f, 1.1f);
+		fryingPans_front[i]->SetPanBottom_LocalOffset(105);
 
 		fryingPans_front[i]->Begin();
 
 
 		pancakes[i] = new Pancake(spriteSheet_pancake);
 		pancakes[i]->SetAnchor(TransformAnchor::Center);
-		pancakes[i]->SetAnchoredPosition(40 + (213 * i), 550);		// set the position of the pancakes well below the pan so it can be corrected to the correct Y position :) (Yeee-haaa)
+		pancakes[i]->SetAnchoredPosition(110 + (263 * i), 900);		// set the position of the pancakes well below the pan so it can be corrected to the correct Y position :) (Yeee-haaa)
 		pancakes[i]->SetScale(0.8f, 0.8f);
+		pancakes[i]->SetPanBottom(fryingPans_front[i]->GetPanBottom(), 6);
 
 		pancakes[i]->Begin();
 
 		hobFire[i] = new Fire(spriteSheet_fire);
 		hobFire[i]->SetAnchor(TransformAnchor::Center);
 		hobFire[i]->SetScale(1.05f, 1.05f);
-		hobFire[i]->SetAnchoredPosition(120 + (210 * i), 470);
+		hobFire[i]->SetAnchoredPosition(190 + (260 * i), 625);
 
 		hobFire[i]->Begin();
 
 		panFire[i] = new PanFire(spriteSheet_panFire);
 		panFire[i]->SetAnchor(TransformAnchor::Center);
-		panFire[i]->SetAnchoredPosition(120 + (210 * i), 470); //??
+		panFire[i]->SetAnchoredPosition(190 + (260 * i), 590); //??
 		panFire[i]->SetInvervalLength(0.175f);
 		panFire[i]->Begin();
 
@@ -128,12 +130,14 @@ void Scene_mainGame::Init()
 
 	// Jug
 	jug = new Jug(spriteSheet_jug);
-	jug->SetPosition(80, 120);
+	jug->SetScale(0.8f, 0.8f);
+	jug->SetPosition(820, 530);
+
 	jug->Begin();
 
 	// Whisk
 	whisk = new Whisk(sprite_whisk);
-	whisk->SetPosition(165, 100);
+	whisk->SetPosition(165, 530);
 	whisk->Begin();
 
 	//Setup Face Targets
@@ -199,10 +203,10 @@ void Scene_mainGame::Render()
 	// draw to the screen here!
 	SDL_Rect tempCooker_rect;
 
-	tempCooker_rect.h = 200;
-	tempCooker_rect.w = 650;
+	tempCooker_rect.h = 220;
+	tempCooker_rect.w = 1000;
 	tempCooker_rect.x = 0;
-	tempCooker_rect.y = 425;
+	tempCooker_rect.y = 580;
 
 	SDL_SetRenderDrawColor(mainRenderer, 155, 155, 155, 255);
 	SDL_RenderFillRect(mainRenderer, &tempCooker_rect);
@@ -211,7 +215,7 @@ void Scene_mainGame::Render()
 	tempCooker_rect.h = 150;
 	tempCooker_rect.w = 150;
 	tempCooker_rect.x = 400;
-	tempCooker_rect.y = 175;
+	tempCooker_rect.y = 275;
 	// ...ok its a blue square
 	SDL_SetRenderDrawColor(mainRenderer, 0, 55, 255, 255);
 	SDL_RenderFillRect(mainRenderer, &tempCooker_rect);
