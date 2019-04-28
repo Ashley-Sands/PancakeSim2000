@@ -108,10 +108,9 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 		// correct the pancakes position when in pan
 		if (force < minFlipForce)
 		{
-			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (( ( panRotation < 0.0f ? -1.0f : 1.0f ) * 4.0f) * (3.0f - (float)panSpriteId));
+			float fixed_x_pos = startPosition + ((float)panRotation * 0.85f) - (( ( panRotation < 0.0f ? -1.0f : 1.0f ) * 6.0f));
 			SetAnchoredPosition(fixed_x_pos, panBottomPosition - (panBottom_spriteIdOffset * panSpriteId) - offHobOffset);
 			spriteID = (spriteSheet->GetTotalSprites() - 1) - floor(panSpriteId / 2.0f);
-			rigidbody->SetVelocity(force_x, 0);
 		}
 		else //RB / flip start
 		{
