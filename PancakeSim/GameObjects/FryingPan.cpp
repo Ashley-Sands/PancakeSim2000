@@ -42,3 +42,13 @@ int FryingPan::GetCurrentSpriteId()
 {
 	return currentSpriteID;
 }
+
+void FryingPan::SetPanBottom_LocalOffset(float offset)
+{
+	panBottom_localOffset = offset;
+}
+
+float FryingPan::GetPanBottom()
+{
+	return GetPosition()->y + panBottom_localOffset;
+}

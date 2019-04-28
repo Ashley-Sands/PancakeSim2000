@@ -15,8 +15,13 @@ public:
 
 	int GetCurrentSpriteId();
 
+	void SetPanBottom_LocalOffset(float offset);
+	float GetPanBottom();							// returns the botom of the pans, in world space  
+
 private:
 	int currentSpriteID = 0;
 	FVector2* startPosition;
+	
+	float panBottom_localOffset = 55;
 };
 
