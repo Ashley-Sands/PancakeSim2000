@@ -134,17 +134,18 @@ void Scene_splash::Update()
 		0
 	);
 
+
 	if (!pancake->IsInPan())
 		pancake_currentAirTime += Time::GetDeltaSeconds();
-	else
-		pancake_currentAirTime = 0.0f;
-	
 
 	if (pancake_currentAirTime > pancake_airTimeToContine)
 		canContinue = true && hasEnteredPanOnce;
 
 	if (pancake->IsInPan())
+	{
 		hasEnteredPanOnce = true;
+		pancake_currentAirTime = 0.0f;
+	}
 
 	// Contine to the maingame once we are back in the pan
 	if( canContinue && pancake->IsInPan() )

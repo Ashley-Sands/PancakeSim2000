@@ -43,6 +43,9 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 
 	float offHobOffset = 100.0f * (1 - onHobValue);	//TODO: Come on...
 
+	// assume we are not in the pan
+	inPan = false;
+
 	Console::LogMessage(MessageType::Log, "Hob Value: " + std::to_string(onHobValue));
 
 	if (GetAnchoredPosition()->x < (startPosition - (GetSize()->x / 2.0f)) || GetAnchoredPosition()->x > (startPosition + (GetSize()->x / 2.0f))) // Pancake can't be chatched // this should be worked out to the size of the pan
