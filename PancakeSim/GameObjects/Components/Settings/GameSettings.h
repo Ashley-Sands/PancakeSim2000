@@ -7,7 +7,7 @@ public:
 	GameSettings();
 	~GameSettings();
 
-	static const std::string GetTitle() { return "Pancake Sim 2000"; }
+	static const std::string GetTitle() { return "Sim Pancake 2000"; }
 
 	static const int window_width = 800;
 	static const int window_height = 600;
