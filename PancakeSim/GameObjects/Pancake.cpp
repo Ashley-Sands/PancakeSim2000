@@ -120,7 +120,7 @@ void Pancake::Update(float force, int panSpriteId, int panRotation, float onHobV
 			currentFlipForce = (flipForce * force);
 		}
 
-		currentCookingTime += Time::GetDeltaSeconds() * onHobValue * flameSize * (2.0f - GetPancakeSizePercentage());
+		currentCookingTime += Time::GetDeltaSeconds() * onHobValue * flameSize * (pancakeSizeCookMutiplyer - GetPancakeSizePercentage());
 		SetCurrentCookingState();
 
 		SetRotation(panRotation);

@@ -74,6 +74,7 @@ private:
 	float pancakeSize = 0.0f;
 	const float maxPancakeSize = 0.75f;
 	const float minPancakeSize = 0.2f;
+	float pancakeSizeCookMutiplyer = 2.0f;
 	bool canPour = true;
 
 // Cooking
