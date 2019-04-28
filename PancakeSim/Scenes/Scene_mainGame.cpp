@@ -137,7 +137,7 @@ void Scene_mainGame::Init()
 
 	// Whisk
 	whisk = new Whisk(sprite_whisk);
-	whisk->SetPosition(165, 530);
+	whisk->SetPosition(820, 530);
 	whisk->Begin();
 
 	//Setup Face Targets
