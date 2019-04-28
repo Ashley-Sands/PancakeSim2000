@@ -49,7 +49,7 @@ void Scene_splash::Init()
 	UI_continueText = new TextTransform(game->GetMainFontFace());
 	UI_continueText->SetText("Flip A Pancake To Continue");
 	UI_continueText->SetScale(0.5f, 0.5f);
-	UI_continueText->SetPosition(250, 250);
+	UI_continueText->SetPosition(500, 250);
 
 	// Pan and pancake sprites
 	spriteSheet_pancake->SetSprite(game->GetRenderer(), "Sprites/TEMPCAKE_all.png");
@@ -65,14 +65,15 @@ void Scene_splash::Init()
 	fryingPan_back = new FryingPan(spriteSheet_pan_back);
 	fryingPan_back->SetAnchor(TransformAnchor::Center);
 	fryingPan_back->SetScale(1.1f, 1.1f);
-	fryingPan_back->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 550);
+	fryingPan_back->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 650);
 
 	fryingPan_back->Begin();
 
 	fryingPan_front = new FryingPan(spriteSheet_pan_front);
 	fryingPan_front->SetAnchor(TransformAnchor::Center);
 	fryingPan_front->SetScale(1.1f, 1.1f);
-	fryingPan_front->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 550);
+	fryingPan_front->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 650);
+	fryingPan_front->SetPanBottom_LocalOffset(105);
 
 	fryingPan_front->Begin();
 
@@ -81,11 +82,11 @@ void Scene_splash::Init()
 	pancake->SetAnchor(TransformAnchor::Center);
 	pancake->SetScale(0.8f, 0.8f);
 	pancake->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 60, 150);
-	pancake->SetPanBottom( fryingPan_front->GetPanBottom()+50, 6 );
+	pancake->SetPanBottom( fryingPan_front->GetPanBottom(), 6 );
 
 	pancake->Begin();
 	// Set up a pan for a pratics flip :)
-	pancake->SetPancakeSize(0.75);
+	pancake->SetPancakeSize(0.5);
 	pancake->SetCurrentCookingState(CookingState::Perfect);
 
 	//Game
