@@ -65,14 +65,14 @@ void Scene_splash::Init()
 	fryingPan_back = new FryingPan(spriteSheet_pan_back);
 	fryingPan_back->SetAnchor(TransformAnchor::Center);
 	fryingPan_back->SetScale(1.1f, 1.1f);
-	fryingPan_back->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 350);
+	fryingPan_back->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 550);
 
 	fryingPan_back->Begin();
 
 	fryingPan_front = new FryingPan(spriteSheet_pan_front);
 	fryingPan_front->SetAnchor(TransformAnchor::Center);
 	fryingPan_front->SetScale(1.1f, 1.1f);
-	fryingPan_front->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 350);
+	fryingPan_front->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 100.0f, 550);
 
 	fryingPan_front->Begin();
 
@@ -81,6 +81,7 @@ void Scene_splash::Init()
 	pancake->SetAnchor(TransformAnchor::Center);
 	pancake->SetScale(0.8f, 0.8f);
 	pancake->SetAnchoredPosition((GameSettings::window_width / 2.0f) - 60, 150);
+	pancake->SetPanBottom( fryingPan_front->GetPanBottom()+50, 6 );
 
 	pancake->Begin();
 	// Set up a pan for a pratics flip :)
