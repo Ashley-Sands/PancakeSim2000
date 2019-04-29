@@ -3,7 +3,7 @@
 
 
 
-bool Console::disableConsole = true;
+bool Console::disableConsole = false;// true;
 
 Console::Console(){}
 
