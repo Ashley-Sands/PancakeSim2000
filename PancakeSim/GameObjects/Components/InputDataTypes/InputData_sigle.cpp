@@ -25,3 +25,13 @@ int InputData_single::GetPourRotation()
 {
 	return pourRotation;
 }
+
+void InputData_single::SetJugButtonPressed(bool b)
+{
+	jugButton = b;
+}
+
+bool InputData_single::GetJugButtonPressed()
+{
+	return jugButton;
+}

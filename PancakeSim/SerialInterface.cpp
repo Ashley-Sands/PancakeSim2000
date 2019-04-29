@@ -85,23 +85,6 @@ void SerialInterface::Send(std::string msg)
 	}
 }
 
-void SerialInterface::GetButton()
-{
-	if (connect)
-	{
-		mySerial->write("B");
-
-		std::string result = mySerial->readline();
-
-		std::string b1 = result.substr(0, 1);
-		std::string b2 = result.substr(2, 1);
-
-		button1 = std::stoi(b1);
-		button2 = std::stoi(b2);
-
-	}
-}
-
 void SerialInterface::GetPositions()
 {
 	if (connect)
@@ -157,6 +140,12 @@ void SerialInterface::GetPositions()
 				//Whisk
 				sub = result.substr(currentStrPos, INPUT_LEN);
 				pot_single->SetWhisking(std::stoi(sub));
+
+				currentStrPos += INPUT_LEN + INPUT_SPACING;
+
+				//Jug button
+				sub = result.substr(currentStrPos, INPUT_LEN);
+				pot_single->SetJugButtonPressed(std::stoi(sub));
 
 				currentStrPos += INPUT_LEN + INPUT_SPACING;
 

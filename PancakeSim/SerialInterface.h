@@ -24,7 +24,6 @@ public:
 
 	void Send( std::string msg );
 	void GetPositions();		//TODO: rename
-	void GetButton();			//TODO: removed?
 
 	InputData* GetPot(int id);
 	InputData_single* GetSinglePot();
@@ -44,9 +43,4 @@ private:
 
 	InputData_single* pot_single;	// for for items we only have once ie whisk
 
-
-	//TODO: sort this out according to above TODO's
-	//?????
-	int button1;
-	int button2;
 };
