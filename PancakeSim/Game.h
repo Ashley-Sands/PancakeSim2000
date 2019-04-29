@@ -76,25 +76,13 @@ private:
 	SDL_Color* backgroundColor;
 // Fonts
 	TTF_Font* mainFontFace;
-
-/////////////////////////////////////////////////////
-// TODO
-// I think this is the most part of the main scene!
-//
-/////////////////////////////////////////////////////
-
-//TESTING ONLY
-
 //UI
 	bool showFPS;
 	TextTransform* UI_FPS;
 
 
 
-// BETA
-
-	// there needs to be the same amount of pans to pancakes :)
-
+// BETA & Testing
 	int f = 0;
 	float flipForce = 1.0f; //TESTING ONLY
 
@@ -102,6 +90,7 @@ private:
 public:
 	static const int panCount = 3;
 	//The inputs are public since they are heverly shared with the scene class!
+	// TODO: move to input handler
 	InputData* fryingPans_inputValue[panCount];
 	InputData_single* single_inputValue;
 	Vector2* fryingPans_inputDelta[panCount];
@@ -117,8 +106,8 @@ private:
 
 	const int maxPanRotation = 40;
 	const int hobStartValue = 435;
-//Scenes
 
+//Scenes
 	Scene* currentScene;
 	std::map<std::string, Scene*> scenes;
 };

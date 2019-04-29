@@ -23,7 +23,7 @@ Game::Game()
 	// construct the scenes without initalizing :)
 	scenes["splash"] = new Scene_splash(this);
 	scenes["main"]= new Scene_mainGame(this);
-
+	
 	backgroundColor = new SDL_Color();
 
 }
