@@ -145,7 +145,7 @@ void SerialInterface::GetPositions()
 
 				//Jug button
 				sub = result.substr(currentStrPos, INPUT_LEN);
-				pot_single->SetJugButtonPressed(std::stoi(sub));
+				pot_single->SetJugButtonPressed(1 - std::stoi(sub));
 
 				currentStrPos += INPUT_LEN + INPUT_SPACING;
 
