@@ -86,6 +86,13 @@ void Scene_mainGame::Init()
 
 	sprite_whisk->SetSprite(game->GetRenderer(), "Sprites/Whisk.png");
 
+	// Create Jug first so we can add each of the pans location when we creat the pans.
+	jug = new Jug(spriteSheet_jug);
+	jug->SetScale(0.8f, 0.8f);
+	jug->SetPosition(820, 530);
+
+	int pourPos_x = 0;
+	int pourPos_y = 0;
 
 	// Setup the frying pans pancakes, fire ect, once for each pan :)
 	for (int i = 0; i < GameManager::panCount; i++)
@@ -94,7 +101,7 @@ void Scene_mainGame::Init()
 		fryingPans_back[i] = new FryingPan(spriteSheet_pan_back);
 		fryingPans_back[i]->SetPosition(80 + (260 * i), 500);
 		fryingPans_back[i]->SetScale(1.1f, 1.1f);
-
+	
 		fryingPans_back[i]->Begin();
 
 		fryingPans_front[i] = new FryingPan(spriteSheet_pan_front);
@@ -126,13 +133,16 @@ void Scene_mainGame::Init()
 		panFire[i]->SetInvervalLength(0.175f);
 		panFire[i]->Begin();
 
+		pourPos_x = fryingPans_front[i]->GetPosition()->x + 50;
+		pourPos_y = fryingPans_front[i]->GetPosition()->y - 250;
+		
+		// set the pour position for each pan
+		jug->SetPourPosition(i, pourPos_x, pourPos_y);
+
 	}
 
-	// Jug
-	jug = new Jug(spriteSheet_jug);
-	jug->SetScale(0.8f, 0.8f);
-	jug->SetPosition(820, 530);
-
+	// Add the default position and begin the jug (the default location is the last element in the array[ panCount + 1 ])
+	jug->SetPourPosition(GameManager::panCount, 820, 530);
 	jug->Begin();
 
 	// Whisk
