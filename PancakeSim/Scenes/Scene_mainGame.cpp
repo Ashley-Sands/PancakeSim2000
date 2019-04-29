@@ -266,6 +266,8 @@ void Scene_mainGame::Render()
 void Scene_mainGame::Update()
 {
 
+	int firstEmptyPanId = GameManager::panCount;
+
 	for (int i = 0; i < GameManager::panCount; i++)
 	{
 		fryingPans_back[i]->Update(game->fryingPans_inputValue[i]->GetGyroAxis()->y / -35.0f, game->fryingPans_inputValue[i]->GetHobValue() / (float)hobMaxValue);
@@ -300,26 +302,58 @@ void Scene_mainGame::Update()
 				if (activeFace != nullptr)
 					activeFace->SetActive(false);
 			}
+
 		// select pancake id to pour
-		if (currentPourId == -1 && pancakes[i]->CanPour())
+		if (firstEmptyPanId == GameManager::panCount && pancakes[i]->CanPour())
 		{
-			currentPourId = i;
+			firstEmptyPanId = i;
 		}
-		else if (currentPourId == i)
+		
+		if (jug->GetPourPositionId() == i && pancakes[i]->CanPour())
 		{
 			pancakes[i]->PourPancake(jug->Pour());
 		}
 
 	}
 
+	/* Toggle through the just pour position when the just button is pressed
+	*  An active pour position is only selected when the button is pressed
+	*  to toggle position release button an press within the jugPour_buttonUp_Thresshold
+	*/
+	if (game->single_inputValue->GetJugButtonPressed())
+	{
+
+		if (currentPourId == GameManager::panCount)
+		{
+			currentPourId = firstEmptyPanId;
+		}
+		else if (justPour_currentButtonUp_Time > 0 && justPour_currentButtonUp_Time < jugPour_buttonUp_Thresshold)
+		{
+			currentPourId++;
+
+			if(currentPourId >= GameManager::panCount)
+				currentPourId = firstEmptyPanId;
+
+		}
+
+		justPour_currentButtonUp_Time = 0;
+
+	}
+	else if ( !game->single_inputValue->GetJugButtonPressed() && justPour_currentButtonUp_Time < jugPour_buttonUp_Thresshold )
+	{
+		justPour_currentButtonUp_Time += Time::GetDeltaSeconds();
+	}
+	else if ( !game->single_inputValue->GetJugButtonPressed() && justPour_currentButtonUp_Time >= jugPour_buttonUp_Thresshold && currentPourId != GameManager::panCount )
+	{
+		currentPourId = GameManager::panCount;
+	}
+
 	//Jug and Whisk
 	jug->Update(game->single_inputValue->GetPourRotation());
+	jug->SetPourPositionId(currentPourId);
+
 	whisk->Upadate(game->single_inputValue->IsWhisking());
 
-	// if we where pouring a pancake but we can no longer pour we have finished pouring
-	// since a pancake can not be poured to if its size is > 0 and the pour rate <= 0
-	if (currentPourId > -1 && !pancakes[currentPourId]->CanPour())
-		currentPourId = -1;
 
 	if (showFace && activeFace == nullptr)
 	{	// Set a random active face

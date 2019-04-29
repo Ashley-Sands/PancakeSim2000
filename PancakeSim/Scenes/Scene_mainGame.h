@@ -79,6 +79,9 @@ private:
 	Jug* jug;
 	int currentPourId = -1;
 
+	const float jugPour_buttonUp_Thresshold = 0.5f;
+	float justPour_currentButtonUp_Time;
+
 	// Whisk
 	Whisk* whisk;
 };
