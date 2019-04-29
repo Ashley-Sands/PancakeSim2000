@@ -21,6 +21,7 @@ public:
 	~Transform();
 
 	void SetPosition(int x, int y);
+	void SetPosition(Vector2* pos);
 	void SetAnchoredPosition(int x_pos, int y_pos, bool ignoreScale = false);
 
 	FVector2* GetPosition();

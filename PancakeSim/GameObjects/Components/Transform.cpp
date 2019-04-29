@@ -35,6 +35,12 @@ void Transform::SetPosition(int x, int y)
 
 }
 
+void Transform::SetPosition(Vector2* pos)
+{
+	position->x = pos->x;
+	position->y = pos->y;
+}
+
 void Transform::SetAnchoredPosition(int x_pos, int y_pos, bool ignoreScale /*= false*/)
 {
 
