@@ -6,7 +6,7 @@
 
 
 // Debuging
-bool DEBUG = false;            // forces print to console    // Also displays data normalized (if it been called)
+bool DEBUG = false;                // forces print to console    // Also displays data normalized (if it been called)
 const int DEBUG_INTERVALS = 200;   //millis
 unsigned long DEBUG_LAST_INTERVAL = 0;
 
@@ -16,9 +16,20 @@ MPU6050 MPU[3](Wire);  //TODO: needs to be array, futhermore tocknMPU will also 
 //Jug
 ADXL345 jug_adxl(Wire);
 
+//Hob ehisk togle
+const int toggleSwitch_outputPin = 8;
+const int toggleSwitch_inputPin  = 10;
+const int hob_outputPin = 9;
+const int whisk_outputPin = 11;
+const int toggle_analogReadPin = A2;
+
+bool pin9_isHigh = true;
+// both share the same analog port so they are togled
+int whiskValue = 0;
+int hobValue = 0;   //Hob 2
+
 // Whisk
-const int whisk_pin = A0;
-const int whisking_switch_lowValue = 700;   // a value above this is considered high value
+const int whisking_switch_lowValue = 10;   // a value above this is considered high value
 int whisking_lastWasLow = false;
 
 const int whisking_valueChanged_interval = 250;             //ms
@@ -62,7 +73,9 @@ void PrintPaddedValue(int num)
   if(neg) padded[0] = '-';  
 
   Serial.print( String(padded) ); // Output the padded value to serial console :)
-  //Serial.print("#");
+  
+  if (DEBUG)
+    Serial.print("#");
 }
 
 void MUX_select(int8_t i2cBus)
@@ -87,14 +100,24 @@ void setup()
     MUX_select(i);
     MPU[i].begin();
   }
-  
+
+  // set up the fire alarm pins
   pinMode(fireAlarm_pin, OUTPUT);
   digitalWrite(fireAlarm_pin, LOW);
 
-  pinMode(9, OUTPUT);
-  pinMode(10, INPUT);
+  // set up the toggle output pins
+  pinMode(toggleSwitch_outputPin, OUTPUT);
+  pinMode(toggleSwitch_inputPin, INPUT);
+  pinMode(hob_outputPin, OUTPUT);
+  pinMode(whisk_outputPin, OUTPUT);
+
+  digitalWrite(toggleSwitch_outputPin, HIGH);
+  digitalWrite(hob_outputPin, HIGH);
+  digitalWrite(whisk_outputPin, LOW);
   
+  //??
   pinMode(A4, INPUT);
+  pinMode(13, INPUT);
   
 }
 
@@ -108,6 +131,7 @@ void loop()
   MPU[2].update();
   
   jug_adxl.update();
+  //UpdateHobWhiskToggle();
   UpdateWhisking();
   
   //Check that Serial is available and read any incoming bytes
@@ -156,7 +180,7 @@ void loop()
     digitalWrite(fireAlarm_pin, LOW);
     fireAlarm_endTime = 0;
   }
-  analogWrite(9, 255);
+  
 }
 
 void printGroupValues()
@@ -183,18 +207,46 @@ void printGroupValues()
     PrintPaddedValue( (MPU[1].getAngleX( true )) );
     PrintPaddedValue( (MPU[1].getAngleY( true )) );
     PrintPaddedValue( analogRead(A5) );   //LDR (27k ristor)    //TODO: need to be in array
-    PrintPaddedValue( analogRead(A2) );  // Hob Nob             //TODO: needs to be in an array.
+    PrintPaddedValue( analogRead(A2) );   //hobValue );  // Hob Nob             //TODO: needs to be in an array.
     
     // Print sigleData
     // d ...#Whisking#
     PrintPaddedValue( jug_adxl.GetGyro_z() );
     PrintPaddedValue( whisking );        // whisk rt tilt switch (1k ristor)
+    PrintPaddedValue( digitalRead(toggleSwitch_inputPin) == HIGH );
+}
+
+void UpdateHobWhiskToggle()
+{
+  //Toggle the values depending on the toggle switch
+  if(digitalRead(toggleSwitch_inputPin) == HIGH && !pin9_isHigh)
+  {
+    whiskValue = analogRead(toggle_analogReadPin);
+    digitalWrite(hob_outputPin, HIGH);
+    digitalWrite(whisk_outputPin, LOW);
+    pin9_isHigh = true;
+  }
+  else if(digitalRead(toggleSwitch_inputPin) == LOW && pin9_isHigh)
+  {
+    hobValue = floor(((float)analogRead(toggle_analogReadPin)));// / 613.f) * 1023);
+    digitalWrite(hob_outputPin, LOW);
+    digitalWrite(whisk_outputPin, HIGH);
+    pin9_isHigh = false; 
+  }
+
+  // update the hob / whisk value
+  if(pin9_isHigh)
+    // the value from this hobNob is lower due to a pull-down ristor, so by working out its percentage we can bring it inline whit the out two :D
+    hobValue = floor(((float)analogRead(toggle_analogReadPin)));// / 613.f) * 1023);
+   else
+    whiskValue = analogRead(toggle_analogReadPin);
+
 }
 
 void UpdateWhisking()
 {
 
-  int currentValue = analogRead(whisk_pin);
+  int currentValue = whiskValue;
   bool valueIsLow = currentValue < whisking_switch_lowValue;
   
   if(valueIsLow != whisking_lastWasLow)
