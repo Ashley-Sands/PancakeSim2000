@@ -94,7 +94,7 @@ Vector2* Jug::GetPourPosition(int id)
 
 }
 
-void Jug::SetPourPosition(int id)
+void Jug::SetPourPositionId(int id)
 {
 	if (id < 0 || id > GameManager::panCount)	//its > pancount because there a default position and all the pans
 	{
@@ -105,6 +105,11 @@ void Jug::SetPourPosition(int id)
 
 	currentPourPosition = id;
 
+}
+
+int Jug::GetPourPositionId()
+{
+	return currentPourPosition;
 }
 
 void Jug::IdlePourPosition()

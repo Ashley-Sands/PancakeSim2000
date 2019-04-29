@@ -19,7 +19,8 @@ public:
 
 	void SetPourPosition(int id, int x, int y);
 	Vector2* GetPourPosition(int id);			//Gets the pour position at id if valid
-	void SetPourPosition(int id);
+	void SetPourPositionId(int id);
+	int GetPourPositionId();
 	void IdlePourPosition();
 
 private:
