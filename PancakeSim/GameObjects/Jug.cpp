@@ -26,7 +26,11 @@ void Jug::Update(int rotation)
 	currentRotation = Helper::Clamp(-maxRotation, 10, rotation);
 
 	SetPosition( GetPourPosition( currentPourPosition ) );
-	SetRotation( currentRotation * rotationMultiplier );
+
+	if(currentPourPosition < GameManager::panCount)
+		SetRotation( currentRotation * rotationMultiplier );
+	else
+		SetRotation(0);
 
 
 	// Get the correct sprite for the amount of mixture we have :P
