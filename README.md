@@ -25,9 +25,9 @@ SimPancake consist of frying pans for flipping the pancakes abd a jug for the mi
 For the design of the controller there will be a compact cooking top to house the frying pans and jug. On the front of the cooking top will be potentiometers for the nobs to control the cooking temperature. The frying pan will use a accelerometer/gyroscope to detect if the user is flipping the pancake and a light dependent resistor to detect if the frying pan is on the cooking top. I will also use accelerometer/gyroscope to track the movement and pour for the jug. The whisk will also house an accelerometer to detect if the player is whisking. For the fire alarm I will use a siren (with a 1k resistor to prevent it from being deafening)
 
 ### Images
-<img src="https://github.com/Ashley-Sands/PancakeSim2000/blob/master/readMeImages/IMG_0.jpg?raw=true" width="150px" \>
-<img src="https://github.com/Ashley-Sands/PancakeSim2000/blob/master/readMeImages/IMG_1.jpg?raw=true" width="150px" \>
-<img src="https://github.com/Ashley-Sands/PancakeSim2000/blob/master/readMeImages/IMG_2.jpg?raw=true" width="150px" \>
+![img0](https://github.com/Ashley-Sands/PancakeSim2000/blob/master/readMeImages/IMG_0.jpg?raw=true)
+![img1](https://github.com/Ashley-Sands/PancakeSim2000/blob/master/readMeImages/IMG_1.jpg?raw=true)
+![img2](https://github.com/Ashley-Sands/PancakeSim2000/blob/master/readMeImages/IMG_2.jpg?raw=true)
 
 ### Bill Of Materials (BOM)
 ```
