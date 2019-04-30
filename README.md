@@ -1,7 +1,7 @@
 # comp140 SDL Game Controller Project
 ## Sim Pancake 2000
 
-![SPlogo](PancakeSim\Sprites\SimPancake_2000.png)
+![SPlogo](\PancakeSim\Sprites\SimPancake_2000.png)
 
 ### About
 Sim Pancake 2000 is a game created using SDL for a university project.
@@ -38,6 +38,7 @@ Wood                                  -    -      £15.00
                                                   £46.21
 ```                                               
 
+### User Stores
 
 
 
