@@ -24,6 +24,7 @@ public:
 	void IdlePourPosition();
 
 private:
+	bool unlimitedMixture = true;
 	const float max_mixture = 100.0f;
 	float currentMixture = 100.0f;
 
