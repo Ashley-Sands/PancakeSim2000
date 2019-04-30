@@ -24,6 +24,10 @@ SimPancake consist of frying pans for flipping the pancakes abd a jug for the mi
 
 For the design of the controller there will be a compact cooking top to house the frying pans and jug. On the front of the cooking top will be potentiometers for the nobs to control the cooking temperature. The frying pan will use a accelerometer/gyroscope to detect if the user is flipping the pancake and a light dependent resistor to detect if the frying pan is on the cooking top. I will also use accelerometer/gyroscope to track the movement and pour for the jug. The whisk will also house an accelerometer to detect if the player is whisking. For the fire alarm I will use a siren (with a 1k resistor to prevent it from being deafening)
 
+### Images
+<img src="\readMeImages\IMG_0.jpg" width="150px">
+<img src="\readMeImages\IMG_1.jpg" width="150px">
+<img src="\readMeImages\IMG_2.jpg" width="150px">
 
 ### Bill Of Materials (BOM)
 ```
@@ -33,13 +37,26 @@ MUX mutiplex module                   1 X £3.00 = £ 3.00
 Rt Angle Tilt Switch                  1 X £0.62 = £ 0.62
 9mm Potentiometers                    3 X £1.85 = £ 5.55
 Jump Wire                             2 X £5.85 = £11.70
+Piezo Siren: Bracket Mount            1 X £3.96 = £ 3.96
 Wood                                  -    -      £15.00
                                       ====================
-                                                  £46.21
+                                                  £50.17
 ```                                               
 
 ### User Stores
 
+* As a player i can use a frying pan to flip a pancake
+* As a player i can controle the cooking temperature using a potentiometer to help pevent burning all the pancakes
+* As a player i can see the pan has been lifted of the hob in the game so that the player knows that the pancake is not cooking
+* As a player i want to hear a beep when a pancake has been served so
+* As a player i want to hear a fire alarm when the frying pan is on fire
+* As a player i want to beable to pour a new pancake using a jug
+* As a Player i want to beable to change the pan that im am pouring the mixtur into.
+* As a player i can use all 3 frying pans so that the game is more challageing
+* As a player i want to see a frying pan rotaing in the game when i rotate the realy frying pan so that i know the direction that pancake is going to go in
+* As a player i want to see the jug above the pan so that i know what pan i am pouring into
+* As a player i want to see the hob fire get larger when i turn up the heat
+* As a player i want to see a fire when the pancake has been cooked to long.
 
 
 ### Credits
