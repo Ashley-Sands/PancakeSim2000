@@ -1,7 +1,7 @@
 # comp140 SDL Game Controller Project
 ## Sim Pancake 2000
 
-![SPlogo](\PancakeSim\Sprites\SimPancake_2000.png)
+![SPlogo](https://raw.githubusercontent.com/Ashley-Sands/PancakeSim2000/master/PancakeSim/Sprites/SimPancake_2000.png)
 
 ### About
 Sim Pancake 2000 is a game created using SDL for a university project.
