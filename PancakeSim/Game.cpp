@@ -14,7 +14,6 @@
 #include "GameObjects/Components/Settings/GameSettings.h"
 
 #include "Scenes/scenes.h"
-#include "Scenes/Scene_mainGame.h"
 //Debuging
 #include "GameObjects/Components/Debug/Console.h"
 
@@ -24,6 +23,8 @@ Game::Game()
 	scenes["splash"] = new Scene_splash(this);
 	scenes["main"]= new Scene_mainGame(this);
 	
+	helpScene = new Scene_help(this);
+
 	backgroundColor = new SDL_Color();
 
 }
@@ -177,6 +178,7 @@ void Game::InitGameComponents()
 	GameManager::GetInstance().onScoreChanged = &Game::OnScoreChanged;
 
 	// Load the first scene.
+	helpScene->Init();
 	LoadScene("splash");
 
 }
@@ -196,6 +198,9 @@ void Game::Render()
 	// Rendered in all scenes
 	if (showFPS)
 		UI_FPS->Render(mainRenderer);
+
+	if (displayHelp)
+		helpScene->Render();
 
 	// render new frame
 	//SDL_UpdateWindowSurface(mainWindow);
@@ -359,6 +364,10 @@ void Game::HandleEvents()
 			else if (event.key.keysym.sym == SDLK_p)
 			{
 				showFPS = !showFPS;
+			}
+			else if (event.key.keysym.sym == SDLK_h)
+			{
+				displayHelp = !displayHelp;
 			}
 		}
 		

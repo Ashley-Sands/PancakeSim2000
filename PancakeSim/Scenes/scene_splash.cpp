@@ -51,6 +51,11 @@ void Scene_splash::Init()
 	UI_continueText->SetScale(0.5f, 0.5f);
 	UI_continueText->SetPosition(500, 250);
 
+	UI_helpText = new TextTransform(game->GetMainFontFace());
+	UI_helpText->SetText("Press 'h' at any time for help");
+	UI_helpText->SetScale(0.4f, 0.4f);
+	UI_helpText->SetPosition(530, 300);
+
 	// Pan and pancake sprites
 	spriteSheet_pancake->SetSprite(game->GetRenderer(), "Sprites/TEMPCAKE_all.png");
 	spriteSheet_pancake->SetSpriteSize(200, 200);
@@ -100,6 +105,12 @@ void Scene_splash::Init()
 void Scene_splash::Render()
 {
 
+
+	// Game
+	fryingPan_back->Render(game->GetRenderer());
+	pancake->Render(game->GetRenderer());
+	fryingPan_front->Render(game->GetRenderer());
+
 	// draw a box below the contine text 
 	SDL_Rect boarder_rect;
 
@@ -113,13 +124,20 @@ void Scene_splash::Render()
 	SDL_SetRenderDrawColor(game->GetRenderer(), color, color, color, 255);
 	SDL_RenderFillRect(game->GetRenderer(), &boarder_rect);
 
-	// Game
-	fryingPan_back->Render(game->GetRenderer());
-	pancake->Render(game->GetRenderer());
-	fryingPan_front->Render(game->GetRenderer());
+	boarder_rect.w = 325;
+	boarder_rect.x = 485;
+	boarder_rect.y = 290;
+	color = 255;
+
+	SDL_SetRenderDrawColor(game->GetRenderer(), color, color, color, 255);
+	SDL_RenderFillRect(game->GetRenderer(), &boarder_rect);
+
 	//UI
-	sprite_logo->RenderSprite( game->GetRenderer(), logoPosition );
-	UI_continueText->Render( game->GetRenderer() );
+	sprite_logo->RenderSprite(game->GetRenderer(), logoPosition);
+	UI_continueText->Render(game->GetRenderer());
+	UI_helpText->Render(game->GetRenderer());
+
+
 }
 
 void Scene_splash::Update()

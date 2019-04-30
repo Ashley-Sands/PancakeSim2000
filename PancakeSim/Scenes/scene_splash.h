@@ -26,6 +26,7 @@ private:
 	Sprite* sprite_logo;
 	SDL_Rect* logoPosition;
 	TextTransform* UI_continueText;
+	TextTransform* UI_helpText;
 
 	float contineText_currentColor = 0;
 	bool contineText_colorIncresse = true;

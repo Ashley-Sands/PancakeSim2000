@@ -183,6 +183,7 @@
     <ClInclude Include="Scenes\scenes.h" />
     <ClInclude Include="Scenes\scene_splash.h" />
     <ClInclude Include="Scenes\Scene_mainGame.h" />
+    <ClInclude Include="Scenes\Scene_help.h" />
     <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="GameObjects\Components\Sprite.h" />
     <ClInclude Include="GameObjects\Components\SpriteAnimator.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\scene_splash.cpp" />
     <ClCompile Include="Scenes\Scene_mainGame.cpp" />
+    <ClCompile Include="Scenes\Scene_help.cpp" />
     <ClCompile Include="SDLGame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SerialInterface.cpp" />

@@ -110,5 +110,8 @@ private:
 //Scenes
 	Scene* currentScene;
 	std::map<std::string, Scene*> scenes;
+
+	bool displayHelp = false;
+	Scene* helpScene;
 };
 
