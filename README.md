@@ -70,3 +70,11 @@ Author: 3lian.com
 Acquired from: https://all-free-download.com/free-vector/download/kids-face-avatars-cute-funny-cartoon-characters_289810.html
 
 Licence: Free for non commercial use only
+
+### Other
+Arduino Code folder : \Arduino_PancakeSim2000\ps2000\
+Game Code folder    : \PancakeSim\
+
+Project GitHub Repo : https://github.com/Ashley-Sands/PancakeSim2000
+
+
